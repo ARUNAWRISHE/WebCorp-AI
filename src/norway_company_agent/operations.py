@@ -1,8 +1,12 @@
 from __future__ import annotations
 
 import math
-import resource
 import sys
+
+try:  # Unix only; Windows falls back to the Win32 process-memory API.
+    import resource
+except ImportError:  # pragma: no cover - platform dependent
+    resource = None
 from collections import Counter
 from typing import Iterable
 
@@ -37,7 +41,30 @@ def domain_request_summary(counts: Counter[str]) -> dict[str, float | int | None
     }
 
 
-def peak_rss_bytes() -> int:
-    value = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-    # macOS reports bytes; Linux and most BSD-derived CI images report KiB.
-    return int(value if sys.platform == "darwin" else value * 1024)
+def peak_rss_bytes() -> int | None:
+    if resource is not None:
+        value = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+        # macOS reports bytes; Linux and most BSD-derived CI images report KiB.
+        return int(value if sys.platform == "darwin" else value * 1024)
+    if sys.platform == "win32":
+        try:
+            import ctypes
+            from ctypes import wintypes
+
+            class Counters(ctypes.Structure):
+                _fields_ = [
+                    ("cb", wintypes.DWORD), ("PageFaultCount", wintypes.DWORD),
+                    ("PeakWorkingSetSize", ctypes.c_size_t), ("WorkingSetSize", ctypes.c_size_t),
+                    ("QuotaPeakPagedPoolUsage", ctypes.c_size_t), ("QuotaPagedPoolUsage", ctypes.c_size_t),
+                    ("QuotaPeakNonPagedPoolUsage", ctypes.c_size_t), ("QuotaNonPagedPoolUsage", ctypes.c_size_t),
+                    ("PagefileUsage", ctypes.c_size_t), ("PeakPagefileUsage", ctypes.c_size_t),
+                ]
+
+            counters = Counters()
+            counters.cb = ctypes.sizeof(Counters)
+            handle = ctypes.windll.kernel32.GetCurrentProcess()
+            if ctypes.windll.psapi.GetProcessMemoryInfo(handle, ctypes.byref(counters), counters.cb):
+                return int(counters.PeakWorkingSetSize)
+        except Exception:
+            return None
+    return None
