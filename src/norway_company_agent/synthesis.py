@@ -276,41 +276,120 @@ def _claim_text(claim: dict[str, Any]) -> str:
     return json.dumps(claim.get("value"), ensure_ascii=False) + " " + str(claim.get("key")) + " " + json.dumps(claim.get("reporting_period") or {})
 
 
-def llm_overview(envelope: dict[str, Any], template: dict[str, Any], *, model: str, timeout: float = 45.0) -> dict[str, Any] | None:
-    """One or two plain-English sentences on what the company does, paraphrasing cited registry/website text.
+def _ollama(model: str, prompt: str, *, timeout: float, num_predict: int = 400) -> dict[str, Any] | None:
+    body = json.dumps({"model": model, "prompt": prompt, "stream": False, "format": "json", "keep_alive": "30m", "think": False,
+                       "options": {"temperature": 0, "seed": 7, "num_predict": num_predict}}).encode()
+    try:
+        request = urllib.request.Request(OLLAMA_URL + "/api/generate", data=body, headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(request, timeout=timeout) as response:
+            return json.loads(json.loads(response.read())["response"])
+    except Exception:
+        return None
 
-    The deterministic template remains the factual summary; the overview is prepended only when it passes
-    validation: it must cite provided claim ids, stay short, and contain no number absent from its sources.
+
+GLOSSARY = (
+    "rørlegger/rørleggerarbeid=plumber/plumbing; maler/malertjenester/malerarbeid=painter/painting; murer/murertjenester=bricklaying/masonry; "
+    "tømrer=carpenter; snekker/snekkerarbeid=joinery; flislegging=tiling; tapetsering=wallpapering; gulvlegging=floor laying; "
+    "elektriker/elektrisk installasjon=electrician/electrical installation; grunnarbeid=groundwork; anlegg/anleggsarbeid=civil works; "
+    "hylleselskap=shelf company (a dormant company created for later sale); holding/holdingselskap=holding company; borettslag=housing cooperative; "
+    "sameie/boligsameie=owners' association; utleie/utleige=renting out; eiendom/fast eiendom=property/real estate; forvaltning=management; "
+    "verdipapirer=securities; aksjer=shares; regnskap/regnskapsføring=accounting/bookkeeping; revisjon=auditing; rådgivning=advisory services; "
+    "verksted=workshop; bilverksted=car repair workshop; frisør=hairdresser; renhold=cleaning; servering=food and drink service; "
+    "transport=transport; gård/gårdsdrift=farm/farming; skogbruk=forestry; fiske=fishing; havbruk/oppdrett=aquaculture; "
+    "konsulentvirksomhet=consultancy; drift=operation; handel=trade; engros=wholesale; detaljhandel=retail; "
+    "'skal kunne'/'kan'=may (keep it as 'may', not as a statement of fact); 'og det som naturlig hører inn under'=and related activities"
+)
+NORWEGIAN_MARKERS = {"og", "av", "som", "er", "det", "til", "med", "samt", "hvor", "for", "på", "virksomhet", "selskapet", "innen", "herunder"}
+
+
+def _looks_norwegian(text: str) -> bool:
+    words = re.findall(r"[a-zæøå]+", text.casefold())
+    return bool(words) and sum(word in NORWEGIAN_MARKERS for word in words) / len(words) > 0.12
+
+
+def _fold(text: str) -> str:
+    return " ".join(str(text or "").casefold().split())
+
+
+def llm_synthesis(envelope: dict[str, Any], template: dict[str, Any], *, model: str, timeout: float = 60.0) -> dict[str, Any] | None:
+    """Three short English parts written by a local LLM from verified claims only.
+
+    Each part is validated independently and falls back to the deterministic text when it fails:
+    - what_it_does: must cite source claims and quote, verbatim, the source phrases it paraphrases;
+    - what_changed / unknowns: may only restate the deterministic change and unknown lists (cited by id);
+    - in every part, each number must appear in the cited sources.
     """
     sources = [claim for claim in envelope["claims"] if claim["availability"] == "available" and claim["field"] in
                {"business_purpose", "industry", "website_description", "public_brand_name"}][:6]
     name = next((claim["value"] for claim in envelope["claims"] if claim["field"] == "legal_name" and claim["key"] == "current"), None)
-    if not sources or not name:
+    if not name:
         return None
-    facts = [{"id": claim["id"], "field": claim["field"], "text": claim["value"] if isinstance(claim["value"], str) else claim["value"]} for claim in sources]
+    facts = []
+    for claim in sources:
+        value = claim["value"]
+        if claim["field"] == "industry" and isinstance(value, dict):
+            value = {"nace": value.get("code"), "norwegian_label": value.get("description")}
+        facts.append({"id": claim["id"], "field": claim["field"], "text": value})
+    changes = [{"id": item["change_id"], "text": item["text"]} for item in template.get("changes") or [] if item.get("material")][:8]
+    unknowns = template.get("unknowns") or []
     prompt = (
         f"Company: {name}\n"
-        "Using ONLY the texts below (some are Norwegian), write one or two short English sentences that explain what this company does.\n"
-        "Do not add facts, numbers, places, customers, sizes or opinions that are not in the texts. Do not use marketing language.\n"
-        'Return JSON: {"overview": "...", "claim_ids": ["cl-..."]} citing the ids you used.\n\n'
-        f"TEXTS:\n{json.dumps(facts, ensure_ascii=False)[:4000]}"
+        "You write three short parts of a company profile in plain English, for an analyst.\n"
+        "Rules: use ONLY the material below. Some source texts are Norwegian; translate carefully and literally. "
+        "Never add facts, numbers, places, customers, sizes, quality judgements or marketing language. "
+        "If a Norwegian word is unclear, leave it out rather than guess. Registered purposes often say what the company "
+        "'may' do: keep that as 'may'. Prefer the registered purpose (business_purpose); use the industry label only "
+        "when there is no purpose. Always write English.\n"
+        f"Glossary (Norwegian=English): {GLOSSARY}\n"
+        "1. what_it_does: 1-2 sentences on what the company does. Cite fact ids, and list in 'quotes' the exact "
+        "source phrases (copied character for character from the facts) that your sentences are based on.\n"
+        "2. what_changed: 1-2 sentences summarising the CHANGES list (cite change ids). If the list is empty, return an empty text.\n"
+        "3. unknowns: one sentence summarising the UNKNOWN list. If empty, return an empty text.\n"
+        'Return JSON: {"what_it_does": {"text": "", "fact_ids": [], "quotes": []}, '
+        '"what_changed": {"text": "", "change_ids": []}, "unknowns": {"text": ""}}\n\n'
+        f"FACTS: {json.dumps(facts, ensure_ascii=False)[:3500]}\n"
+        f"CHANGES: {json.dumps(changes, ensure_ascii=False)[:2000]}\n"
+        f"UNKNOWN: {json.dumps(unknowns, ensure_ascii=False)[:800]}"
     )
-    body = json.dumps({"model": model, "prompt": prompt, "stream": False, "format": "json", "keep_alive": "30m",
-                       "options": {"temperature": 0, "seed": 7, "num_predict": 160}}).encode()
-    try:
-        request = urllib.request.Request(OLLAMA_URL + "/api/generate", data=body, headers={"Content-Type": "application/json"})
-        with urllib.request.urlopen(request, timeout=timeout) as response:
-            output = json.loads(json.loads(response.read())["response"])
-    except Exception:
+    output = _ollama(model, prompt, timeout=timeout)
+    if not isinstance(output, dict):
         return None
-    text = " ".join(str(output.get("overview") or "").split())
     by_id = {claim["id"]: claim for claim in sources}
-    ids = [cid for cid in output.get("claim_ids") or [] if cid in by_id] or [claim["id"] for claim in sources if claim["field"] == "business_purpose"]
-    if not text or not ids or len(text) > 420 or len(text) < 25:
+    result: dict[str, Any] = {}
+
+    part = output.get("what_it_does") or {}
+    text = " ".join(str(part.get("text") or "").split())
+    ids = [cid for cid in part.get("fact_ids") or [] if cid in by_id]
+    quotes = [str(quote) for quote in part.get("quotes") or [] if str(quote).strip()]
+    source_text = " ".join(_claim_text(by_id[cid]) for cid in ids)
+    folded_sources = _fold(" ".join(json.dumps(by_id[cid]["value"], ensure_ascii=False) for cid in ids))
+    grounded = bool(quotes) and all(_fold(quote) in folded_sources for quote in quotes)
+    if text and ids and grounded and not _looks_norwegian(text) and 25 <= len(text) <= 450 and all(number in _numbers(source_text) for number in _numbers(text)):
+        result["what_it_does"] = {"text": text, "claim_ids": ids, "quotes": quotes[:6], "method": f"local_llm:{model}"}
+
+    part = output.get("what_changed") or {}
+    text = " ".join(str(part.get("text") or "").split())
+    change_ids = [cid for cid in part.get("change_ids") or [] if cid in {item["id"] for item in changes}]
+    change_source = " ".join(item["text"] for item in changes if item["id"] in change_ids)
+    if text and change_ids and not _looks_norwegian(text) and len(text) <= 500 and all(number in _numbers(change_source) for number in _numbers(text)):
+        result["what_changed"] = {"text": text, "change_ids": change_ids, "method": f"local_llm:{model}"}
+
+    part = output.get("unknowns") or {}
+    text = " ".join(str(part.get("text") or "").split())
+    if text and unknowns and not _looks_norwegian(text) and len(text) <= 400 and not _numbers(text) - _numbers(" ".join(unknowns)):
+        result["unknowns"] = {"text": text, "method": f"local_llm:{model}"}
+    if not result:
         return None
-    allowed = _numbers(" ".join(_claim_text(by_id[cid]) for cid in ids))
-    if any(number not in allowed for number in _numbers(text)):
-        return None
-    overview = {"text": text, "claim_ids": ids, "method": f"local_llm_paraphrase:{model}", "note": "Machine paraphrase of the cited registry/website text."}
-    return {**template, "method": f"{template['method']}+llm_overview:{model}", "overview": overview,
-            "sentences": [{"text": text, "claim_ids": ids, "generated": True}] + template["sentences"], "text": text + " " + template["text"]}
+    synthesis = {
+        "what_it_does": result.get("what_it_does"),
+        "what_changed": result.get("what_changed") or ({"text": template.get("changes_text"), "method": "deterministic"} if template.get("changes_text") else None),
+        "unknowns": result.get("unknowns") or ({"text": template.get("unknowns_text"), "method": "deterministic"} if template.get("unknowns_text") else None),
+    }
+    sentences = list(template["sentences"])
+    lead = synthesis["what_it_does"]
+    if lead:
+        sentences = [{"text": lead["text"], "claim_ids": lead["claim_ids"], "generated": True}] + sentences
+    return {**template, "method": f"{template['method']}+llm:{model}", "synthesis": synthesis, "sentences": sentences,
+            "text": " ".join(item["text"] for item in sentences),
+            "changes_text": (synthesis["what_changed"] or {}).get("text") or template.get("changes_text"),
+            "unknowns_text": (synthesis["unknowns"] or {}).get("text") or template.get("unknowns_text")}

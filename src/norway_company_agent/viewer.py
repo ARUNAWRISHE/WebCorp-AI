@@ -127,13 +127,16 @@ def view_model(envelope: dict[str, Any]) -> dict[str, Any]:
                        bool(claim.get("stale")), claim.get("confidence")])
     company = envelope.get("company") or {}
     summary = envelope.get("summary") or {}
+    readable = {item.get("change_id"): item.get("text") for item in summary.get("changes") or []}
     return {
         "o": envelope["organisation_number"], "n": company.get("name") or envelope["organisation_number"], "f": company.get("legal_form") or "",
         "m": (company.get("municipality") or "").title(), "w": company.get("website") or "", "t": envelope["run"].get("terminal_status"),
         "s": {name: section.get("availability") for name, section in (envelope.get("sections") or {}).items()},
-        "sum": summary.get("text") or "", "sm": summary.get("method") or "", "chg": summary.get("changes_text") or "", "unk": summary.get("unknowns_text") or "",
+        "wd": ((summary.get("synthesis") or {}).get("what_it_does") or {}).get("text") or "",
+        "sum": " ".join(item["text"] for item in summary.get("sentences") or [] if not item.get("generated")) or summary.get("text") or "",
+        "sm": summary.get("method") or "", "chg": summary.get("changes_text") or "", "unk": summary.get("unknowns_text") or "",
         "cl": claims, "ev": ev_rows,
-        "ch": [[item["type"], item["key"], json.dumps(item.get("old_value"), ensure_ascii=False)[:160], json.dumps(item.get("new_value"), ensure_ascii=False)[:160], item.get("material")]
+        "ch": [[item["type"], readable.get(item["id"], item["key"]), json.dumps(item.get("old_value"), ensure_ascii=False)[:160], json.dumps(item.get("new_value"), ensure_ascii=False)[:160], item.get("material")]
                for item in envelope.get("changes", [])],
         "rq": (envelope.get("operations") or {}).get("requests"),
     }
@@ -195,8 +198,8 @@ function renderDetail(o){const c=DATA.find(x=>x.o===o);if(!c)return;current=o;do
  let h=`<button class="back" onclick="document.body.classList.remove('show-detail')">← Back to list</button>
  <div class="card"><h2><span>${esc(c.n)}</span><span class="badge ${c.t==="completed"?"available":"failed"}">${esc(c.t)}</span></h2>
  <div class="meta">Org. no. ${c.o} · <a href="https://virksomhet.brreg.no/nb/oppslag/enheter/${c.o}" target="_blank" rel="noopener">Brønnøysund record</a>${c.w?` · <a href="${esc(c.w)}" target="_blank" rel="noopener">${esc(c.w)}</a>`:""}</div>
- <div class="summary" style="margin-top:10px"><p>${esc(c.sum)}</p>${c.chg?`<p><b>Changes:</b> ${esc(c.chg)}</p>`:""}${c.unk?`<p class="unk">${esc(c.unk)}</p>`:""}<div class="meta">Summary method: ${esc(c.sm)} · every sentence cites claims below</div></div></div>`;
- if(c.ch.length){h+=`<div class="card"><h2>Changes since previous run</h2><table>${c.ch.map(x=>`<tr><td class="l">${esc(x[0].replace(/_/g," "))}${x[4]?"":" (minor)"}</td><td class="v">${esc(x[1])}<br><span class="meta">${esc(x[2])} → ${esc(x[3])}</span></td></tr>`).join("")}</table></div>`}
+ <div class="summary" style="margin-top:10px">${c.wd?`<p><b>What it does:</b> ${esc(c.wd)} <span class="meta">(plain-English paraphrase of the cited registered purpose by a local language model; check the source below)</span></p>`:""}<p>${esc(c.sum)}</p>${c.chg?`<p><b>What changed:</b> ${esc(c.chg)}</p>`:""}${c.unk?`<p class="unk"><b>Unknown:</b> ${esc(c.unk)}</p>`:""}<div class="meta">Summary method: ${esc(c.sm)} · every sentence cites claims below</div></div></div>`;
+ if(c.ch.length){h+=`<div class="card"><h2>Changes since previous run</h2><table>${c.ch.map(x=>`<tr><td class="l">${esc(x[0].replace(/_/g," "))}${x[4]?"":" (minor)"}</td><td class="v">${esc(x[1])}<details class="src"><summary>details</summary><span class="meta">${esc(x[2])} → ${esc(x[3])}</span></details></td></tr>`).join("")}</table></div>`}
  for(const s of ORDER){const rows=c.cl.filter(x=>x[0]===s);if(!rows.length)continue;
   h+=`<div class="card"><h2><span>${SECTION_TITLES[s]}</span><span class="badge ${c.s[s]}">${esc((c.s[s]||"").replace(/_/g," "))}</span></h2><table>`+rows.map(x=>{
    const val=x[7]&&x[4]==="available"?`<a href="${esc(x[7])}" target="_blank" rel="noopener noreferrer">${esc(x[3])}</a>`:esc(x[3]);

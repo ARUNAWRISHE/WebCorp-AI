@@ -25,7 +25,7 @@ from .profile import FIELD_SECTIONS, OPTIONAL_FIELDS, Profile
 from .registers import SectorRegisters
 from .site_extract import extract_site
 from .store import SnapshotStore, read_jsonl, write_jsonl_atomic
-from .synthesis import llm_overview, ollama_available, template_summary
+from .synthesis import llm_synthesis, ollama_available, template_summary
 from .webdiscovery import resolve_website
 from .wikidata import WikidataLookup
 
@@ -47,8 +47,8 @@ class RunConfig:
     time_budget: float | None = None
     workers: int = 48
     registry_path: str | None = None
-    llm: str = "off"
-    llm_model: str = "qwen2.5:7b"
+    llm: str = "auto"
+    llm_model: str = "qwen3:8b"
     nav_days: int = 90
     use_nav: bool = True
     use_wikidata: bool = True
@@ -445,7 +445,7 @@ def run(config: RunConfig) -> dict[str, Any]:
             nonlocal llm_used
             if time.monotonic() > deadline - 10 or not envelope["summary"].get("sentences"):
                 return
-            result = llm_overview(envelope, envelope["summary"], model=config.llm_model, timeout=min(45.0, max(5.0, deadline - 10 - time.monotonic())))
+            result = llm_synthesis(envelope, envelope["summary"], model=config.llm_model, timeout=min(60.0, max(5.0, deadline - 10 - time.monotonic())))
             if result:
                 envelope["summary"] = result
                 llm_used += 1

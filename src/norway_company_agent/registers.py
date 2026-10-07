@@ -42,6 +42,48 @@ def _orgs(profile: Profile) -> set[str]:
     return {profile.organisation_number} | {str(unit.get("organisation_number")) for unit in profile.facts.get("subunits") or [] if unit.get("organisation_number")}
 
 
+def _download_complete(url: str, *, max_bytes: int, meter: Meter, deadline: float | None, chunk: int = 1 << 16) -> Response | None:
+    """Stream a bulk file, verify it against Content-Length and resume short reads with HTTP Range."""
+    import hashlib
+    import urllib.request
+
+    from .net import USER_AGENT
+
+    body = bytearray()
+    expected: int | None = None
+    started = time.monotonic()
+    headers_out: dict[str, str] = {}
+    for _attempt in range(6):
+        if deadline is not None and time.monotonic() > deadline:
+            return None
+        request_headers = {"User-Agent": USER_AGENT, "Accept": "*/*"}
+        if body:
+            request_headers["Range"] = f"bytes={len(body)}-"
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url, headers=request_headers), timeout=60) as response:
+                headers_out = {key.casefold(): value for key, value in response.headers.items()}
+                if body and response.status != 206:
+                    body.clear()  # server ignored the range; start over
+                if expected is None and response.status == 200 and headers_out.get("content-length", "").isdigit():
+                    expected = int(headers_out["content-length"])
+                while True:
+                    block = response.read(chunk)
+                    if not block:
+                        break
+                    body.extend(block)
+                    if len(body) > max_bytes:
+                        return None
+        except Exception:
+            time.sleep(1.0)
+            continue
+        if expected is None or len(body) >= expected:
+            break
+    if expected is not None and len(body) != expected:
+        return None
+    meter.add(len(body), int((time.monotonic() - started) * 1000))
+    return Response(url, url, 200, headers_out, bytes(body), int((time.monotonic() - started) * 1000), utc_now())
+
+
 def _date_ddmmyyyy(value: str) -> str | None:
     value = (value or "").strip()
     if len(value) == 8 and value.isdigit():
@@ -74,8 +116,8 @@ class SectorRegisters:
             meta = cached.with_suffix(cached.suffix + ".retrieved")
             retrieved = meta.read_text(encoding="utf-8").strip() if meta.exists() else utc_now()
             return Response(url, url, 200, {}, body, 0, retrieved)
-        response = get(url, meter=self.meter, timeout=120, max_bytes=max_bytes, attempts=2, deadline=self.deadline)
-        if not response.ok:
+        response = _download_complete(url, max_bytes=max_bytes, meter=self.meter, deadline=self.deadline)
+        if response is None:
             return None
         if cached:
             cached.parent.mkdir(parents=True, exist_ok=True)
@@ -136,7 +178,7 @@ class SectorRegisters:
     def _apply_smilefjes(self, profile: Profile, codes: list[str], orgs: set[str]) -> None:
         relevant = any(code[:2] in FOOD_SERVICE_DIVISIONS for code in codes)
         if not self.status.get("smilefjes", "").startswith("available") or self.smilefjes_response is None:
-            profile.check("food_safety_inspection", "failed" if relevant else "not_applicable", f"Mattilsynet inspection data unavailable: {self.status.get('smilefjes')}")
+            profile.check("food_safety_inspection", "failed" if relevant else "not_applicable", f"Mattilsynet inspection data unavailable: {self.status.get('smilefjes') or 'not loaded within the run budget'}")
             return
         rows = [row for org in orgs for row in self.smilefjes.get(org, [])]
         if not rows:
@@ -179,7 +221,7 @@ class SectorRegisters:
         elif relevant:
             state = "not_available" if self.status.get("renhold", "").startswith("available") else "failed"
             profile.check("public_approval", state, "Cleaning business not listed in Arbeidstilsynet's cleaning-company register." if state == "not_available"
-                          else f"Cleaning register unavailable: {self.status.get('renhold')}")
+                          else f"Cleaning register unavailable: {self.status.get('renhold') or 'not loaded within the run budget'}")
 
     def _apply_dibk(self, profile: Profile, codes: list[str]) -> None:
         if not any(code.startswith(CONSTRUCTION_PREFIXES) for code in codes):

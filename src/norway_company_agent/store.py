@@ -9,6 +9,8 @@ import gzip
 import json
 import os
 import shutil
+import threading
+import uuid
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -16,6 +18,8 @@ from typing import Any, Iterable
 class SnapshotStore:
     def __init__(self, root: str | Path | None):
         self.root = Path(root) if root else None
+        self._lock = threading.Lock()
+        self._writing: set[str] = set()
         if self.root:
             (self.root / "snapshots").mkdir(parents=True, exist_ok=True)
 
@@ -25,15 +29,24 @@ class SnapshotStore:
             return None
         relative = f"snapshots/{sha256[:2]}/{sha256}.gz"
         target = self.root / relative
-        if not target.exists():
+        if target.exists():
+            return relative
+        with self._lock:  # many companies can cite the same bulk file; write it once
+            if sha256 in self._writing or target.exists():
+                return relative
+            self._writing.add(sha256)
+        try:
             target.parent.mkdir(parents=True, exist_ok=True)
-            temporary = target.with_suffix(f".{os.getpid()}.{id(body)}.tmp")
+            temporary = target.with_suffix(f".{os.getpid()}.{threading.get_ident()}.{uuid.uuid4().hex}.tmp")
             with gzip.open(temporary, "wb", compresslevel=6) as handle:
                 handle.write(body)
             try:
                 os.replace(temporary, target)
             except OSError:
                 temporary.unlink(missing_ok=True)
+        finally:
+            with self._lock:
+                self._writing.discard(sha256)
         return relative
 
     def get(self, relative: str) -> bytes | None:

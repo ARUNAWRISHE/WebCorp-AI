@@ -65,7 +65,11 @@ class Response:
 
     @property
     def sha256(self) -> str:
-        return hashlib.sha256(self.body).hexdigest()
+        cached = self.__dict__.get("_sha256")
+        if cached is None:  # bulk files are cited by many companies; hash once
+            cached = hashlib.sha256(self.body).hexdigest()
+            self.__dict__["_sha256"] = cached
+        return cached
 
     def json(self) -> Any:
         return json.loads(self.body.decode("utf-8"))
