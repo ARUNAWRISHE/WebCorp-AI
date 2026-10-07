@@ -1,0 +1,27 @@
+name: clean-machine
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  install-test-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Declared install step only
+        run: uv sync --frozen
+      - name: Tests
+        run: uv run --with pytest pytest -q
+      - name: Live 3-company run with the evaluator command
+        run: |
+          printf '923609016\n810034882\n914778271\n' > ci-companies.txt
+          uv run python run_agent.py --input ci-companies.txt --output out/envelopes.jsonl --time-budget 600
+          test "$(wc -l < out/envelopes.jsonl)" -eq 3
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ci-run
+          path: out/
