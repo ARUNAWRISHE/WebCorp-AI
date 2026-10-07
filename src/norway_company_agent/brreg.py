@@ -156,9 +156,10 @@ def collect_entity(profile: Profile, bulk_row: dict[str, Any] | None = None) -> 
     for item in body.get("historiskeNavn") or []:
         if item.get("navn"):
             profile.claim("legal_name", f"former:{item.get('navn')}", {"former_name": item.get("navn"), "from": item.get("fraDato"), "to": item.get("tilDato")}, [ev], confidence=0.99)
-    if form.get("kode") not in PERSONAL_CONTACT_FORMS:
-        if body.get("hjemmeside"):
-            profile.facts["registry_website_evidence"] = ev
+    if body.get("hjemmeside"):
+        profile.facts["registry_website_evidence"] = ev
+        profile.claim("registry_website", "declared", str(body["hjemmeside"]).strip(), [ev], confidence=0.99,
+                      note="Website as declared in Enhetsregisteret. Whether it is the entity's own site is reported separately under official_website.")
     if body.get("registreringsdatoEnhetsregisteret"):
         profile.claim("registry_event", f"registered:{body['registreringsdatoEnhetsregisteret']}",
                       {"event": "Registered in Enhetsregisteret", "date": body["registreringsdatoEnhetsregisteret"]}, [ev],

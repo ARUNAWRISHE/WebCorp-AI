@@ -288,3 +288,16 @@ def test_norwegian_and_english_text_dates():
     assert _text_date("September 12, 2026") == "2026-09-12"
     assert _text_date("31.02.2026") is None
     assert _text_date("ingen dato") is None
+
+
+def test_franchise_site_is_not_published_as_official_website(tmp_path):
+    from norway_company_agent.site_extract import extract_site
+    profile = Profile("916617445", SnapshotStore(None))
+    profile.facts.update(FACTS)
+    capture = _capture("7-Eleven – alltid åpent", title="7-Eleven Norge", host="7-eleven.no", footer="Lyngdal Glassrekkverk AS")
+    assessment = assess(capture, FACTS, "916617445", "registry")
+    assert assessment["status"] == "exact" and assessment["proof"]["site_specific"] is False
+    extract_site(profile, capture, {**assessment, "candidate": {"source": "registry", "url": "https://7-eleven.no/"}})
+    assert not any(item["field"] in {"official_website", "social_profile", "news_item"} for item in profile.claims.values())
+    states = {item["field"]: item["availability"] for item in profile.placeholder_claims()}
+    assert states["official_website"] == "ambiguous"

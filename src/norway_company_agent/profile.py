@@ -28,6 +28,7 @@ FIELD_SECTIONS: dict[str, str] = {
     "group_relation": "leadership",
     "registered_workplace": "workplaces",
     "website_address": "workplaces",
+    "registry_website": "web_presence",
     "official_website": "web_presence",
     "website_description": "web_presence",
     "social_profile": "web_presence",
@@ -38,7 +39,7 @@ FIELD_SECTIONS: dict[str, str] = {
     "registry_event": "activity",
 }
 # Families that are optional enrichment: reported only when found, so they never add noise.
-OPTIONAL_FIELDS = {"website_address", "public_brand_name", "website_description", "knowledge_base_entry", "careers_page", "group_relation"}
+OPTIONAL_FIELDS = {"registry_website", "website_address", "public_brand_name", "website_description", "knowledge_base_entry", "careers_page", "group_relation"}
 
 
 @dataclass
@@ -54,6 +55,7 @@ class Profile:
     company: dict[str, Any] = field(default_factory=dict)
     facts: dict[str, Any] = field(default_factory=dict)
     modules: dict[str, str] = field(default_factory=dict)
+    timings_ms: dict[str, int] = field(default_factory=dict)
     started: float = field(default_factory=time.monotonic)
     lock: threading.RLock = field(default_factory=threading.RLock, repr=False)
 

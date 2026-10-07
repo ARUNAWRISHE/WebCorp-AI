@@ -13,7 +13,7 @@ FIELD_LABELS = {
     "industry": "Industry (NACE)", "business_purpose": "Registered activity", "founded_date": "Founded", "registered_employees": "Registered employees",
     "public_brand_name": "Public brand", "annual_account_metric": "Accounts", "annual_account_filing": "Annual account filing",
     "filed_account_years": "Filed account years", "role": "Role", "group_relation": "Group", "registered_workplace": "Registered workplace",
-    "website_address": "Address on website", "official_website": "Official website", "website_description": "Website description",
+    "website_address": "Address on website", "registry_website": "Registry-declared website", "official_website": "Official website (verified)", "website_description": "Website description",
     "social_profile": "Social profile", "knowledge_base_entry": "Wikidata", "job_posting": "Job posting", "careers_page": "Careers page",
     "news_item": "News / press", "registry_event": "Registry event",
 }

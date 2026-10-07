@@ -42,7 +42,7 @@ state and a note explaining what was checked. Missing values are never zero.
 | financials | annual_account_metric, annual_account_filing, filed_account_years |
 | leadership | role, group_relation* |
 | workplaces | registered_workplace, website_address* |
-| web_presence | official_website, website_description*, social_profile, knowledge_base_entry* |
+| web_presence | registry_website* (as declared in Enhetsregisteret), official_website (verified, entity-specific), website_description*, social_profile, knowledge_base_entry* |
 | hiring | job_posting, careers_page* |
 | activity | news_item, registry_event |
 

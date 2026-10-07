@@ -20,7 +20,7 @@ VALUE_TYPES = {
     "industry": "industry_changed", "business_purpose": "purpose_changed", "registered_employees": "employee_count_changed",
     "annual_account_metric": "financial_value_restated", "official_website": "website_changed", "website_description": "description_changed",
     "public_brand_name": "brand_changed", "filed_account_years": "new_filing", "role": "role_changed", "registered_workplace": "location_changed",
-    "job_posting": "job_updated", "founded_date": "founded_date_changed",
+    "job_posting": "job_updated", "founded_date": "founded_date_changed", "registry_website": "registry_website_changed",
 }
 NON_MATERIAL = {"description_changed", "new_registry_event", "job_updated", "careers_page_found", "careers_page_removed", "brand_changed"}
 # Families whose removal is only meaningful when the source was actually re-checked successfully.

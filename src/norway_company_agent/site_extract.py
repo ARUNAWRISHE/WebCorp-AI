@@ -94,20 +94,18 @@ def extract_site(profile: Profile, capture: SiteCapture, assessment: dict[str, A
     website_ev = [identity_ev, home_ev]
     if assessment["candidate"].get("evidence_id"):
         website_ev.append(assessment["candidate"]["evidence_id"])
-    profile.claim("official_website", "primary", homepage.final_url.split("#")[0], website_ev, confidence=float(assessment["score"]),
-                  discovery_source=source, identity_method="verify_v2", identity_reasons=assessment.get("reasons", [])[:4])
-    profile.company["website"] = homepage.final_url
     if not proof.get("site_specific", True):
-        # Declared site that presents another brand or group: link it, but do not attribute its profiles, news or jobs.
-        note = "The registry-declared website appears to be shared with a group or brand; its profiles, news and jobs are not attributed to this entity."
-        with profile.lock:
-            for claim in profile.claims.values():
-                if claim["field"] == "official_website":
-                    claim["note"] = note
-                    claim["shared_site"] = True
+        # Declared site that presents another brand, franchise or group: the registry link is reported as the
+        # registry_website fact, but the site is not called this entity's own website and nothing on it is attributed.
+        note = (f"The declared website {homepage.final_url} presents a different brand, franchise or group site; "
+                "it is not treated as this entity's own website, and its profiles, news and jobs are not attributed.")
+        profile.check("official_website", "ambiguous", note, website_ev)
         for name in ("social_profile", "news_item", "job_posting"):
             profile.check(name, "not_available", note)
         return
+    profile.claim("official_website", "primary", homepage.final_url.split("#")[0], website_ev, confidence=float(assessment["score"]),
+                  discovery_source=source, identity_method="verify_v2", identity_reasons=assessment.get("reasons", [])[:4])
+    profile.company["website"] = homepage.final_url
 
     # Public brand and description
     org_items = [item for page in capture.pages for item in page.jsonld if _types(item) & ORG_TYPES]
@@ -234,7 +232,10 @@ def _extract_news(profile: Profile, capture: SiteCapture) -> None:
         head = re.split(r"\s[|\-–]\s", title.casefold())[0].strip()
         if head in GENERIC_TITLES or title.casefold() == (page.title or "").casefold() and page.kind != "news":
             return
-        key = (url or "") + "#" + title.casefold()
+        url_key = (url or "").split("#")[0].split("?")[0].rstrip("/").casefold()
+        key = url_key if url and url_key != page.final_url.split("?")[0].rstrip("/").casefold() else url_key + "#" + title.casefold()
+        if key in items and len(title) < len(items[key]["title"]):
+            items[key]["title"] = title  # prefer the shorter, un-suffixed title for the same article
         if key not in items:
             items[key] = {"page": page, "title": title, "date": date, "url": url or page.final_url, "kind": kind}
 

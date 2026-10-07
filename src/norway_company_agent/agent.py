@@ -132,6 +132,7 @@ def load_registry_rows(path: str | None, wanted: set[str]) -> dict[str, dict[str
 
 # ---- research ------------------------------------------------------------------------------------
 def _guard(profile: Profile, module: str, fields: list[str], fn, *args, **kwargs) -> Any:
+    started = time.monotonic()
     try:
         return fn(*args, **kwargs)
     except BudgetExceeded:
@@ -143,6 +144,8 @@ def _guard(profile: Profile, module: str, fields: list[str], fn, *args, **kwargs
         profile.facts.setdefault("tracebacks", []).append(traceback.format_exc()[-1500:])
         for name in fields:
             profile.check(name, "failed", f"Module error: {type(exc).__name__}")
+    finally:
+        profile.timings_ms[module] = profile.timings_ms.get(module, 0) + int((time.monotonic() - started) * 1000)
     return None
 
 
@@ -472,6 +475,8 @@ def build_report(config: RunConfig, envelopes: list[dict[str, Any]], inputs: lis
         "elapsed_seconds": round(elapsed, 1),
         "phase_a_seconds": round(phase_a_seconds, 1),
         "per_company_runtime": latency_summary([value * 1000 for value in finished.values()]),
+        "module_runtime": {module: latency_summary([profile.timings_ms[module] for profile in profiles.values() if module in profile.timings_ms])
+                           for module in sorted({name for profile in profiles.values() for name in profile.timings_ms})},
         "requests": {"total": company_requests + lane_requests, "per_company_mean": round(company_requests / n, 1), "background_lanes": lane_requests},
         "bytes": sum(profile.meter.bytes for profile in profiles.values()),
         "third_party_cost_usd": 0.0,
