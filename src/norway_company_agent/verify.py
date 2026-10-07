@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import re
 import unicodedata
+import urllib.parse
 from typing import Any
 
 from .identity import _tokens
@@ -25,6 +26,8 @@ PARKED_MARKERS = (
     "website is under construction", "siden er under arbeid", "default web site page", "it works!", "welcome to nginx", "index of /",
 )
 DECLARED_SOURCES = {"registry", "wikidata", "subunit_registry"}
+ROOT_SEGMENTS = {"no", "nb", "nn", "nb-no", "no-nb", "en", "en-gb", "en-us", "se", "sv", "da", "dk", "de", "fi", "norsk", "english",
+                 "index.html", "index.php", "index.htm", "home", "hjem", "forside", "default.aspx", "start"}
 PLACEHOLDER_ORGS = {"123456789", "987654321", "999999999", "000000000", "111111111", "123123123"}
 
 
@@ -180,6 +183,17 @@ def assess(capture: SiteCapture, facts: dict[str, Any], organisation_number: str
     reasons.extend(corroborators)
 
     # 5. Decision table.
+    # A page deep inside another organisation's or platform's site (a river page on an association site, a menu
+    # platform listing, a unit page on a chain site) is not the company's own website, even if it shows the org
+    # number: that is exactly what a directory listing looks like.
+    path_parts = [part for part in urllib.parse.urlparse(homepage.final_url).path.casefold().split("/") if part]
+    deep_page = any(part not in ROOT_SEGMENTS for part in path_parts) and not host_match
+    if deep_page:
+        proof["deep_page"] = homepage.final_url
+        reason = f"the candidate resolves to a page inside another site ({homepage.final_url}), not a site of its own"
+        if source in DECLARED_SOURCES and (org_page or name_in_identity or corroborators):
+            return {"status": "exact", "score": 0.9, "reasons": [f"{source}-declared page; {reason}", *reasons], "proof": {**proof, "site_specific": False}}
+        return {"status": "ambiguous", "score": 0.5, "reasons": [reason, *reasons], "proof": {**proof, "site_specific": False}}
     site_specific = bool(org_page) or current_in_strong or registered_name_strong
     proof["site_specific"] = site_specific
     if org_page or subunit_page:

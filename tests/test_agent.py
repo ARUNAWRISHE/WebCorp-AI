@@ -363,3 +363,17 @@ def test_assembly_error_becomes_failed_envelope(monkeypatch, tmp_path):
     rows = [json.loads(line) for line in (tmp_path / "out.jsonl").read_text(encoding="utf-8").splitlines()]
     assert len(rows) == 1 and rows[0]["run"]["terminal_status"] == "failed"
     assert report["checks"]["one_envelope_per_input"]
+
+
+def test_page_inside_another_site_is_not_an_official_website():
+    facts = {**FACTS, "name": "AUDNA AS", "phones": ["38 34 00 00"]}
+    capture = _capture("Audna – lakseelv i Agder. Kontakt: 38 34 00 00. Audna AS org.nr 916 617 445", title="Audna | Norske Lakseelver", host="lakseelver.no")
+    capture.pages[0].final_url = "https://lakseelver.no/nb/elver/audna"
+    assert assess(capture, facts, "916617445", "email_domain")["status"] == "ambiguous"
+
+
+def test_language_root_is_still_a_site_root():
+    facts = {**FACTS, "name": "NOBLY AS"}
+    capture = _capture("Nobly AS · org.nr 916 617 445", title="Nobly", host="nobly.dk")
+    capture.pages[0].final_url = "https://www.nobly.dk/no"
+    assert assess(capture, facts, "916617445", "email_domain")["status"] == "exact"
