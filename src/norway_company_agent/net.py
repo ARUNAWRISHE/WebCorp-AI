@@ -97,7 +97,7 @@ class _RecordingRedirect(urllib.request.HTTPRedirectHandler):
 _host_slots: dict[str, threading.BoundedSemaphore] = {}
 _host_slots_lock = threading.Lock()
 HOST_CONCURRENCY = {
-    "data.brreg.no": 8,
+    "data.brreg.no": 12,
     "pam-stilling-feed.nav.no": 6,
     "www.wikidata.org": 3,
 }
@@ -124,6 +124,7 @@ def get(
 ) -> Response:
     """GET with bounded retries. Never raises for HTTP/network errors; returns status 0 instead."""
     last: Response | None = None
+    retried_429 = False
     host = (urllib.parse.urlparse(url).hostname or "").casefold()
     for attempt in range(attempts):
         if deadline is not None and time.monotonic() >= deadline:
@@ -158,10 +159,16 @@ def get(
             if meter:
                 meter.add(len(body), elapsed)
             last = Response(url, exc.geturl() or url, exc.code, {k.casefold(): v for k, v in (exc.headers or {}).items()}, body, elapsed, utc_now(), f"HTTP {exc.code}", recorder.chain)
-            if exc.code in {400, 401, 403, 404, 410, 451} or exc.code == 429 and attempt + 1 >= attempts:
+            if exc.code == 429 and not retried_429:
+                retried_429 = True
+                time.sleep(2.5)
+                continue
+            if exc.code in {400, 401, 403, 404, 410, 429, 451}:
                 return last
         except ValueError as exc:  # public-network guard
             elapsed = int((time.monotonic() - started) * 1000)
+            if "did not resolve" in str(exc):
+                return Response(url, url, 0, {}, b"", elapsed, utc_now(), f"dns: {exc}", recorder.chain)
             return Response(url, url, -1, {}, b"", elapsed, utc_now(), f"blocked: {exc}", recorder.chain)
         except Exception as exc:  # network, TLS, timeout
             elapsed = int((time.monotonic() - started) * 1000)
@@ -202,7 +209,8 @@ def robots_allowed(url: str, *, meter: Meter | None = None, deadline: float | No
             parser.parse(response.text().splitlines())
             outcome, note = "parsed", "robots.txt parsed"
         else:
-            outcome, note = "disallowed", f"robots.txt returned {response.status}"
+            # RFC 9309: a 5xx robots file means "do not crawl"; the site is reported as failing, not as refusing.
+            outcome, note = "unreachable", f"server error: robots.txt returned {response.status}"
         cached = (outcome, note, parser)
         with _robots_lock:
             _robots_cache[origin] = cached

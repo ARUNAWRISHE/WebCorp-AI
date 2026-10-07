@@ -149,7 +149,7 @@ def _classify_links(page: Page, base_domain: str) -> dict[str, list[str]]:
 
 def _is_dns_failure(error: str | None) -> bool:
     text = (error or "").casefold()
-    return any(marker in text for marker in ("getaddrinfo", "name or service not known", "nodename nor servname", "11001", "11004", "no address associated", "did not resolve"))
+    return any(marker in text for marker in ("dns:", "getaddrinfo", "name or service not known", "nodename nor servname", "11001", "11004", "no address associated", "did not resolve"))
 
 
 def fetch_html(profile: Profile, url: str, *, timeout: float = 10.0, max_bytes: int = 2_000_000) -> tuple[Response | None, str]:

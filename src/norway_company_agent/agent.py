@@ -184,7 +184,10 @@ def research_company(profile: Profile, *, bulk_row: dict[str, Any] | None, wikid
         profile.modules["website"] = "available"
         return
     # No verified website: record what was tried, honestly.
-    states = [item.get("outcome") for item in attempts]
+    # Only officially declared candidates say something about the company's own site; a guessed domain that
+    # refuses access or errors is simply not evidence of a website.
+    declared = [item for item in attempts if item.get("source") != "guessed_domain"]
+    states = [item.get("outcome") for item in declared] or ["not_available"]
     if assessment is not None and assessment.get("status") == "ambiguous":
         candidate = assessment["candidate"]
         state = "ambiguous"
@@ -193,7 +196,7 @@ def research_company(profile: Profile, *, bulk_row: dict[str, Any] | None, wikid
         state, note = "not_available", "No website is registered and no candidate domain could be derived from official data."
     elif any(item == "blocked" for item in states) and not any(item in {"rejected", "ambiguous"} for item in states):
         state, note = "blocked", "Candidate website refused automated access (robots.txt or access control)."
-    elif all(item == "failed" for item in states):
+    elif states and all(item == "failed" for item in states):
         state, note = "failed", "Candidate website could not be fetched in this run."
     else:
         state = "not_available"
@@ -363,6 +366,10 @@ def run(config: RunConfig) -> dict[str, Any]:
             profiles[org].check("job_posting", "not_applicable", "NAV job connector disabled for this run.")
 
     if lane is not None:
+        # Let the rate-limited lane use idle time, but never more than 60% of the budget or past the deadline.
+        lane_limit = min(deadline - 60, t0 + 0.6 * budget)
+        while time.monotonic() < lane_limit and any(thread.is_alive() for thread in lane.threads) and len(lane.results) < len(valid):
+            time.sleep(1.0)
         lane.stop_flag.set()
         for org in valid:
             if profiles[org].modules.get("registry") == "available":
