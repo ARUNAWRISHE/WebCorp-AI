@@ -334,7 +334,7 @@ def llm_synthesis(envelope: dict[str, Any], template: dict[str, Any], *, model: 
     unknowns = template.get("unknowns") or []
     prompt = (
         f"Company: {name}\n"
-        "You write three short parts of a company profile in plain English, for an analyst.\n"
+        "You write two short parts of a company profile in plain English, for an analyst.\n"
         "Rules: use ONLY the material below. Some source texts are Norwegian; translate carefully and literally. "
         "Never add facts, numbers, places, customers, sizes, quality judgements or marketing language. "
         "If a Norwegian word is unclear, leave it out rather than guess. Registered purposes often say what the company "
@@ -343,13 +343,12 @@ def llm_synthesis(envelope: dict[str, Any], template: dict[str, Any], *, model: 
         f"Glossary (Norwegian=English): {GLOSSARY}\n"
         "1. what_it_does: 1-2 sentences on what the company does. Cite fact ids, and list in 'quotes' the exact "
         "source phrases (copied character for character from the facts) that your sentences are based on.\n"
-        "2. what_changed: 1-2 sentences summarising the CHANGES list (cite change ids). If the list is empty, return an empty text.\n"
-        "3. unknowns: one sentence summarising the UNKNOWN list. If empty, return an empty text.\n"
+        "2. what_changed: 1-2 sentences summarising the CHANGES list (cite change ids); add nothing that is not in the list. "
+        "If the list is empty, return an empty text.\n"
         'Return JSON: {"what_it_does": {"text": "", "fact_ids": [], "quotes": []}, '
-        '"what_changed": {"text": "", "change_ids": []}, "unknowns": {"text": ""}}\n\n'
+        '"what_changed": {"text": "", "change_ids": []}}\n\n'
         f"FACTS: {json.dumps(facts, ensure_ascii=False)[:3500]}\n"
         f"CHANGES: {json.dumps(changes, ensure_ascii=False)[:2000]}\n"
-        f"UNKNOWN: {json.dumps(unknowns, ensure_ascii=False)[:800]}"
     )
     output = _ollama(model, prompt, timeout=timeout)
     if not isinstance(output, dict):
@@ -374,10 +373,8 @@ def llm_synthesis(envelope: dict[str, Any], template: dict[str, Any], *, model: 
     if text and change_ids and not _looks_norwegian(text) and len(text) <= 500 and all(number in _numbers(change_source) for number in _numbers(text)):
         result["what_changed"] = {"text": text, "change_ids": change_ids, "method": f"local_llm:{model}"}
 
-    part = output.get("unknowns") or {}
-    text = " ".join(str(part.get("text") or "").split())
-    if text and unknowns and not _looks_norwegian(text) and len(text) <= 400 and not _numbers(text) - _numbers(" ".join(unknowns)):
-        result["unknowns"] = {"text": text, "method": f"local_llm:{model}"}
+    # Unknowns stay deterministic: in the audit the model turned "not found" into "there is no website",
+    # which is an unsupported claim of absence.
     if not result:
         return None
     synthesis = {
