@@ -340,3 +340,26 @@ def test_changes_become_readable_evidence_linked_sentences():
     assert "Daglig leder Kari Nordmann is no longer registered." in texts
     assert all(item["evidence_ids"] for item in summary["changes"])
     assert summary["changes_text"].startswith("Since the previous run:")
+
+
+def test_snapshot_store_never_raises(tmp_path, monkeypatch):
+    store = SnapshotStore(tmp_path)
+    import gzip as gzip_module
+    def broken_open(*args, **kwargs):
+        raise FileNotFoundError("path too long")
+    monkeypatch.setattr("norway_company_agent.store.gzip.open", broken_open)
+    assert store.put("a" * 64, b"data") is None
+
+
+def test_assembly_error_becomes_failed_envelope(monkeypatch, tmp_path):
+    monkeypatch.setattr(agent_module, "research_company", _fake_research)
+    monkeypatch.setattr(agent_module, "template_summary", lambda envelope: (_ for _ in ()).throw(RuntimeError("boom")))
+    inputs = tmp_path / "in.txt"
+    inputs.write_text("100000003\n", encoding="utf-8")
+    config = RunConfig(input_path=str(inputs), output=str(tmp_path / "out.jsonl"), report=str(tmp_path / "r.json"), viewer=None,
+                       state_dir=str(tmp_path / "state"), time_budget=20, workers=1, llm="off", use_nav=False, use_wikidata=False,
+                       use_history=False, use_registers=False)
+    report = run(config)
+    rows = [json.loads(line) for line in (tmp_path / "out.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert len(rows) == 1 and rows[0]["run"]["terminal_status"] == "failed"
+    assert report["checks"]["one_envelope_per_input"]

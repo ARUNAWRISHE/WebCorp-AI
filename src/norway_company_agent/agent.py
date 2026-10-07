@@ -410,7 +410,7 @@ def run(config: RunConfig) -> dict[str, Any]:
         lane.stop_flag.set()
         for org in valid:
             if profiles[org].modules.get("registry") == "available":
-                lane.apply(profiles[org])
+                _guard(profiles[org], "filing_years", ["filed_account_years"], lane.apply, profiles[org])
     else:
         for org in valid:
             profiles[org].check("filed_account_years", "not_applicable", "Filing-year connector disabled for this run.")
@@ -427,17 +427,20 @@ def run(config: RunConfig) -> dict[str, Any]:
             envelopes.append(failed_envelope(org, run_id=run_id, started_at=started_at, message=f"Input {item['raw']!r} is not a 9-digit Norwegian organisation number."))
             continue
         profile = profiles[org]
-        terminal = "completed" if profile.modules.get("registry") in {"available", "not_available"} else "failed"
-        envelope = build_envelope(profile, run_id=run_id, started_at=started_at, completed_at=completed_at, terminal_status=terminal,
-                                  runtime_ms=int(finished.get(org, time.monotonic() - profile.started) * 1000))
-        failed_fields = {claim["field"] for claim in envelope["claims"] if claim["key"] == "*" and claim["availability"] in {"failed", "blocked"}}
-        refresh(previous.get(org), envelope, detected_at=completed_at, failed_fields=failed_fields)
-        envelope["sections"] = compute_sections(envelope)
-        envelope["summary"] = template_summary(envelope)
-        problems = validate_envelope(envelope)
+        try:
+            terminal = "completed" if profile.modules.get("registry") in {"available", "not_available"} else "failed"
+            envelope = build_envelope(profile, run_id=run_id, started_at=started_at, completed_at=completed_at, terminal_status=terminal,
+                                      runtime_ms=int(finished.get(org, time.monotonic() - profile.started) * 1000))
+            failed_fields = {claim["field"] for claim in envelope["claims"] if claim["key"] == "*" and claim["availability"] in {"failed", "blocked"}}
+            refresh(previous.get(org), envelope, detected_at=completed_at, failed_fields=failed_fields)
+            envelope["sections"] = compute_sections(envelope)
+            envelope["summary"] = template_summary(envelope)
+            problems = validate_envelope(envelope)
+        except Exception as exc:  # one company's assembly must never take down the batch
+            envelope, problems = None, [f"assembly error: {type(exc).__name__}: {exc}"]
         if problems:
             validation_failures.append({"organisation_number": org, "problems": problems[:5]})
-            envelope = failed_envelope(org, run_id=run_id, started_at=started_at, message="Envelope failed schema validation: " + "; ".join(problems[:2]))
+            envelope = failed_envelope(org, run_id=run_id, started_at=started_at, message="Envelope could not be assembled: " + "; ".join(problems[:2]))
         envelopes.append(envelope)
 
     if llm_enabled:
@@ -472,7 +475,10 @@ def run(config: RunConfig) -> dict[str, Any]:
     Path(config.report).write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     if config.viewer:
         from .viewer import build_viewer
-        build_viewer(envelopes, report, config.viewer)
+        try:
+            build_viewer(envelopes, report, config.viewer)
+        except Exception as exc:  # the viewer is a convenience; envelopes and report are already written
+            report["viewer_error"] = f"{type(exc).__name__}: {exc}"
     return report
 
 

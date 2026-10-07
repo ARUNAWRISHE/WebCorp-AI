@@ -37,13 +37,16 @@ class SnapshotStore:
             self._writing.add(sha256)
         try:
             target.parent.mkdir(parents=True, exist_ok=True)
-            temporary = target.with_suffix(f".{os.getpid()}.{threading.get_ident()}.{uuid.uuid4().hex}.tmp")
+            temporary = target.parent / f"{sha256[:12]}.{uuid.uuid4().hex[:10]}.tmp"  # short: Windows MAX_PATH
             with gzip.open(temporary, "wb", compresslevel=6) as handle:
                 handle.write(body)
             try:
                 os.replace(temporary, target)
             except OSError:
                 temporary.unlink(missing_ok=True)
+        except OSError:
+            # Evidence keeps its URL, time, hash and span even if the raw copy cannot be written.
+            return relative if target.exists() else None
         finally:
             with self._lock:
                 self._writing.discard(sha256)
