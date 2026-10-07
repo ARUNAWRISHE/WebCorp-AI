@@ -12,7 +12,7 @@ from typing import Any
 
 from .identity import _tokens
 from .profile import Profile
-from .sitecrawl import SiteCapture, crawl_site, registered_domain
+from .sitecrawl import IDENTITY_PROBES, SiteCapture, crawl_site, probe_paths, registered_domain
 from .verify import assess, fold
 from .website import normalize_homepage
 
@@ -95,6 +95,18 @@ def candidate_ladder(profile: Profile, wikidata: dict[str, Any] | None) -> list[
             if any(item["domain"] == host for item in candidates):
                 continue
             candidates.append({"url": f"https://{host}/", "source": "guessed_domain", "domain": host, "evidence_id": None})
+        # Trading names of registered establishments (e.g. a shop or restaurant name) often are the web brand.
+        # These candidates pass only with organisation-number proof or the strict discovered-domain rule.
+        legal = set(_tokens(facts["name"]))
+        brands = []
+        for unit in facts.get("subunits") or []:
+            tokens = set(_tokens(unit.get("name") or ""))
+            if tokens and not tokens <= legal and unit.get("name") not in brands:
+                brands.append(unit["name"])
+        for brand in brands[:2]:
+            for host in guessed_domains(brand)[:2]:
+                if not any(item["domain"] == host for item in candidates):
+                    candidates.append({"url": f"https://{host}/", "source": "guessed_domain", "domain": host, "evidence_id": None, "from_subunit": brand})
     return candidates
 
 
@@ -112,7 +124,7 @@ def resolve_website(profile: Profile, wikidata: dict[str, Any] | None, *, max_cr
             attempts.append({**candidate, "outcome": "failed", "note": "run budget exhausted"})
             break
         if candidate["source"] == "guessed_domain":
-            if guessed_checked >= 6:
+            if guessed_checked >= 9:
                 continue
             guessed_checked += 1
             if not _resolves(candidate["domain"]):
@@ -124,6 +136,15 @@ def resolve_website(profile: Profile, wikidata: dict[str, Any] | None, *, max_cr
             attempts.append({**candidate, "outcome": capture.outcome, "note": capture.note})
             continue
         assessment = assess(capture, profile.facts, profile.organisation_number, candidate["source"])
+        uncertain = assessment["status"] == "ambiguous" or (assessment["status"] == "rejected" and candidate["source"] != "guessed_domain"
+                                                            and "parked" not in " ".join(assessment["reasons"]))
+        left = profile.budget_left()
+        if uncertain and (left is None or left > 40):
+            # Identity proof (org number, phone, address) usually sits on contact/about/privacy pages that
+            # JavaScript menus hide from the link scan; look there before deciding. The gate itself is unchanged.
+            if probe_paths(profile, capture, IDENTITY_PROBES, "identity", limit=3):
+                assessment = assess(capture, profile.facts, profile.organisation_number, candidate["source"])
+                assessment["reasons"] = assessment["reasons"] + ["identity re-checked after probing contact/about/privacy pages"]
         attempts.append({**candidate, "outcome": assessment["status"], "score": assessment["score"], "note": "; ".join(assessment["reasons"])[:300],
                          "final_url": capture.homepage.final_url if capture.homepage else None})
         if assessment["status"] == "exact":

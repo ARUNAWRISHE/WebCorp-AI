@@ -228,7 +228,7 @@ def test_one_envelope_per_input_under_crash_timeout_and_invalid_input(monkeypatc
     inputs = tmp_path / "in.txt"
     inputs.write_text("\n".join(["100000001", "100000002", "100000003", "not-a-number", "100000003"]), encoding="utf-8")
     config = RunConfig(input_path=str(inputs), output=str(tmp_path / "out.jsonl"), report=str(tmp_path / "report.json"), viewer=str(tmp_path / "v.html"),
-                       state_dir=str(tmp_path / "state"), time_budget=20, workers=3, llm="off", use_nav=False, use_wikidata=False, use_history=False)
+                       state_dir=str(tmp_path / "state"), time_budget=20, workers=3, llm="off", use_nav=False, use_wikidata=False, use_history=False, use_registers=False)
     started = time.monotonic()
     report = run(config)
     assert time.monotonic() - started < 20
@@ -301,3 +301,42 @@ def test_franchise_site_is_not_published_as_official_website(tmp_path):
     assert not any(item["field"] in {"official_website", "social_profile", "news_item"} for item in profile.claims.values())
     states = {item["field"]: item["availability"] for item in profile.placeholder_claims()}
     assert states["official_website"] == "ambiguous"
+
+
+def test_registered_legal_name_with_form_identifies_guessed_site():
+    facts = {**FACTS, "name": "FLISLEGGER SIMONSEN AS", "phones": [], "email": None, "role_people": []}
+    capture = _capture("Vi legger fliser i Sandnes", title="Flislegger Simonsen – Flislegger Simonsen AS", host="flislegger-simonsen.no")
+    assert assess(capture, facts, "922718458", "guessed_domain")["status"] == "exact"
+
+
+def test_one_word_registered_name_needs_corroboration():
+    facts = {**FACTS, "name": "NORDLYS. AS", "phones": [], "email": None, "role_people": [], "business_address": {}}
+    capture = _capture("Nyheter fra Nord-Norge. Utgitt av Nordlys AS", title="Nordlys", host="nordlys.no")
+    assert assess(capture, facts, "999322913", "guessed_domain")["status"] != "exact"
+
+
+def test_hostname_alone_is_not_name_evidence():
+    facts = {**FACTS, "name": "BEMACO AS"}
+    capture = _capture("Flores y plantas artificiales", title="Flores y plantas artificiales - Tienda", host="bemaco.com")
+    assert assess(capture, facts, "976500768", "guessed_domain")["status"] == "rejected"
+
+
+def test_own_org_number_with_name_title_survives_other_listed_numbers():
+    facts = {**FACTS, "name": "ESTRA AS"}
+    text = "ESTRA AS org.nr 924 777 052. Partnere: org.nr 896 907 662, org.nr 998 807 867, org.nr 912 345 670. Eksempel: org.nr 123456789"
+    capture = _capture(text, title="Suksess med relasjonsledelse | ESTRA AS", host="estra.no")
+    assert assess(capture, facts, "924777052", "guessed_domain")["status"] == "exact"
+
+
+
+def test_changes_become_readable_evidence_linked_sentences():
+    previous = _profile_envelope(["Kari Nordmann"])
+    refresh(None, previous, detected_at="2026-10-01T00:00:00Z", failed_fields=set())
+    current = _profile_envelope(["Ola Nordmann"])
+    refresh(previous, current, detected_at="2026-10-07T00:00:00Z", failed_fields=set())
+    summary = template_summary(current)
+    texts = [item["text"] for item in summary["changes"]]
+    assert "New Daglig leder: Ola Nordmann." in texts
+    assert "Daglig leder Kari Nordmann is no longer registered." in texts
+    assert all(item["evidence_ids"] for item in summary["changes"])
+    assert summary["changes_text"].startswith("Since the previous run:")

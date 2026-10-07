@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 
 from .identity import _tokens
 from .profile import Profile
-from .sitecrawl import Page, SiteCapture, registered_domain
+from .sitecrawl import CAREERS_PROBES, FEED_PROBES, NEWS_PROBES, Page, SiteCapture, probe_paths, registered_domain
 from .verify import fold
 from .webdiscovery import social_handle_matches
 from .website import normalize_social_url
@@ -173,6 +173,16 @@ def extract_site(profile: Profile, capture: SiteCapture, assessment: dict[str, A
                 claim["evidence_ids"] = sorted(set(claim["evidence_ids"]) | {ev})
                 claim["corroborated_on_website"] = True
 
+    # Unlinked newsroom, feed and careers paths (JavaScript menus hide many links).
+    left = profile.budget_left()
+    if left is None or left > 40:
+        kinds = {page.kind for page in capture.pages}
+        if "feed" not in kinds:
+            probe_paths(profile, capture, FEED_PROBES, "feed", limit=1, budget=10)
+        if "news" not in kinds:
+            probe_paths(profile, capture, NEWS_PROBES, "news", limit=1, budget=12)
+        if "careers" not in kinds:
+            probe_paths(profile, capture, CAREERS_PROBES, "careers", limit=1, budget=12)
     _extract_jobs(profile, capture)
     _extract_news(profile, capture)
 

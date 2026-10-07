@@ -22,6 +22,7 @@ SECTIONS: dict[str, str] = {
     "web_presence": "Verified official website and company-owned profiles",
     "hiring": "Hiring",
     "activity": "Dated public activity",
+    "assessments": "Official inspections, approvals and ratings",
 }
 
 

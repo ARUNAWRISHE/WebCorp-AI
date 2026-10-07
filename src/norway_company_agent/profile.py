@@ -36,6 +36,8 @@ FIELD_SECTIONS: dict[str, str] = {
     "job_posting": "hiring",
     "careers_page": "hiring",
     "news_item": "activity",
+    "food_safety_inspection": "assessments",
+    "public_approval": "assessments",
     "registry_event": "activity",
 }
 # Families that are optional enrichment: reported only when found, so they never add noise.

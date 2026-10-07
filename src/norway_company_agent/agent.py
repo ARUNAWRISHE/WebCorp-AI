@@ -18,10 +18,11 @@ from typing import Any
 from . import brreg
 from .changes import refresh
 from .contract import SECTIONS, AVAILABILITY_STATES, summarise_states, validate_envelope
-from .navjobs import NavJobIndex, collect_jobs
+from .navjobs import AdDetailCache, AdSyncLane, NavJobIndex, collect_jobs
 from .net import AGENT_VERSION, BudgetExceeded, utc_now
 from .operations import latency_summary, peak_rss_bytes
 from .profile import FIELD_SECTIONS, OPTIONAL_FIELDS, Profile
+from .registers import SectorRegisters
 from .site_extract import extract_site
 from .store import SnapshotStore, read_jsonl, write_jsonl_atomic
 from .synthesis import llm_overview, ollama_available, template_summary
@@ -29,6 +30,8 @@ from .webdiscovery import resolve_website
 from .wikidata import WikidataLookup
 
 SECTION_ORDER = list(SECTIONS)
+REPO_ROOT = Path(__file__).resolve().parents[2]
+NAV_SEED_CACHE = REPO_ROOT / "data" / "nav-ad-cache.jsonl.gz"  # declared cache of public NAV ad metadata
 
 
 @dataclass
@@ -50,6 +53,7 @@ class RunConfig:
     use_nav: bool = True
     use_wikidata: bool = True
     use_history: bool = True
+    use_registers: bool = True
     max_crawls: int = 4
     store_raw: bool = True
     extra: dict[str, Any] = field(default_factory=dict)
@@ -303,6 +307,14 @@ def run(config: RunConfig) -> dict[str, Any]:
 
     cache_dir = Path(config.state_dir) / "cache" / "nav-feed" if config.state_dir else None
     nav = NavJobIndex(days=config.nav_days, deadline=deadline - 30, cache_dir=cache_dir) if config.use_nav else None
+    ad_cache_path = Path(config.state_dir) / "cache" / "nav-ad-cache.jsonl.gz" if config.state_dir else None
+    ad_cache = AdDetailCache([NAV_SEED_CACHE] + ([ad_cache_path] if ad_cache_path else [])) if nav else None
+    ad_lane = AdSyncLane(nav, ad_cache, deadline=deadline - 90) if nav else None
+    if ad_lane:
+        ad_lane.start()
+    registers = SectorRegisters(Path(config.state_dir) / "cache" / "registers" if config.state_dir else None, deadline - 60) if config.use_registers and valid else None
+    if registers:
+        registers.start()
     wiki = WikidataLookup(valid, deadline=phase_a_deadline) if config.use_wikidata and valid else None
     lane = brreg.FilingYearsLane(deadline) if config.use_history and valid else None
     for component in (nav, wiki):
@@ -354,9 +366,16 @@ def run(config: RunConfig) -> dict[str, Any]:
         eligible = [org for org in valid if profiles[org].modules.get("registry") == "available"]
         for org in eligible:
             profiles[org].deadline = deadline - 20
+        if ad_lane is not None and nav.status == "available":
+            # Give the ad-detail sync a bounded window (cold caches only); a warm cache finishes at once.
+            sync_limit = min(deadline - 90, t0 + 0.55 * budget)
+            while time.monotonic() < sync_limit and ad_lane.thread.is_alive():
+                time.sleep(1.0)
+            ad_lane.stop_flag.set()
+        employer_map = ad_lane.employer_map() if ad_lane is not None and nav.status == "available" else {}
 
         def jobs(org: str) -> None:
-            _guard(profiles[org], "jobs", ["job_posting"], collect_jobs, profiles[org], nav)
+            _guard(profiles[org], "jobs", ["job_posting"], collect_jobs, profiles[org], nav, ad_lane, employer_map)
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=12) as pool:
             futures = [pool.submit(jobs, org) for org in eligible]
@@ -364,6 +383,24 @@ def run(config: RunConfig) -> dict[str, Any]:
     else:
         for org in valid:
             profiles[org].check("job_posting", "not_applicable", "NAV job connector disabled for this run.")
+
+    # Sector registers (bulk files loaded in the background; DiBK looked up per construction company).
+    eligible_registers = [org for org in valid if profiles[org].modules.get("registry") == "available"]
+    if registers is not None:
+        registers.ready.wait(timeout=max(0.0, deadline - 45 - time.monotonic()))
+        for org in eligible_registers:
+            profiles[org].deadline = deadline - 20
+
+        def assess_registers(org: str) -> None:
+            _guard(profiles[org], "registers", ["food_safety_inspection", "public_approval"], registers.apply, profiles[org])
+
+        with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
+            futures = [pool.submit(assess_registers, org) for org in eligible_registers]
+            concurrent.futures.wait(futures, timeout=max(1.0, deadline - 15 - time.monotonic()))
+    else:
+        for org in eligible_registers:
+            for name in ("food_safety_inspection", "public_approval"):
+                profiles[org].check(name, "not_applicable", "Sector-register connectors disabled for this run.")
 
     if lane is not None:
         # Let the rate-limited lane use idle time, but never more than 60% of the budget or past the deadline.
@@ -417,13 +454,20 @@ def run(config: RunConfig) -> dict[str, Any]:
             futures = [pool.submit(enrich, envelope) for envelope in envelopes if envelope["run"]["terminal_status"] == "completed"]
             concurrent.futures.wait(futures, timeout=max(1.0, deadline - 5 - time.monotonic()))
 
+    if ad_cache is not None and ad_cache_path is not None and nav is not None and nav.status == "available":
+        try:
+            ad_cache.save(ad_cache_path, keep=set(nav.entries))
+        except OSError:
+            pass
     write_jsonl_atomic(output_path, envelopes)
     if config.state_dir:
         history_store.archive_run(run_id, output_path)
 
     report = build_report(config, envelopes, inputs, profiles, finished, run_id=run_id, started_at=started_at, completed_at=utc_now(), budget=budget,
-                          elapsed=time.monotonic() - t0, phase_a_seconds=phase_a_seconds, nav=nav, nav_note=nav_note, wiki=wiki, lane=lane,
-                          previous_source=previous_source, llm_enabled=llm_enabled, llm_used=llm_used, validation_failures=validation_failures)
+                          elapsed=time.monotonic() - t0, phase_a_seconds=phase_a_seconds, nav=nav, nav_note=nav_note, wiki=wiki, lane=lane, registers=registers,
+                          previous_source=previous_source, llm_enabled=llm_enabled, llm_used=llm_used, validation_failures=validation_failures,
+                          nav_ad_coverage=ad_lane.coverage() if ad_lane is not None and nav is not None and nav.status == "available" else None,
+                          nav_ad_fetched=ad_lane.fetched if ad_lane is not None else 0)
     Path(config.report).parent.mkdir(parents=True, exist_ok=True)
     Path(config.report).write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     if config.viewer:
@@ -434,8 +478,8 @@ def run(config: RunConfig) -> dict[str, Any]:
 
 def build_report(config: RunConfig, envelopes: list[dict[str, Any]], inputs: list[dict[str, Any]], profiles: dict[str, Profile], finished: dict[str, float], *,
                  run_id: str, started_at: str, completed_at: str, budget: float, elapsed: float, phase_a_seconds: float, nav: NavJobIndex | None,
-                 nav_note: str, wiki: WikidataLookup | None, lane: Any, previous_source: str | None, llm_enabled: bool, llm_used: int,
-                 validation_failures: list[dict[str, Any]]) -> dict[str, Any]:
+                 nav_note: str, wiki: WikidataLookup | None, lane: Any, registers: Any = None, previous_source: str | None, llm_enabled: bool, llm_used: int,
+                 validation_failures: list[dict[str, Any]], nav_ad_coverage: tuple[int, int] | None = None, nav_ad_fetched: int = 0) -> dict[str, Any]:
     field_states: dict[str, Counter[str]] = {}
     field_companies: Counter[str] = Counter()
     field_claims: Counter[str] = Counter()
@@ -456,7 +500,7 @@ def build_report(config: RunConfig, envelopes: list[dict[str, Any]], inputs: lis
         for claim in envelope["claims"]:
             if claim["field"] == "official_website" and claim["availability"] == "available":
                 website_sources[claim.get("discovery_source") or "unknown"] += 1
-    lane_requests = sum(component.meter.requests for component in (nav, wiki, lane) if component is not None)
+    lane_requests = sum(component.meter.requests for component in (nav, wiki, lane, registers) if component is not None)
     company_requests = sum(profile.meter.requests for profile in profiles.values())
     orgs = [envelope["organisation_number"] for envelope in envelopes]
     expected = [item["organisation_number"] for item in inputs]
@@ -497,9 +541,12 @@ def build_report(config: RunConfig, envelopes: list[dict[str, Any]], inputs: lis
         "changes": dict(Counter(change["type"] for envelope in envelopes for change in envelope.get("changes", []))),
         "previous_snapshot": previous_source,
         "connectors": {
-            "nav_job_feed": {"status": nav.status if nav else "disabled", "note": nav_note},
+            "nav_job_feed": {"status": nav.status if nav else "disabled", "note": nav_note,
+                             "employer_known_for_active_ads": list(nav_ad_coverage) if nav_ad_coverage else None,
+                             "ad_details_fetched_this_run": nav_ad_fetched},
             "wikidata": {"status": wiki.status if wiki else "disabled", "note": wiki.note if wiki else ""},
             "filing_years_lane": {"checked": len(lane.results) if lane else 0},
+            "sector_registers": registers.status if registers else "disabled",
             "local_llm": {"enabled": llm_enabled, "model": config.llm_model if llm_enabled else None, "summaries": llm_used},
         },
         "summary_methods": dict(Counter((envelope.get("summary") or {}).get("method") for envelope in envelopes)),

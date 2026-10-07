@@ -10,17 +10,20 @@ ADD_TYPES = {
     "annual_account_filing": "new_filing", "social_profile": "new_social_profile", "official_website": "website_found",
     "group_relation": "new_group_relation", "knowledge_base_entry": "new_knowledge_base_entry", "registry_event": "new_registry_event",
     "careers_page": "careers_page_found", "industry": "industry_changed", "legal_name": "name_changed", "business_address": "address_changed",
+    "food_safety_inspection": "new_inspection_site", "public_approval": "new_approval", "registry_website": "registry_website_added",
 }
 REMOVE_TYPES = {
     "role": "removed_role", "registered_workplace": "closed_location", "job_posting": "closed_job", "social_profile": "removed_social_profile",
     "official_website": "website_lost", "group_relation": "ended_group_relation", "careers_page": "careers_page_removed",
+    "public_approval": "approval_removed",
 }
 VALUE_TYPES = {
     "legal_name": "name_changed", "legal_form": "legal_form_changed", "registry_status": "status_changed", "business_address": "address_changed",
     "industry": "industry_changed", "business_purpose": "purpose_changed", "registered_employees": "employee_count_changed",
     "annual_account_metric": "financial_value_restated", "official_website": "website_changed", "website_description": "description_changed",
     "public_brand_name": "brand_changed", "filed_account_years": "new_filing", "role": "role_changed", "registered_workplace": "location_changed",
-    "job_posting": "job_updated", "founded_date": "founded_date_changed", "registry_website": "registry_website_changed",
+    "job_posting": "job_updated", "founded_date": "founded_date_changed",
+    "food_safety_inspection": "inspection_result_changed", "public_approval": "approval_changed", "registry_website": "registry_website_changed",
 }
 NON_MATERIAL = {"description_changed", "new_registry_event", "job_updated", "careers_page_found", "careers_page_removed", "brand_changed"}
 # Families whose removal is only meaningful when the source was actually re-checked successfully.

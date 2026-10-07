@@ -17,6 +17,7 @@ ACCOUNTS = "https://data.brreg.no/regnskapsregisteret/regnskap/{org}"
 ACCOUNT_YEARS = "https://data.brreg.no/regnskapsregisteret/regnskap/aarsregnskap/kopi/{org}/aar"
 ACCOUNT_COPY = "https://data.brreg.no/regnskapsregisteret/regnskap/aarsregnskap/kopi/{org}/{year}"
 ENTITY_PAGE = "https://virksomhet.brreg.no/nb/oppslag/enheter/{org}"
+ROLE_UPDATES = "https://data.brreg.no/enhetsregisteret/api/oppdateringer/roller?organisasjonsnummer={org}&afterTime=2015-01-01T00:00:00.000Z&size=100"
 
 PERSONAL_CONTACT_FORMS = {"ENK"}  # sole proprietorship contact data is personal data; not republished
 
@@ -241,6 +242,14 @@ def collect_roles(profile: Profile) -> None:
             value = {"role": role_type.get("beskrivelse"), "role_code": role_type.get("kode"), "group": group_type.get("beskrivelse"), **holder}
             profile.claim("role", f"{role_type.get('kode')}:{holder['name']}", value, [ev], confidence=0.99, effective_at=changed)
     profile.facts["role_people"] = people
+    # Dated history of role changes (official update feed): one event per day with a change.
+    updates, update_body = _get_json(profile, ROLE_UPDATES.format(org=org), attempts=2)
+    if updates.ok and isinstance(update_body, list):
+        days = sorted({str(item.get("time") or "")[:10] for item in update_body if item.get("time")}, reverse=True)[:15]
+        if days:
+            update_ev = profile.evidence_from_response(updates, "official_registry", "brreg_role_updates_v1", span=f"{len(update_body)} role update events")
+            for day in days:
+                profile.claim("registry_event", f"role_update:{day}", {"event": "Roles changed in Enhetsregisteret", "date": day}, [update_ev], confidence=0.99, effective_at=day)
     if not any(item["field"] == "role" for item in profile.claims.values()):
         profile.check("role", "not_available", "No active role holders are registered.", [ev])
 

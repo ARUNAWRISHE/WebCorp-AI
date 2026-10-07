@@ -16,6 +16,7 @@ FIELD_LABELS = {
     "website_address": "Address on website", "registry_website": "Registry-declared website", "official_website": "Official website (verified)", "website_description": "Website description",
     "social_profile": "Social profile", "knowledge_base_entry": "Wikidata", "job_posting": "Job posting", "careers_page": "Careers page",
     "news_item": "News / press", "registry_event": "Registry event",
+    "food_safety_inspection": "Food-safety inspection (Mattilsynet)", "public_approval": "Public approval",
 }
 METRIC_LABELS = {"revenue": "Revenue", "operating_expenses": "Operating expenses", "payroll_expenses": "Payroll", "operating_result": "Operating result",
                  "net_financial_items": "Net financial items", "profit_before_tax": "Profit before tax", "annual_result": "Annual result",
@@ -73,6 +74,13 @@ def _value_text(claim: dict[str, Any]) -> tuple[str, str]:
             return f"Filing ({value.get('scope')})", f"Year {value.get('year')}" + (" · audit opted out" if value.get("audit_opted_out") else "")
         if field == "filed_account_years":
             return label, ", ".join(value.get("years") or [])
+        if field == "food_safety_inspection":
+            return f"{label}", f"{value.get('establishment')} · {value.get('latest_inspection_date')} · {value.get('result')} ({value.get('inspections_on_record')} inspections)"
+        if field == "public_approval":
+            if "approved" in value:
+                areas = ", ".join(f"{item.get('subject_area')} (class {item.get('grade')})" for item in (value.get("approval_areas") or [])[:4])
+                return value.get("register") or label, f"{'Approved' if value.get('approved') else 'Not approved'} until {value.get('valid_until')} · {areas}"
+            return value.get("register") or label, str(value.get("status") or "")
         if field == "registry_event":
             return label, f"{value.get('date')} · {value.get('event')}"
         if field == "careers_page":
@@ -169,7 +177,7 @@ td.l{color:var(--muted);width:30%}td.v{word-break:break-word}.src a{font-size:12
 <main><div id="list" role="list"></div><div id="detail"></div></main>
 <script>
 const DATA=__DATA__;const REPORT=__REPORT__;
-const SECTION_TITLES={legal_identity:"Legal identity and public brand",financials:"Annual accounts and history",leadership:"Leadership and group",workplaces:"Registered workplaces",web_presence:"Website and company-owned profiles",hiring:"Hiring",activity:"Dated public activity"};
+const SECTION_TITLES={legal_identity:"Legal identity and public brand",financials:"Annual accounts and history",leadership:"Leadership and group",workplaces:"Registered workplaces",web_presence:"Website and company-owned profiles",hiring:"Hiring",activity:"Dated public activity",assessments:"Inspections, approvals and ratings"};
 const ORDER=Object.keys(SECTION_TITLES);const sel=new Set();let current=null;
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const color=st=>({available:"var(--ok)",ambiguous:"var(--warn)",blocked:"#8250df",failed:"var(--bad)"}[st]||"var(--na)");

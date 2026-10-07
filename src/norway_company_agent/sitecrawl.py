@@ -192,6 +192,14 @@ def crawl_site(profile: Profile, url: str, *, max_pages: int = 6, site_budget: f
             response2, outcome2 = fetch_html(profile, fallback)
             if outcome2 == "available":
                 response, outcome = response2, outcome2
+        if outcome != "available" and not outcome.startswith("blocked"):
+            # Apex/www mismatch (TLS name, missing DNS record) is common on small Norwegian sites.
+            parsed = urllib.parse.urlparse(normalized)
+            host = parsed.hostname or ""
+            toggled = host[4:] if host.startswith("www.") else "www." + host
+            response3, outcome3 = fetch_html(profile, urllib.parse.urlunparse(("https", toggled, parsed.path or "/", "", "", "")))
+            if outcome3 == "available":
+                response, outcome = response3, outcome3
         capture.attempted.append({"url": normalized, "outcome": outcome})
         if outcome != "available" or response is None:
             capture.outcome = outcome.split(":", 1)[0]
@@ -227,3 +235,54 @@ def crawl_site(profile: Profile, url: str, *, max_pages: int = 6, site_budget: f
         if not capture.pages:
             capture.outcome, capture.note = "failed", "run budget exhausted"
     return capture
+
+
+IDENTITY_PROBES = ("/kontakt", "/kontakt-oss", "/om-oss", "/personvern", "/personvernerklaering", "/contact", "/about", "/om")
+NEWS_PROBES = ("/nyheter", "/aktuelt", "/news", "/presse", "/blogg", "/artikler")
+FEED_PROBES = ("/feed/", "/rss", "/nyheter/feed/")
+CAREERS_PROBES = ("/karriere", "/ledige-stillinger", "/jobb", "/jobbe-hos-oss", "/careers", "/jobs")
+
+
+def probe_paths(profile: Profile, capture: SiteCapture, paths: tuple[str, ...], kind: str, *, limit: int = 3, budget: float = 20.0) -> int:
+    """Fetch common same-site paths that were not linked (JavaScript menus hide many). Returns pages added."""
+    homepage = capture.homepage
+    if homepage is None:
+        return 0
+    base = registered_domain(homepage.final_url)
+    parsed = urllib.parse.urlparse(homepage.final_url)
+    origin = f"{parsed.scheme}://{parsed.netloc}"
+    seen = {page.final_url.split("?")[0].rstrip("/").casefold() for page in capture.pages}
+    seen |= {str(item.get("url", "")).split("?")[0].rstrip("/").casefold() for item in capture.attempted}
+    added, started = 0, time.monotonic()
+    try:
+        for path in paths:
+            if added >= limit or time.monotonic() - started > budget:
+                break
+            url = origin + path
+            if url.rstrip("/").casefold() in seen:
+                continue
+            seen.add(url.rstrip("/").casefold())
+            if kind == "feed":
+                verdict, _ = robots_allowed(url, meter=profile.meter, deadline=profile.deadline)
+                if verdict != "allowed":
+                    continue
+                response = get(url, meter=profile.meter, accept="application/rss+xml,application/atom+xml,application/xml,text/xml", timeout=8,
+                               max_bytes=1_000_000, attempts=1, guard=True, deadline=profile.deadline)
+                head = response.body[:600].lower() if response.ok else b""
+                if response.ok and (b"<rss" in head or b"<feed" in head) and registered_domain(response.final_url) == base:
+                    capture.pages.append(Page(kind="feed", url=url, final_url=response.final_url, response=response, html=response.text()[:1_000_000]))
+                    added += 1
+                continue
+            response, outcome = fetch_html(profile, url, timeout=8, max_bytes=1_500_000)
+            capture.attempted.append({"url": url, "outcome": outcome, "probe": True})
+            if outcome != "available" or response is None or registered_domain(response.final_url) != base:
+                continue
+            final = response.final_url.split("?")[0].rstrip("/").casefold()
+            if final in seen or final == homepage.final_url.split("?")[0].rstrip("/").casefold():
+                continue  # redirected to the homepage or an already captured page
+            seen.add(final)
+            capture.pages.append(parse_page(kind, response))
+            added += 1
+    except BudgetExceeded:
+        pass
+    return added

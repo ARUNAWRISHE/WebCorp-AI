@@ -25,6 +25,7 @@ PARKED_MARKERS = (
     "website is under construction", "siden er under arbeid", "default web site page", "it works!", "welcome to nginx", "index of /",
 )
 DECLARED_SOURCES = {"registry", "wikidata", "subunit_registry"}
+PLACEHOLDER_ORGS = {"123456789", "987654321", "999999999", "000000000", "111111111", "123123123"}
 
 
 def fold(text: str) -> str:
@@ -83,6 +84,10 @@ def assess(capture: SiteCapture, facts: dict[str, Any], organisation_number: str
     if any(marker in raw_lower[:20000] for marker in PARKED_MARKERS) and len(homepage.text) < 600:
         return {"status": "rejected", "score": 0.1, "reasons": ["parked, placeholder or for-sale page"], "proof": {}}
 
+    title_host = re.sub(r"^www\.", "", (homepage.title or "").strip().casefold())
+    if title_host and title_host == registered_domain(homepage.final_url) and len(homepage.text) < 400 and len(pages) == 1:
+        return {"status": "rejected", "score": 0.1, "reasons": ["placeholder page (title is the bare domain name)"], "proof": {}}
+
     # 2. Organisation-number proof.
     org_page = next((page for page in pages if organisation_number in org_numbers(page.full_text)), None)
     subunit_orgs = {str(item.get("organisation_number")) for item in facts.get("subunits") or [] if item.get("organisation_number")}
@@ -92,7 +97,7 @@ def assess(capture: SiteCapture, facts: dict[str, Any], organisation_number: str
         keyword_orgs |= keyword_org_numbers(page.full_text)
     related = {str(item.get("organisation_number")) for item in facts.get("subunits") or []}
     related |= {str(item) for item in facts.get("group_orgs") or []}
-    other_orgs = sorted(keyword_orgs - {organisation_number} - related)
+    other_orgs = sorted(keyword_orgs - {organisation_number} - related - PLACEHOLDER_ORGS)
     if org_page:
         proof["organisation_number"] = {"page": org_page.final_url, "span": _context(org_page.full_text, organisation_number)}
 
@@ -100,7 +105,8 @@ def assess(capture: SiteCapture, facts: dict[str, Any], organisation_number: str
     names = [facts.get("name") or ""] + [name for name in facts.get("historic_names") or []]
     name_variants = [tokens for tokens in (_tokens(name) for name in names) if tokens]
     core = name_variants[0] if name_variants else []
-    strong_fields = [homepage.title, homepage.site_name, registered_domain(homepage.final_url).rsplit(".", 1)[0].replace(".", " ").replace("-", " ")]
+    # The hostname is NOT name evidence: for a domain derived from the name it would be circular.
+    strong_fields = [homepage.title, homepage.site_name]
     for item in homepage.jsonld:
         for key in ("name", "legalName", "alternateName"):
             if isinstance(item.get(key), str):
@@ -116,10 +122,19 @@ def assess(capture: SiteCapture, facts: dict[str, Any], organisation_number: str
     current_in_identity = bool(core) and any(_contains_sequence(tokens, core) or (len(core) > 1 and set(core) <= set(tokens)) for tokens in identity_token_lists)
     strong_token_lists = [_tokens(field) for field in strong_fields if field]
     host_label = re.sub(r"[^a-z0-9]", "", registered_domain(homepage.final_url).split(".")[0])
-    current_in_strong = bool(core) and (any(_contains_sequence(tokens, core) or (len(core) > 1 and set(core) <= set(tokens)) for tokens in strong_token_lists)
-                                         or "".join(core) == host_label or (len("".join(core)) >= 6 and "".join(core) in host_label))
-    host_compact = re.sub(r"[^a-z0-9]", "", registered_domain(homepage.final_url).split(".")[0])
-    name_in_host = bool(core) and "".join(core) == host_compact
+    host_match = bool(core) and ("".join(core) == host_label or (len("".join(core)) >= 6 and "".join(core) in host_label))
+    current_in_strong = bool(core) and any(_contains_sequence(tokens, core) or (len(core) > 1 and set(core) <= set(tokens)) for tokens in strong_token_lists)
+    if source in DECLARED_SOURCES and host_match:
+        current_in_strong = True  # an officially declared site named after the company is entity-specific
+    name_in_host = bool(core) and "".join(core) == host_label
+    # Brønnøysund legal names are unique: the exact current name *with its legal form* ("Flislegger Simonsen AS")
+    # stated as the site's title, brand, structured legal name or footer identifies the registered entity.
+    full_name = re.findall(r"[a-z0-9]+", fold(facts.get("name") or ""))
+    registered_name_fields = strong_fields + [page.identity_text for page in pages] + [homepage.full_text[:400], homepage.full_text[-1500:]]
+    registered_name_on_site = len(full_name) >= 2 and any(_contains_sequence(re.findall(r"[a-z0-9]+", fold(field)), full_name) for field in registered_name_fields if field)
+    registered_name_strong = len(full_name) >= 2 and any(_contains_sequence(re.findall(r"[a-z0-9]+", fold(field)), full_name) for field in strong_fields if field)
+    if registered_name_on_site:
+        proof["registered_name"] = facts.get("name")
     partial = len(set(core) & set(all_tokens)) / len(set(core)) if core else 0.0
     if name_in_identity:
         reasons.append("full legal name appears in homepage identity fields")
@@ -165,13 +180,13 @@ def assess(capture: SiteCapture, facts: dict[str, Any], organisation_number: str
     reasons.extend(corroborators)
 
     # 5. Decision table.
-    site_specific = bool(org_page) or current_in_strong
+    site_specific = bool(org_page) or current_in_strong or registered_name_strong
     proof["site_specific"] = site_specific
     if org_page or subunit_page:
         if subunit_page and not org_page:
             proof["organisation_number"] = {"page": subunit_page.final_url, "span": "registered subunit organisation number appears on the site"}
             reasons.insert(0, "organisation number of a registered subunit appears on the site")
-        if len(other_orgs) >= 3:
+        if len(other_orgs) >= 3 and not (current_in_strong or registered_name_on_site):
             return {"status": "ambiguous", "score": 0.7, "reasons": ["organisation number appears, but the site lists several other organisation numbers (directory or group page)"], "proof": {**proof, "other_organisation_numbers": other_orgs[:10]}}
         proof["site_specific"] = True
         return {"status": "exact", "score": 1.0 if org_page else 0.97, "reasons": ["exact organisation number appears on the site" if org_page else "registered subunit organisation number appears on the site", *reasons], "proof": proof}
@@ -190,6 +205,10 @@ def assess(capture: SiteCapture, facts: dict[str, Any], organisation_number: str
     # Discovered candidates (email domain, guessed domain) need the CURRENT legal name in the site identity
     # AND a contact corroborator (phone, email or street address). Former names and role-holder names are
     # not enough: they often point to a successor or sister company run by the same people.
+    # Multi-word names with their legal form are distinctive on their own; one-word names ("Nordlys AS") also
+    # need a registry corroborator, and any other stated organisation number blocks this route.
+    if registered_name_on_site and not other_orgs and (len(full_name) >= 3 or corroborators):
+        return {"status": "exact", "score": 0.92, "reasons": [f"{source} candidate; the unique registered legal name '{facts.get('name')}' is stated as the site's own identity", *reasons], "proof": {**proof, "site_specific": bool(current_in_strong or registered_name_strong or name_in_host)}}
     if current_in_identity and strong:
         return {"status": "exact", "score": 0.93, "reasons": [f"{source} candidate; current legal name in site identity plus registry contact corroboration", *reasons], "proof": proof}
     if current_in_strong and "role_holder" in proof and len(core) >= 2:

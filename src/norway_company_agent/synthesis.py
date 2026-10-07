@@ -49,6 +49,65 @@ def _by_field(claims: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
     return output
 
 
+def _val(value: Any, *keys: str) -> str:
+    if isinstance(value, dict):
+        for key in keys:
+            if value.get(key) not in (None, ""):
+                return str(value[key])
+        return ""
+    return "" if value is None else str(value)
+
+
+def _address_text(value: Any) -> str:
+    address = value.get("address") if isinstance(value, dict) else None
+    return _val(address, "formatted")
+
+
+def describe_change(change: dict[str, Any]) -> dict[str, Any]:
+    """One readable, evidence-linked sentence per detected change."""
+    kind, old, new = change["type"], change.get("old_value"), change.get("new_value")
+    key_parts = str(change.get("key") or "").split(":")
+    metric = key_parts[-1].replace("_", " ").capitalize()
+    period = key_parts[1] if len(key_parts) > 2 else ""
+    location = _val(new, "location")
+    years = (new or {}).get("years", []) if isinstance(new, dict) else []
+    texts = {
+        "new_role": lambda: f"New {_val(new, 'role')}: {_val(new, 'name')}.",
+        "removed_role": lambda: f"{_val(old, 'role')} {_val(old, 'name')} is no longer registered.",
+        "role_changed": lambda: f"Role record changed for {_val(new, 'name') or _val(old, 'name')}.",
+        "new_location": lambda: f"New registered workplace: {_val(new, 'name')} ({_address_text(new)}).",
+        "closed_location": lambda: f"Registered workplace no longer listed: {_val(old, 'name')}.",
+        "new_job": lambda: f"New job posting: {_val(new, 'title')}" + (f" ({location})" if location else "") + ".",
+        "closed_job": lambda: f"Job posting closed: {_val(old, 'title')}.",
+        "new_activity": lambda: f"New dated item ({_val(new, 'date')}): {_val(new, 'title')}.",
+        "new_filing": lambda: f"New annual accounts filed for {_val(new, 'year') or (years[0] if years else 'a new period')}.",
+        "financial_value_restated": lambda: f"{metric} for the period ending {period} changed from {old} to {new}.",
+        "name_changed": lambda: f"Registered name changed from {_val(old, 'former_name') or old} to {_val(new, 'former_name') or new}.",
+        "address_changed": lambda: f"Registered address changed to {_val(new, 'formatted')}.",
+        "status_changed": lambda: f"Registry status changed from {_val(old, 'status')} to {_val(new, 'status')}.",
+        "employee_count_changed": lambda: f"Registered employees changed from {old} to {new}.",
+        "website_found": lambda: f"Verified official website found: {new}.",
+        "website_lost": lambda: f"Previously verified website {old} could not be verified in this run.",
+        "website_changed": lambda: f"Official website changed from {old} to {new}.",
+        "new_social_profile": lambda: f"New company-linked {_val(new, 'platform')} profile: {_val(new, 'url')}.",
+        "removed_social_profile": lambda: f"{_val(old, 'platform').capitalize()} profile no longer linked: {_val(old, 'url')}.",
+        "new_registry_event": lambda: f"Registry event on {_val(new, 'date')}: {_val(new, 'event')}.",
+        "inspection_result_changed": lambda: f"New food-safety inspection result for {_val(new, 'establishment')}: {_val(new, 'result')} ({_val(new, 'latest_inspection_date')}).",
+        "new_inspection_site": lambda: f"Food-safety inspection on record for {_val(new, 'establishment')}: {_val(new, 'result')}.",
+        "new_approval": lambda: f"Listed in {_val(new, 'register')}.",
+        "approval_changed": lambda: f"Approval record changed in {_val(new, 'register') or _val(old, 'register')}.",
+        "approval_removed": lambda: f"No longer listed in {_val(old, 'register')}.",
+        "description_changed": lambda: "The website description changed.",
+    }
+    fallback = f"{kind.replace('_', ' ').capitalize()} ({change.get('field')})."
+    try:
+        text = texts[kind]() if kind in texts else fallback
+    except Exception:
+        text = fallback
+    return {"text": " ".join(text.split()), "change_id": change["id"], "type": kind, "material": bool(change.get("material")),
+            "evidence_ids": list(dict.fromkeys((change.get("new_evidence_ids") or []) + (change.get("old_evidence_ids") or [])))}
+
+
 def template_summary(envelope: dict[str, Any]) -> dict[str, Any]:
     claims = envelope["claims"]
     fields = _by_field(claims)
@@ -165,13 +224,14 @@ def template_summary(envelope: dict[str, Any]) -> dict[str, Any]:
         say("Company-linked profiles: " + ", ".join(sorted({item["value"]["platform"] for item in social})) + ".", social)
 
     changes = envelope.get("changes") or []
-    material = [item for item in changes if item.get("material")]
+    change_items = [describe_change(item) for item in changes]
+    material = [item for item in change_items if item["material"]]
     change_text = None
     if material:
-        kinds: dict[str, int] = {}
-        for item in material:
-            kinds[item["type"]] = kinds.get(item["type"], 0) + 1
-        change_text = "Since the previous run: " + ", ".join(f"{count} {kind.replace('_', ' ')}" for kind, count in sorted(kinds.items())) + "."
+        shown = material[:6]
+        change_text = "Since the previous run: " + " ".join(item["text"] for item in shown)
+        if len(material) > len(shown):
+            change_text += f" ({len(material) - len(shown)} more material change(s) listed in the profile.)"
     elif (envelope.get("run") or {}).get("previous_run_id"):
         change_text = "No material changes were detected since the previous run."
 
@@ -189,6 +249,7 @@ def template_summary(envelope: dict[str, Any]) -> dict[str, Any]:
         "sentences": sentences,
         "text": " ".join(item["text"] for item in sentences),
         "changes_text": change_text,
+        "changes": change_items,
         "unknowns": unknown,
         "unknowns_text": ("Not found or not confirmed: " + "; ".join(unknown) + ".") if unknown else None,
     }

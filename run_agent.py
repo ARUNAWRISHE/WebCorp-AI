@@ -50,6 +50,7 @@ def main() -> int:
     parser.add_argument("--no-nav", action="store_true", help="Disable the NAV job-feed connector")
     parser.add_argument("--no-wikidata", action="store_true")
     parser.add_argument("--no-history", action="store_true", help="Disable the rate-limited filing-years lane")
+    parser.add_argument("--no-registers", action="store_true", help="Disable sector registers (Mattilsynet, Arbeidstilsynet, DiBK)")
     parser.add_argument("--no-raw-snapshots", action="store_true", help="Do not store raw response bytes")
     args = parser.parse_args()
 
@@ -57,7 +58,7 @@ def main() -> int:
         input_path=args.input, output=args.output, report=args.report, viewer=args.viewer or None, run_id=args.run_id,
         state_dir=args.state_dir or None, previous_path=args.previous, use_previous=not args.no_previous, time_budget=args.time_budget,
         workers=args.workers, registry_path=args.registry, llm=args.llm, llm_model=args.llm_model, nav_days=args.nav_days,
-        use_nav=not args.no_nav, use_wikidata=not args.no_wikidata, use_history=not args.no_history, store_raw=not args.no_raw_snapshots,
+        use_nav=not args.no_nav, use_wikidata=not args.no_wikidata, use_history=not args.no_history, use_registers=not args.no_registers, store_raw=not args.no_raw_snapshots,
     )
     report = run(config)
     print(json.dumps({key: report[key] for key in ("run_id", "input_count", "emitted_envelopes", "checks", "terminal_status", "elapsed_seconds", "requests")},
