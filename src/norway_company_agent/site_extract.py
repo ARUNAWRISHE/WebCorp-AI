@@ -59,12 +59,12 @@ def _text_date(text: str | None) -> str | None:
     """Parse common Norwegian/English date strings: 12.09.2026, 12. september 2026, September 12, 2026."""
     text = (text or "").casefold()
     candidates = []
-    for day, month, year in re.findall(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", text):
+    for day, month, year in re.findall(r"\b(\d{1,2})\.(\d{1,2})\.(\d{4})\b", text):
         candidates.append((int(year), int(month), int(day)))
-    for day, month, year in re.findall(r"(\d{1,2})\.?\s+([a-zæøå]{3,9})\.?\s+(\d{4})", text):
+    for day, month, year in re.findall(r"\b(\d{1,2})\.?\s+([a-zæøå]{3,9})\.?\s+(\d{4})\b", text):
         if month in MONTHS:
             candidates.append((int(year), MONTHS[month], int(day)))
-    for month, day, year in re.findall(r"([a-z]{3,9})\.?\s+(\d{1,2}),?\s+(\d{4})", text):
+    for month, day, year in re.findall(r"\b([a-z]{3,9})\.?\s+(\d{1,2}),?\s+(\d{4})\b", text):
         if month in MONTHS:
             candidates.append((int(year), MONTHS[month], int(day)))
     for year, month, day in candidates:
@@ -97,6 +97,17 @@ def extract_site(profile: Profile, capture: SiteCapture, assessment: dict[str, A
     profile.claim("official_website", "primary", homepage.final_url.split("#")[0], website_ev, confidence=float(assessment["score"]),
                   discovery_source=source, identity_method="verify_v2", identity_reasons=assessment.get("reasons", [])[:4])
     profile.company["website"] = homepage.final_url
+    if not proof.get("site_specific", True):
+        # Declared site that presents another brand or group: link it, but do not attribute its profiles, news or jobs.
+        note = "The registry-declared website appears to be shared with a group or brand; its profiles, news and jobs are not attributed to this entity."
+        with profile.lock:
+            for claim in profile.claims.values():
+                if claim["field"] == "official_website":
+                    claim["note"] = note
+                    claim["shared_site"] = True
+        for name in ("social_profile", "news_item", "job_posting"):
+            profile.check(name, "not_available", note)
+        return
 
     # Public brand and description
     org_items = [item for page in capture.pages for item in page.jsonld if _types(item) & ORG_TYPES]

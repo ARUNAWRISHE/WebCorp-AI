@@ -85,6 +85,8 @@ def assess(capture: SiteCapture, facts: dict[str, Any], organisation_number: str
 
     # 2. Organisation-number proof.
     org_page = next((page for page in pages if organisation_number in org_numbers(page.full_text)), None)
+    subunit_orgs = {str(item.get("organisation_number")) for item in facts.get("subunits") or [] if item.get("organisation_number")}
+    subunit_page = None if org_page else next((page for page in pages if org_numbers(page.full_text) & subunit_orgs), None)
     keyword_orgs = set()
     for page in pages:
         keyword_orgs |= keyword_org_numbers(page.full_text)
@@ -98,11 +100,12 @@ def assess(capture: SiteCapture, facts: dict[str, Any], organisation_number: str
     names = [facts.get("name") or ""] + [name for name in facts.get("historic_names") or []]
     name_variants = [tokens for tokens in (_tokens(name) for name in names) if tokens]
     core = name_variants[0] if name_variants else []
-    identity_fields = [homepage.title, homepage.site_name, homepage.description, homepage.identity_text, registered_domain(homepage.final_url).replace(".", " ").replace("-", " ")]
+    strong_fields = [homepage.title, homepage.site_name, registered_domain(homepage.final_url).rsplit(".", 1)[0].replace(".", " ").replace("-", " ")]
     for item in homepage.jsonld:
         for key in ("name", "legalName", "alternateName"):
             if isinstance(item.get(key), str):
-                identity_fields.append(item[key])
+                strong_fields.append(item[key])
+    identity_fields = strong_fields + [homepage.description, homepage.identity_text]
     for page in pages[1:]:
         identity_fields.append(page.identity_text)
     identity_token_lists = [_tokens(field) for field in identity_fields if field]
@@ -111,6 +114,10 @@ def assess(capture: SiteCapture, facts: dict[str, Any], organisation_number: str
                            for variant in name_variants for tokens in identity_token_lists)
     name_in_text = any(_contains_sequence(all_tokens, variant) for variant in name_variants)
     current_in_identity = bool(core) and any(_contains_sequence(tokens, core) or (len(core) > 1 and set(core) <= set(tokens)) for tokens in identity_token_lists)
+    strong_token_lists = [_tokens(field) for field in strong_fields if field]
+    host_label = re.sub(r"[^a-z0-9]", "", registered_domain(homepage.final_url).split(".")[0])
+    current_in_strong = bool(core) and (any(_contains_sequence(tokens, core) or (len(core) > 1 and set(core) <= set(tokens)) for tokens in strong_token_lists)
+                                         or "".join(core) == host_label or (len("".join(core)) >= 6 and "".join(core) in host_label))
     host_compact = re.sub(r"[^a-z0-9]", "", registered_domain(homepage.final_url).split(".")[0])
     name_in_host = bool(core) and "".join(core) == host_compact
     partial = len(set(core) & set(all_tokens)) / len(set(core)) if core else 0.0
@@ -139,6 +146,12 @@ def assess(capture: SiteCapture, facts: dict[str, Any], organisation_number: str
         if street and _contains_sequence(re.findall(r"[a-z0-9]+", folded_all), street) and (not postcode or postcode in all_text):
             corroborators.append("registered street address appears on site")
             break
+    if not any(item.startswith("registered street") for item in corroborators):
+        for address in (facts.get("business_address"), facts.get("postal_address")):
+            postcode, city = (address or {}).get("postal_code"), fold((address or {}).get("city") or "")
+            if postcode and city and re.search(rf"\b{postcode}\s+{re.escape(city)}\b", folded_all):
+                corroborators.append("registered postcode and city appear on site")
+                break
     for person in facts.get("role_people") or []:
         first = fold(person.get("first") or "").split()
         last = fold(person.get("last") or "").split()
@@ -152,10 +165,16 @@ def assess(capture: SiteCapture, facts: dict[str, Any], organisation_number: str
     reasons.extend(corroborators)
 
     # 5. Decision table.
-    if org_page:
+    site_specific = bool(org_page) or current_in_strong
+    proof["site_specific"] = site_specific
+    if org_page or subunit_page:
+        if subunit_page and not org_page:
+            proof["organisation_number"] = {"page": subunit_page.final_url, "span": "registered subunit organisation number appears on the site"}
+            reasons.insert(0, "organisation number of a registered subunit appears on the site")
         if len(other_orgs) >= 3:
             return {"status": "ambiguous", "score": 0.7, "reasons": ["organisation number appears, but the site lists several other organisation numbers (directory or group page)"], "proof": {**proof, "other_organisation_numbers": other_orgs[:10]}}
-        return {"status": "exact", "score": 1.0, "reasons": ["exact organisation number appears on the site", *reasons], "proof": proof}
+        proof["site_specific"] = True
+        return {"status": "exact", "score": 1.0 if org_page else 0.97, "reasons": ["exact organisation number appears on the site" if org_page else "registered subunit organisation number appears on the site", *reasons], "proof": proof}
     if other_orgs and not name_in_identity:
         return {"status": "rejected", "score": 0.2, "reasons": [f"site states a different organisation number ({other_orgs[0]})"], "proof": {**proof, "other_organisation_numbers": other_orgs[:10]}}
     if source in DECLARED_SOURCES:
@@ -165,14 +184,18 @@ def assess(capture: SiteCapture, facts: dict[str, Any], organisation_number: str
             return {"status": "exact", "score": 0.95, "reasons": [f"{source}-declared site; " + reasons[0], *reasons[1:]], "proof": proof}
         if (name_in_text or partial >= 0.5) and corroborators:
             return {"status": "exact", "score": 0.92, "reasons": [f"{source}-declared site with name evidence and registry corroboration", *reasons], "proof": proof}
-        if len(corroborators) >= 2:
-            return {"status": "exact", "score": 0.9, "reasons": [f"{source}-declared site with two registry corroborators", *reasons], "proof": proof}
+        if len(corroborators) >= 2 or any(item.startswith("registered email domain equals") for item in corroborators):
+            return {"status": "exact", "score": 0.9, "reasons": [f"{source}-declared site confirmed by registry contact data", *reasons], "proof": proof}
         return {"status": "ambiguous", "score": 0.6, "reasons": [f"{source}-declared site without exact identity evidence", *reasons], "proof": proof}
     # Discovered candidates (email domain, guessed domain) need the CURRENT legal name in the site identity
     # AND a contact corroborator (phone, email or street address). Former names and role-holder names are
     # not enough: they often point to a successor or sister company run by the same people.
     if current_in_identity and strong:
         return {"status": "exact", "score": 0.93, "reasons": [f"{source} candidate; current legal name in site identity plus registry contact corroboration", *reasons], "proof": proof}
+    if current_in_strong and "role_holder" in proof and len(core) >= 2:
+        # Legal names are unique per register; the exact current name as the site's own title/brand plus a
+        # registered role holder named on the site ties it to this entity.
+        return {"status": "exact", "score": 0.9, "reasons": [f"{source} candidate; exact current legal name as site title/brand plus a registered role holder on the site", *reasons], "proof": proof}
     if current_in_identity or name_in_identity or (name_in_host and corroborators):
         return {"status": "ambiguous", "score": 0.6, "reasons": [f"{source} candidate matches the name but lacks independent contact corroboration", *reasons], "proof": proof}
     return {"status": "rejected", "score": 0.2, "reasons": [f"{source} candidate lacks exact-entity evidence", *reasons], "proof": proof}

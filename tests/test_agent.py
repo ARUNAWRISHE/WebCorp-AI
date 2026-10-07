@@ -257,3 +257,34 @@ def test_sections_accept_every_state(state):
         claim["availability"] = state if state != "available" else "failed"
     envelope["sections"] = compute_sections(envelope)
     assert validate_envelope(envelope) == []
+
+
+def test_registry_declared_group_site_links_but_is_not_site_specific():
+    # Parent/brand site that only lists the legal entity in its footer.
+    capture = _capture("Bonnier Healthcare – our brands", title="Bonnier Healthcare", host="bonnierhealthcare.no",
+                       footer="Lyngdal Glassrekkverk AS – en del av Bonnier")
+    result = assess(capture, FACTS, "916617445", "registry")
+    assert result["status"] == "exact"
+    assert result["proof"]["site_specific"] is False
+
+
+def test_subunit_org_number_on_site_is_exact():
+    facts = {**FACTS, "subunits": [{"organisation_number": "973123456"}]}
+    capture = _capture("Avdeling Lyngdal · org.nr 973 123 456", host="lgr-avd.no")
+    result = assess(capture, facts, "916617445", "guessed_domain")
+    assert result["status"] == "exact" and result["proof"]["site_specific"] is True
+
+
+def test_postcode_and_city_corroborate_a_guessed_domain():
+    facts = {**FACTS, "business_address": {"street": "Postboks 12", "postal_code": "4580", "city": "LYNGDAL"}, "phones": [], "email": None}
+    capture = _capture("Lyngdal Glassrekkverk AS, 4580 Lyngdal", title="Lyngdal Glassrekkverk", host="lyngdalglassrekkverk.no")
+    assert assess(capture, facts, "916617445", "guessed_domain")["status"] == "exact"
+
+
+def test_norwegian_and_english_text_dates():
+    from norway_company_agent.site_extract import _text_date
+    assert _text_date("Publisert 12.09.2026") == "2026-09-12"
+    assert _text_date("12. september 2026") == "2026-09-12"
+    assert _text_date("September 12, 2026") == "2026-09-12"
+    assert _text_date("31.02.2026") is None
+    assert _text_date("ingen dato") is None
