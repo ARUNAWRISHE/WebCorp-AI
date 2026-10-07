@@ -14,3 +14,6 @@ docs/financial-filer-master-2025.jsonl
 *.jsonl.gz
 brreg-enheter.csv*
 
+
+# published smoke-test artifacts
+!reports/**/*.jsonl.gz

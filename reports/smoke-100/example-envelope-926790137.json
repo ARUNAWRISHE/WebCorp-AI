@@ -1,0 +1,2743 @@
+{
+  "organisation_number": "926790137",
+  "run": {
+    "run_id": "smoke-100-v3",
+    "started_at": "2026-10-07T17:50:00Z",
+    "completed_at": "2026-10-07T17:53:26Z",
+    "terminal_status": "completed",
+    "agent_version": "signalpost-agent/1.0",
+    "previous_run_id": "smoke-100-v2"
+  },
+  "company": {
+    "name": "MUSIKK I INNLANDET AS",
+    "legal_form": "AS",
+    "legal_form_description": "Aksjeselskap",
+    "municipality": "GJØVIK",
+    "registry_page": "https://virksomhet.brreg.no/nb/oppslag/enheter/926790137",
+    "website": "https://musikkinnlandet.no/"
+  },
+  "sections": {
+    "legal_identity": {
+      "title": "Legal identity and public brand",
+      "availability": "available",
+      "available_claims": 9,
+      "fields": {
+        "business_address": "available",
+        "business_purpose": "available",
+        "founded_date": "available",
+        "industry": "available",
+        "legal_form": "available",
+        "legal_name": "available",
+        "registered_employees": "available",
+        "registry_status": "available"
+      }
+    },
+    "financials": {
+      "title": "Latest annual accounts and available history",
+      "availability": "available",
+      "available_claims": 36,
+      "fields": {
+        "annual_account_filing": "available",
+        "annual_account_metric": "available",
+        "filed_account_years": "available"
+      }
+    },
+    "leadership": {
+      "title": "Leadership",
+      "availability": "available",
+      "available_claims": 10,
+      "fields": {
+        "role": "available"
+      }
+    },
+    "workplaces": {
+      "title": "Registered workplaces and locations",
+      "availability": "available",
+      "available_claims": 1,
+      "fields": {
+        "registered_workplace": "available"
+      }
+    },
+    "web_presence": {
+      "title": "Verified official website and company-owned profiles",
+      "availability": "available",
+      "available_claims": 5,
+      "fields": {
+        "official_website": "available",
+        "social_profile": "available",
+        "website_description": "available"
+      }
+    },
+    "hiring": {
+      "title": "Hiring",
+      "availability": "not_available",
+      "available_claims": 0,
+      "fields": {
+        "job_posting": "not_available"
+      }
+    },
+    "activity": {
+      "title": "Dated public activity",
+      "availability": "available",
+      "available_claims": 18,
+      "fields": {
+        "news_item": "available",
+        "registry_event": "available"
+      }
+    }
+  },
+  "summary": {
+    "method": "deterministic_template_v1",
+    "sentences": [
+      {
+        "text": "MUSIKK I INNLANDET AS is a private limited company (AS), registered in Gjøvik, founded 2021-01-28.",
+        "claim_ids": [
+          "cl-a2e9c565646720bb4f88",
+          "cl-3d2ced49e5fcdc617a07",
+          "cl-897564eb5b65b44e661e",
+          "cl-e481d665b0e5bdb978df"
+        ]
+      },
+      {
+        "text": "According to Enhetsregisteret, its main registered industry is utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk (NACE 90.201; division: Creative, arts and entertainment activities); its registered activity reads: \"Utvikle, produsere og formidle musikk på profesjonelt nivå i samarbeid med aktører i hele Innlandet fylke, nasjonalt og internasjonalt.\".",
+        "claim_ids": [
+          "cl-5572196b881eced1b031",
+          "cl-ebf29636517f7945a2c8"
+        ]
+      },
+      {
+        "text": "Its verified official website is https://musikkinnlandet.no/.",
+        "claim_ids": [
+          "cl-442373c21f56ba6e6206"
+        ]
+      },
+      {
+        "text": "The website describes the business as: \"Lurer du på hva som skjer i Hamar, Lillehammer, Gjøvik og Innlandet? Finn konserter og unike musikkopplevelser med Musikk i Innlandet.\" (company-reported).",
+        "claim_ids": [
+          "cl-eee0732b5b7cddc35cbf"
+        ]
+      },
+      {
+        "text": "In its latest normalised company accounts (period ending 2025-12-31) it reported revenue NOK 17.4 million, operating result NOK 4 thousand, annual result NOK 0, equity NOK 1.0 million.",
+        "claim_ids": [
+          "cl-49766157065655b6335f",
+          "cl-106bebe84ba3e3d5afec",
+          "cl-7e790e3155753566f701",
+          "cl-fa2c0047ecc279aaeb19"
+        ]
+      },
+      {
+        "text": "Revenue was down 3% from NOK 18.0 million in the period ending 2024-12-31.",
+        "claim_ids": [
+          "cl-49766157065655b6335f",
+          "cl-faefcf66d8e4673fdd2e"
+        ]
+      },
+      {
+        "text": "The registry lists 10 employees.",
+        "claim_ids": [
+          "cl-e0445b66a3c27c86ec05"
+        ]
+      },
+      {
+        "text": "Registered leadership: Daglig leder: Solbjørg Tveiten; Styrets leder: Even Aleksander Hagen.",
+        "claim_ids": [
+          "cl-d13ffa8b07a76602df93",
+          "cl-e24e9553fb8776e0d34a"
+        ]
+      },
+      {
+        "text": "It has 1 registered workplace(s) in Gjøvik.",
+        "claim_ids": [
+          "cl-c8c19b4790119141a556"
+        ]
+      },
+      {
+        "text": "Most recent dated company news: \"Kronikk: Forsvarets gløymde frontlinje\" (2026-09-07).",
+        "claim_ids": [
+          "cl-b831a75887e62f89c623"
+        ]
+      },
+      {
+        "text": "Company-linked profiles: facebook, instagram, linkedin.",
+        "claim_ids": [
+          "cl-91ba7fc38da4ff948401",
+          "cl-8d0ef580f4c17eb79427",
+          "cl-9c2b90813f4cd38bc3cf"
+        ]
+      }
+    ],
+    "text": "MUSIKK I INNLANDET AS is a private limited company (AS), registered in Gjøvik, founded 2021-01-28. According to Enhetsregisteret, its main registered industry is utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk (NACE 90.201; division: Creative, arts and entertainment activities); its registered activity reads: \"Utvikle, produsere og formidle musikk på profesjonelt nivå i samarbeid med aktører i hele Innlandet fylke, nasjonalt og internasjonalt.\". Its verified official website is https://musikkinnlandet.no/. The website describes the business as: \"Lurer du på hva som skjer i Hamar, Lillehammer, Gjøvik og Innlandet? Finn konserter og unike musikkopplevelser med Musikk i Innlandet.\" (company-reported). In its latest normalised company accounts (period ending 2025-12-31) it reported revenue NOK 17.4 million, operating result NOK 4 thousand, annual result NOK 0, equity NOK 1.0 million. Revenue was down 3% from NOK 18.0 million in the period ending 2024-12-31. The registry lists 10 employees. Registered leadership: Daglig leder: Solbjørg Tveiten; Styrets leder: Even Aleksander Hagen. It has 1 registered workplace(s) in Gjøvik. Most recent dated company news: \"Kronikk: Forsvarets gløymde frontlinje\" (2026-09-07). Company-linked profiles: facebook, instagram, linkedin.",
+    "changes_text": "No material changes were detected since the previous run.",
+    "unknowns": [
+      "active job postings (not available)"
+    ],
+    "unknowns_text": "Not found or not confirmed: active job postings (not available)."
+  },
+  "claims": [
+    {
+      "id": "cl-897564eb5b65b44e661e",
+      "field": "business_address",
+      "section": "legal_identity",
+      "key": "business",
+      "value": {
+        "street": "Storgata 9",
+        "postal_code": "2815",
+        "city": "GJØVIK",
+        "municipality": "GJØVIK",
+        "municipality_number": "3407",
+        "country": "Norge",
+        "formatted": "Storgata 9, 2815 GJØVIK"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-9b285d5f55330f44284e"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-ebf29636517f7945a2c8",
+      "field": "business_purpose",
+      "section": "legal_identity",
+      "key": "registered",
+      "value": "Utvikle, produsere og formidle musikk på profesjonelt nivå i samarbeid med aktører i hele Innlandet fylke, nasjonalt og internasjonalt.",
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-9b285d5f55330f44284e"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-e481d665b0e5bdb978df",
+      "field": "founded_date",
+      "section": "legal_identity",
+      "key": "founded",
+      "value": "2021-01-28",
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-9b285d5f55330f44284e"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": null,
+      "registration_date": "2021-03-15",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-5572196b881eced1b031",
+      "field": "industry",
+      "section": "legal_identity",
+      "key": "nace1",
+      "value": {
+        "code": "90.201",
+        "description": "Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk",
+        "rank": 1
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-9b285d5f55330f44284e"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-3d2ced49e5fcdc617a07",
+      "field": "legal_form",
+      "section": "legal_identity",
+      "key": "current",
+      "value": {
+        "code": "AS",
+        "description": "Aksjeselskap"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-9b285d5f55330f44284e"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-d6b1ceece24054ea1385",
+      "field": "legal_form",
+      "section": "legal_identity",
+      "key": "share_capital",
+      "value": {
+        "amount": 1000000.0,
+        "currency": "NOK",
+        "type": "Aksjekapital",
+        "shares": 500
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-9b285d5f55330f44284e"
+      ],
+      "reporting_period": null,
+      "effective_at": "2021-03-15",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-a2e9c565646720bb4f88",
+      "field": "legal_name",
+      "section": "legal_identity",
+      "key": "current",
+      "value": "MUSIKK I INNLANDET AS",
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-9b285d5f55330f44284e"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-e0445b66a3c27c86ec05",
+      "field": "registered_employees",
+      "section": "legal_identity",
+      "key": "registry",
+      "value": 10,
+      "availability": "available",
+      "confidence": 0.97,
+      "evidence_ids": [
+        "ev-9b285d5f55330f44284e"
+      ],
+      "reporting_period": null,
+      "effective_at": "2025-06-11",
+      "note": "Employee count registered in Enhetsregisteret (sourced from the NAV employer register).",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-5954486a6e309cb763bb",
+      "field": "registry_status",
+      "section": "legal_identity",
+      "key": "current",
+      "value": {
+        "status": "active",
+        "bankrupt": false,
+        "under_liquidation": false,
+        "forced_dissolution": false,
+        "registered_in_business_register": true,
+        "vat_registered": false
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-9b285d5f55330f44284e"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-db5c4094c29c85905bac",
+      "field": "annual_account_filing",
+      "section": "financials",
+      "key": "company:2023-12-31",
+      "value": {
+        "year": "2023",
+        "scope": "company",
+        "currency": "NOK",
+        "small_company_rules": true,
+        "audit_opted_out": false,
+        "unaudited": false,
+        "liquidation_accounts": false,
+        "journal_number": "2024567980"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-2bb7c8cb520b62b0c171"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-65d88b3ce3c435d23040",
+      "field": "annual_account_filing",
+      "section": "financials",
+      "key": "company:2024-12-31",
+      "value": {
+        "year": "2024",
+        "scope": "company",
+        "currency": "NOK",
+        "small_company_rules": true,
+        "audit_opted_out": false,
+        "unaudited": false,
+        "liquidation_accounts": false,
+        "journal_number": "2025632660"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-96a9b52b0544649d0af5"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-b0456c0c651077fd7375",
+      "field": "annual_account_filing",
+      "section": "financials",
+      "key": "company:2025-12-31",
+      "value": {
+        "year": "2025",
+        "scope": "company",
+        "currency": "NOK",
+        "small_company_rules": true,
+        "audit_opted_out": false,
+        "unaudited": false,
+        "liquidation_accounts": false,
+        "journal_number": "2026487323"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-5792a6f7e9bdd9989af2"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-69337e94c25613dbd4d2",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:annual_result",
+      "value": 0.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-f4284e6cc8c3c7b8c448"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "annual_result",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-67c56b497072d5b6061d",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:cash_and_bank",
+      "value": 15595297.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-5b4881d1b456a145824b"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "cash_and_bank",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-ef23b730c20fa5953036",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:equity",
+      "value": 1000000.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-8b7862aee958cdbbc6d1"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "equity",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-1bc5d402d85c66706746",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:net_financial_items",
+      "value": -2097.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-67fb5c5fa871b0978034"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "net_financial_items",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-5a8895d0b707c0ad40dd",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:operating_expenses",
+      "value": 14150246.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-8f018615e438051cdfd0"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "operating_expenses",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-53bc09dd9d7a37c76a1a",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:operating_result",
+      "value": 2097.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-995210754e8f557221b2"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "operating_result",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-9893c971c7c6b19ea23d",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:payroll_expenses",
+      "value": 4505035.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-ad25c043d218e72c916b"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "payroll_expenses",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-c351ca9db51b6ae9c24d",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:profit_before_tax",
+      "value": 0.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-eb5e2b79fd9a4d2cb72e"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "profit_before_tax",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-64b6cc1e6200f4908300",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:revenue",
+      "value": 14152343.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-860317aff3ed306efd55"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "revenue",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-dce1e5ceba9d25096dde",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:total_assets",
+      "value": 15862475.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-f2fbcafb3ad30b6ef8d3"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "total_assets",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-7be475af55c853782300",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:total_debt",
+      "value": 14862475.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-45bf50c987c93a2151ca"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "total_debt",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-d20de461cb8f0745f13f",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:annual_result",
+      "value": 0.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-efc4cffa2f0ebb55fcff"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "annual_result",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-5e45c27439f0d489b25b",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:cash_and_bank",
+      "value": 8161768.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-f92fc9134d81f7a241a6"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "cash_and_bank",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-1e516b9eb5d52571f413",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:equity",
+      "value": 1000000.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-db469e364404afb9e272"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "equity",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-1831ac87da568f7bbd82",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:net_financial_items",
+      "value": -4860.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-7f3bf2d8b26f231bc61e"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "net_financial_items",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-0cd52f0a1ec81ae62acc",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:operating_expenses",
+      "value": 17973897.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-12cb47d03ff3f95c143e"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "operating_expenses",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-5b36048f912e4784197f",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:operating_result",
+      "value": 4860.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-714f53800729b0360d07"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "operating_result",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-3908d345317bfec7b06a",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:payroll_expenses",
+      "value": 5400843.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-d9b5e6501c60ab061a80"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "payroll_expenses",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-3b705c1dcf323893c35b",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:profit_before_tax",
+      "value": 1.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-1bdb2babee9020cee4e0"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "profit_before_tax",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-faefcf66d8e4673fdd2e",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:revenue",
+      "value": 17978756.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-a4f511cbb6219c1a0ed3"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "revenue",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-fbab3062961f745e85ec",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:total_assets",
+      "value": 8598845.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-890648e9dcc2a2fc02f2"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "total_assets",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-7bec7249dcac69be4d11",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:total_debt",
+      "value": 7598845.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-5ba73b07ae9f8fbf245f"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "total_debt",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-7e790e3155753566f701",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:annual_result",
+      "value": 0.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-c9c2129573e801e3b3cc"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "annual_result",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-46d1fb5cb30adfc272f3",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:cash_and_bank",
+      "value": 1988223.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-9d6396ff27b65a4bcf7b"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "cash_and_bank",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-fa2c0047ecc279aaeb19",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:equity",
+      "value": 1000000.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-128ab9f9c4c1e820c28f"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "equity",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-4fe1227666ec1f41251d",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:net_financial_items",
+      "value": -3501.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-804c9a70459951a8b67a"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "net_financial_items",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-2cc4d82715475a8e172b",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:operating_expenses",
+      "value": 17364685.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-57b7899b35b2f2ec45ec"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "operating_expenses",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-106bebe84ba3e3d5afec",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:operating_result",
+      "value": 3501.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-6bf5ae56ffde1030df7b"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "operating_result",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-ed4f2e7c9ceff07b843a",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:payroll_expenses",
+      "value": 6222402.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-ecb1abfe9cb2b6f33e95"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "payroll_expenses",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-49766157065655b6335f",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:revenue",
+      "value": 17368185.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-a6c2152c67b6ca04ad8b"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "revenue",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-6a8ad44e02f1a754c3ba",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:total_assets",
+      "value": 2478342.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-0f17fa017b8aab9e35bb"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "total_assets",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-910dfa14f31bb61b7c43",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:total_debt",
+      "value": 1478342.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-6c50255be59c0982b6a3"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "total_debt",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-91c395d171acb315f1c5",
+      "field": "filed_account_years",
+      "section": "financials",
+      "key": "copies",
+      "value": {
+        "years": [
+          "2025",
+          "2024",
+          "2023",
+          "2022",
+          "2021"
+        ],
+        "latest": "2025",
+        "earliest": "2021",
+        "copies": [
+          {
+            "year": "2025",
+            "url": "https://data.brreg.no/regnskapsregisteret/regnskap/aarsregnskap/kopi/926790137/2025"
+          },
+          {
+            "year": "2024",
+            "url": "https://data.brreg.no/regnskapsregisteret/regnskap/aarsregnskap/kopi/926790137/2024"
+          },
+          {
+            "year": "2023",
+            "url": "https://data.brreg.no/regnskapsregisteret/regnskap/aarsregnskap/kopi/926790137/2023"
+          },
+          {
+            "year": "2022",
+            "url": "https://data.brreg.no/regnskapsregisteret/regnskap/aarsregnskap/kopi/926790137/2022"
+          },
+          {
+            "year": "2021",
+            "url": "https://data.brreg.no/regnskapsregisteret/regnskap/aarsregnskap/kopi/926790137/2021"
+          }
+        ]
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-7692a715efa23bf6d519"
+      ],
+      "reporting_period": null,
+      "effective_at": "2025",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-d13ffa8b07a76602df93",
+      "field": "role",
+      "section": "leadership",
+      "key": "DAGL:Solbjørg Tveiten",
+      "value": {
+        "role": "Daglig leder",
+        "role_code": "DAGL",
+        "group": "Daglig leder",
+        "name": "Solbjørg Tveiten",
+        "holder_type": "person"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-56caf3fc2103c7b307b3",
+        "ev-80b160f041d2ac83ae39"
+      ],
+      "reporting_period": null,
+      "effective_at": "2022-02-24",
+      "note": null,
+      "corroborated_on_website": true,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-e24e9553fb8776e0d34a",
+      "field": "role",
+      "section": "leadership",
+      "key": "LEDE:Even Aleksander Hagen",
+      "value": {
+        "role": "Styrets leder",
+        "role_code": "LEDE",
+        "group": "Styre",
+        "name": "Even Aleksander Hagen",
+        "holder_type": "person"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-7463a9f2e9821d1fe5cc",
+        "ev-80b160f041d2ac83ae39"
+      ],
+      "reporting_period": null,
+      "effective_at": "2025-11-10",
+      "note": null,
+      "corroborated_on_website": true,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-5b4d051cd864a0e882fa",
+      "field": "role",
+      "section": "leadership",
+      "key": "MEDL:Ellen Andrea Wang",
+      "value": {
+        "role": "Styremedlem",
+        "role_code": "MEDL",
+        "group": "Styre",
+        "name": "Ellen Andrea Wang",
+        "holder_type": "person"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-62cb51815345bbadc71d",
+        "ev-80b160f041d2ac83ae39"
+      ],
+      "reporting_period": null,
+      "effective_at": "2025-11-10",
+      "note": null,
+      "corroborated_on_website": true,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-bdfee6419c29d0d4f8f9",
+      "field": "role",
+      "section": "leadership",
+      "key": "MEDL:Glenn Erik Olson Haugland",
+      "value": {
+        "role": "Styremedlem",
+        "role_code": "MEDL",
+        "group": "Styre",
+        "name": "Glenn Erik Olson Haugland",
+        "holder_type": "person"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-80b160f041d2ac83ae39"
+      ],
+      "reporting_period": null,
+      "effective_at": "2025-11-10",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-53d6142abbe730158089",
+      "field": "role",
+      "section": "leadership",
+      "key": "MEDL:Margrethe Haarr",
+      "value": {
+        "role": "Styremedlem",
+        "role_code": "MEDL",
+        "group": "Styre",
+        "name": "Margrethe Haarr",
+        "holder_type": "person"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-64bf618633f60fe1824f",
+        "ev-80b160f041d2ac83ae39"
+      ],
+      "reporting_period": null,
+      "effective_at": "2025-11-10",
+      "note": null,
+      "corroborated_on_website": true,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-9918e9991634e69a3696",
+      "field": "role",
+      "section": "leadership",
+      "key": "MEDL:Randi Eek Thorsen",
+      "value": {
+        "role": "Styremedlem",
+        "role_code": "MEDL",
+        "group": "Styre",
+        "name": "Randi Eek Thorsen",
+        "holder_type": "person"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-80b160f041d2ac83ae39",
+        "ev-c2ba8ec88a0122b974ba"
+      ],
+      "reporting_period": null,
+      "effective_at": "2025-11-10",
+      "note": null,
+      "corroborated_on_website": true,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-dcfe14c0211de904beb2",
+      "field": "role",
+      "section": "leadership",
+      "key": "REGN:STANGE REGNSKAP AS",
+      "value": {
+        "role": "Regnskapsfører",
+        "role_code": "REGN",
+        "group": "Regnskapsfører",
+        "name": "STANGE REGNSKAP AS",
+        "holder_type": "organisation",
+        "organisation_number": "987433574"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-80b160f041d2ac83ae39"
+      ],
+      "reporting_period": null,
+      "effective_at": "2024-03-12",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-90d09ea632ab9dbcb3e4",
+      "field": "role",
+      "section": "leadership",
+      "key": "REVI:TELL NORGE AS",
+      "value": {
+        "role": "Revisor",
+        "role_code": "REVI",
+        "group": "Revisor",
+        "name": "TELL NORGE AS",
+        "holder_type": "organisation",
+        "organisation_number": "834836912"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-80b160f041d2ac83ae39"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-03-03",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-2478def4a12d707d19f9",
+      "field": "role",
+      "section": "leadership",
+      "key": "VARA:Bernt Egil Torp",
+      "value": {
+        "role": "Varamedlem",
+        "role_code": "VARA",
+        "group": "Styre",
+        "name": "Bernt Egil Torp",
+        "holder_type": "person"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-80b160f041d2ac83ae39"
+      ],
+      "reporting_period": null,
+      "effective_at": "2025-11-10",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-c3d3f28300655b833b34",
+      "field": "role",
+      "section": "leadership",
+      "key": "VARA:Ingrid Bergemillom",
+      "value": {
+        "role": "Varamedlem",
+        "role_code": "VARA",
+        "group": "Styre",
+        "name": "Ingrid Bergemillom",
+        "holder_type": "person"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-80b160f041d2ac83ae39"
+      ],
+      "reporting_period": null,
+      "effective_at": "2025-11-10",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-c8c19b4790119141a556",
+      "field": "registered_workplace",
+      "section": "workplaces",
+      "key": "926826182",
+      "value": {
+        "name": "MUSIKK I INNLANDET AS",
+        "organisation_number": "926826182",
+        "address": {
+          "street": "Storgata 9",
+          "postal_code": "2815",
+          "city": "GJØVIK",
+          "municipality": "GJØVIK",
+          "municipality_number": "3407",
+          "country": "Norge",
+          "formatted": "Storgata 9, 2815 GJØVIK"
+        },
+        "industry": {
+          "code": "90.201",
+          "description": "Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk"
+        },
+        "registered_employees": 10,
+        "established": "2021-04-01",
+        "website": null
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-8a56ddf92c5f2b058d65"
+      ],
+      "reporting_period": null,
+      "effective_at": "2021-04-01",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-442373c21f56ba6e6206",
+      "field": "official_website",
+      "section": "web_presence",
+      "key": "primary",
+      "value": "https://musikkinnlandet.no/",
+      "availability": "available",
+      "confidence": 1.0,
+      "evidence_ids": [
+        "ev-b64996a04d338449faf0"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": null,
+      "discovery_source": "guessed_domain",
+      "identity_method": "verify_v2",
+      "identity_reasons": [
+        "exact organisation number appears on the site",
+        "full legal name appears in homepage identity fields",
+        "registered street address appears on site",
+        "registered role holder appears on site (DAGL)"
+      ],
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-91ba7fc38da4ff948401",
+      "field": "social_profile",
+      "section": "web_presence",
+      "key": "facebook:https://facebook.com/musikkiinnlandet",
+      "value": {
+        "platform": "facebook",
+        "url": "https://facebook.com/musikkiinnlandet"
+      },
+      "availability": "available",
+      "confidence": 0.9,
+      "evidence_ids": [
+        "ev-167030970c7416097f2f",
+        "ev-b64996a04d338449faf0"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": "Profile linked from the verified company website; handle matches the company name or domain.",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-8d0ef580f4c17eb79427",
+      "field": "social_profile",
+      "section": "web_presence",
+      "key": "instagram:https://instagram.com/musikkinnlandet",
+      "value": {
+        "platform": "instagram",
+        "url": "https://instagram.com/musikkinnlandet"
+      },
+      "availability": "available",
+      "confidence": 0.9,
+      "evidence_ids": [
+        "ev-7fdec3da7e34b0ff0d9e",
+        "ev-b64996a04d338449faf0"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": "Profile linked from the verified company website; handle matches the company name or domain.",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-9c2b90813f4cd38bc3cf",
+      "field": "social_profile",
+      "section": "web_presence",
+      "key": "linkedin:https://linkedin.com/company/musikk-i-innlandet",
+      "value": {
+        "platform": "linkedin",
+        "url": "https://linkedin.com/company/musikk-i-innlandet"
+      },
+      "availability": "available",
+      "confidence": 0.9,
+      "evidence_ids": [
+        "ev-99f6cdf4754783de3189",
+        "ev-b64996a04d338449faf0"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": "Profile linked from the verified company website; handle matches the company name or domain.",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-eee0732b5b7cddc35cbf",
+      "field": "website_description",
+      "section": "web_presence",
+      "key": "meta",
+      "value": "Lurer du på hva som skjer i Hamar, Lillehammer, Gjøvik og Innlandet? Finn konserter og unike musikkopplevelser med Musikk i Innlandet.",
+      "availability": "available",
+      "confidence": 0.9,
+      "evidence_ids": [
+        "ev-b64996a04d338449faf0"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": "Company-reported description (not independently verified).",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-0115a738fa6379bef974",
+      "field": "job_posting",
+      "section": "hiring",
+      "key": "*",
+      "value": null,
+      "availability": "not_available",
+      "confidence": null,
+      "evidence_ids": [],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": "No careers page or job postings found on the verified website.; No active NAV Arbeidsplassen ads under the company's registered names (9652 active ads indexed from 209 feed pages (206 cached) covering 90 days)."
+    },
+    {
+      "id": "cl-e6c0b52b163218a60fe1",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://musikkinnlandet.no/innblikk/en-kunstopplevelse-som-apner-for-refleksjon-og-kritisk-tenkning/#En kunstopplevelse som åpner for refleksjon og kritisk tenkn",
+      "value": {
+        "title": "En kunstopplevelse som åpner for refleksjon og kritisk tenkning",
+        "date": "2026-02-06",
+        "url": "https://musikkinnlandet.no/innblikk/en-kunstopplevelse-som-apner-for-refleksjon-og-kritisk-tenkning/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-00aa751d018b8ffb14c6"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-02-06",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-b831a75887e62f89c623",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://musikkinnlandet.no/innblikk/kronikk-forsvarets-gloymde-frontlinje-2/#Kronikk: Forsvarets gløymde frontlinje",
+      "value": {
+        "title": "Kronikk: Forsvarets gløymde frontlinje",
+        "date": "2026-09-07",
+        "url": "https://musikkinnlandet.no/innblikk/kronikk-forsvarets-gloymde-frontlinje-2/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-fa68fa23339bc2b72e28"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-09-07",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-f1dfa6e6fe74491021f6",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://musikkinnlandet.no/innblikk/kronikk-mister-vi-fotfeste-na/#Kronikk: Mister vi fotfeste nå?",
+      "value": {
+        "title": "Kronikk: Mister vi fotfeste nå?",
+        "date": "2026-03-05",
+        "url": "https://musikkinnlandet.no/innblikk/kronikk-mister-vi-fotfeste-na/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-61b84ad660a53537b6b3"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-03-05",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-70ff43cd22f24c7e01f0",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://musikkinnlandet.no/innblikk/musikk-fellesskap-og-beredskap/#Musikk, fellesskap og beredskap",
+      "value": {
+        "title": "Musikk, fellesskap og beredskap",
+        "date": "2026-05-08",
+        "url": "https://musikkinnlandet.no/innblikk/musikk-fellesskap-og-beredskap/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-61f1edd5b0531a262bdc"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-05-08",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-a076f391a466d402a998",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://musikkinnlandet.no/nytt/grenselost-kulturnettverk/#Grenseløst kulturnettverk",
+      "value": {
+        "title": "Grenseløst kulturnettverk",
+        "date": "2026-09-02",
+        "url": "https://musikkinnlandet.no/nytt/grenselost-kulturnettverk/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-e4f9cf8d570ff2d8a7c5",
+        "ev-f47f066ef46a1bd14082"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-09-02",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-b1a77eeb9450eae58f90",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://musikkinnlandet.no/nytt/grenselost-kulturnettverk/#Grenseløst kulturnettverk — Musikk Innlandet",
+      "value": {
+        "title": "Grenseløst kulturnettverk — Musikk Innlandet",
+        "date": "2026-09-02",
+        "url": "https://musikkinnlandet.no/nytt/grenselost-kulturnettverk/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-3fb8d9272059d872cd53"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-09-02",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-b6edac5793f0084e7faf",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://musikkinnlandet.no/nytt/hedersprisvinner-2026/#HEDERSPRISVINNER 2026",
+      "value": {
+        "title": "HEDERSPRISVINNER 2026",
+        "date": "2026-03-13",
+        "url": "https://musikkinnlandet.no/nytt/hedersprisvinner-2026/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-4e8890b2de1fc3e3b035"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-03-13",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-12a2b2cc1e99b07d0ce4",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://musikkinnlandet.no/nytt/innpuls-2028/#Neste Innpuls arrangeres i 2028",
+      "value": {
+        "title": "Neste Innpuls arrangeres i 2028",
+        "date": "2026-04-17",
+        "url": "https://musikkinnlandet.no/nytt/innpuls-2028/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-112e055b9eb2e920e6fe"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-04-17",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-93397fe8f05e5ae55caf",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://musikkinnlandet.no/nytt/kronikk-forsvarets-gloymde-frontlinje/#Kronikk: Forsvarets gløymde frontlinje",
+      "value": {
+        "title": "Kronikk: Forsvarets gløymde frontlinje",
+        "date": "2026-06-11",
+        "url": "https://musikkinnlandet.no/nytt/kronikk-forsvarets-gloymde-frontlinje/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-aa855c2d952633e1cfba"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-06-11",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-30dcb26b8281e4fbbc0a",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://musikkinnlandet.no/nytt/kurs-med-karstad/#Kurs med Karstad",
+      "value": {
+        "title": "Kurs med Karstad",
+        "date": "2026-08-26",
+        "url": "https://musikkinnlandet.no/nytt/kurs-med-karstad/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-011e1c5c9853a76d2957"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-08-26",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-632b7ebc86045c11f99d",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://musikkinnlandet.no/nytt/ny-aremalsperiode-for-solbjorg-tveiten-som-kunstnerisk-leder/#Ny åremålsperiode for Solbjørg Tveiten som kunstnerisk leder",
+      "value": {
+        "title": "Ny åremålsperiode for Solbjørg Tveiten som kunstnerisk leder",
+        "date": "2025-12-20",
+        "url": "https://musikkinnlandet.no/nytt/ny-aremalsperiode-for-solbjorg-tveiten-som-kunstnerisk-leder/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-f9a0f6e14e7dde8304c0"
+      ],
+      "reporting_period": null,
+      "effective_at": "2025-12-20",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-d1bc8010e6436d63afe9",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "articles:2021-01-28",
+      "value": {
+        "event": "Articles of association dated",
+        "date": "2021-01-28"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-9b285d5f55330f44284e"
+      ],
+      "reporting_period": null,
+      "effective_at": "2021-01-28",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-38155994ccbba2ead66c",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "capital:2021-03-15",
+      "value": {
+        "event": "Share capital registered",
+        "date": "2021-03-15",
+        "amount": 1000000.0,
+        "currency": "NOK"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-9b285d5f55330f44284e"
+      ],
+      "reporting_period": null,
+      "effective_at": "2021-03-15",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-357ebb7030de26954c64",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "registered:2021-03-15",
+      "value": {
+        "event": "Registered in Enhetsregisteret",
+        "date": "2021-03-15"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-9b285d5f55330f44284e"
+      ],
+      "reporting_period": null,
+      "effective_at": "2021-03-15",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-20572323c162819cb5fa",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "roles:DAGL:2022-02-24",
+      "value": {
+        "event": "Role group updated: Daglig leder",
+        "date": "2022-02-24"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-80b160f041d2ac83ae39"
+      ],
+      "reporting_period": null,
+      "effective_at": "2022-02-24",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-e951d5c764b74d4f5ec4",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "roles:REGN:2024-03-12",
+      "value": {
+        "event": "Role group updated: Regnskapsfører",
+        "date": "2024-03-12"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-80b160f041d2ac83ae39"
+      ],
+      "reporting_period": null,
+      "effective_at": "2024-03-12",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-36e81d76ced910bf2260",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "roles:REVI:2026-03-03",
+      "value": {
+        "event": "Role group updated: Revisor",
+        "date": "2026-03-03"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-80b160f041d2ac83ae39"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-03-03",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    },
+    {
+      "id": "cl-91d450b7dace7ecab0bf",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "roles:STYR:2025-11-10",
+      "value": {
+        "event": "Role group updated: Styre",
+        "date": "2025-11-10"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-80b160f041d2ac83ae39"
+      ],
+      "reporting_period": null,
+      "effective_at": "2025-11-10",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T17:53:26Z"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ev-00aa751d018b8ffb14c6",
+      "source_url": "https://musikkinnlandet.no/feed/",
+      "final_url": "https://musikkinnlandet.no/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:20Z",
+      "content_sha256": "c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa",
+      "claim_span": "2026-02-06 En kunstopplevelse som åpner for refleksjon og kritisk tenkning",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/c7/c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa.gz"
+    },
+    {
+      "id": "ev-011e1c5c9853a76d2957",
+      "source_url": "https://musikkinnlandet.no/feed/",
+      "final_url": "https://musikkinnlandet.no/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:20Z",
+      "content_sha256": "c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa",
+      "claim_span": "2026-08-26 Kurs med Karstad",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/c7/c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa.gz"
+    },
+    {
+      "id": "ev-0f17fa017b8aab9e35bb",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; eiendeler.sumEiendeler=2478342.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-112e055b9eb2e920e6fe",
+      "source_url": "https://musikkinnlandet.no/feed/",
+      "final_url": "https://musikkinnlandet.no/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:20Z",
+      "content_sha256": "c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa",
+      "claim_span": "2026-04-17 Neste Innpuls arrangeres i 2028",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/c7/c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa.gz"
+    },
+    {
+      "id": "ev-128ab9f9c4c1e820c28f",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; egenkapitalGjeld.egenkapital.sumEgenkapital=1000000.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-12cb47d03ff3f95c143e",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; resultatregnskapResultat.driftsresultat.driftskostnad.sumDriftskostnad=17973897.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-167030970c7416097f2f",
+      "source_url": "https://musikkinnlandet.no/",
+      "final_url": "https://musikkinnlandet.no/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "03d06a60177ad248805dbbc6cf6c15b3c76d69ff301a846e0740b3df04d3e71e",
+      "claim_span": "link to https://facebook.com/musikkiinnlandet",
+      "http_status": 200,
+      "extractor": "site_social_links_v2",
+      "snapshot": "snapshots/03/03d06a60177ad248805dbbc6cf6c15b3c76d69ff301a846e0740b3df04d3e71e.gz"
+    },
+    {
+      "id": "ev-1bdb2babee9020cee4e0",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; resultatregnskapResultat.ordinaertResultatFoerSkattekostnad=1.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-2bb7c8cb520b62b0c171",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-3fb8d9272059d872cd53",
+      "source_url": "https://musikkinnlandet.no/nytt/grenselost-kulturnettverk/",
+      "final_url": "https://musikkinnlandet.no/nytt/grenselost-kulturnettverk/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:20Z",
+      "content_sha256": "40465a9ab859761f484c60ce2242defe032df8cee90fdb232598d26787511ab7",
+      "claim_span": "2026-09-02 Grenseløst kulturnettverk — Musikk Innlandet",
+      "http_status": 200,
+      "extractor": "site_news_article_meta_v1",
+      "snapshot": "snapshots/40/40465a9ab859761f484c60ce2242defe032df8cee90fdb232598d26787511ab7.gz"
+    },
+    {
+      "id": "ev-45bf50c987c93a2151ca",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; egenkapitalGjeld.gjeldOversikt.sumGjeld=14862475.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-4e8890b2de1fc3e3b035",
+      "source_url": "https://musikkinnlandet.no/feed/",
+      "final_url": "https://musikkinnlandet.no/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:20Z",
+      "content_sha256": "c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa",
+      "claim_span": "2026-03-13 HEDERSPRISVINNER 2026",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/c7/c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa.gz"
+    },
+    {
+      "id": "ev-56caf3fc2103c7b307b3",
+      "source_url": "https://musikkinnlandet.no/kontakt/",
+      "final_url": "https://musikkinnlandet.no/kontakt/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:20Z",
+      "content_sha256": "a5d4922f0d3c936b87a61182decd54733094cc7b9b963432bdd816e6be02f963",
+      "claim_span": "Solbjørg Tveiten named on company website",
+      "http_status": 200,
+      "extractor": "site_role_mention_v1",
+      "snapshot": "snapshots/a5/a5d4922f0d3c936b87a61182decd54733094cc7b9b963432bdd816e6be02f963.gz"
+    },
+    {
+      "id": "ev-5792a6f7e9bdd9989af2",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-57b7899b35b2f2ec45ec",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; resultatregnskapResultat.driftsresultat.driftskostnad.sumDriftskostnad=17364685.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-5b4881d1b456a145824b",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; eiendeler.sumBankinnskuddOgKontanter=15595297.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-5ba73b07ae9f8fbf245f",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; egenkapitalGjeld.gjeldOversikt.sumGjeld=7598845.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-61b84ad660a53537b6b3",
+      "source_url": "https://musikkinnlandet.no/feed/",
+      "final_url": "https://musikkinnlandet.no/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:20Z",
+      "content_sha256": "c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa",
+      "claim_span": "2026-03-05 Kronikk: Mister vi fotfeste nå?",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/c7/c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa.gz"
+    },
+    {
+      "id": "ev-61f1edd5b0531a262bdc",
+      "source_url": "https://musikkinnlandet.no/feed/",
+      "final_url": "https://musikkinnlandet.no/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:20Z",
+      "content_sha256": "c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa",
+      "claim_span": "2026-05-08 Musikk, fellesskap og beredskap",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/c7/c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa.gz"
+    },
+    {
+      "id": "ev-62cb51815345bbadc71d",
+      "source_url": "https://musikkinnlandet.no/kontakt/",
+      "final_url": "https://musikkinnlandet.no/kontakt/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:20Z",
+      "content_sha256": "a5d4922f0d3c936b87a61182decd54733094cc7b9b963432bdd816e6be02f963",
+      "claim_span": "Ellen Andrea Wang named on company website",
+      "http_status": 200,
+      "extractor": "site_role_mention_v1",
+      "snapshot": "snapshots/a5/a5d4922f0d3c936b87a61182decd54733094cc7b9b963432bdd816e6be02f963.gz"
+    },
+    {
+      "id": "ev-64bf618633f60fe1824f",
+      "source_url": "https://musikkinnlandet.no/kontakt/",
+      "final_url": "https://musikkinnlandet.no/kontakt/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:20Z",
+      "content_sha256": "a5d4922f0d3c936b87a61182decd54733094cc7b9b963432bdd816e6be02f963",
+      "claim_span": "Margrethe Haarr named on company website",
+      "http_status": 200,
+      "extractor": "site_role_mention_v1",
+      "snapshot": "snapshots/a5/a5d4922f0d3c936b87a61182decd54733094cc7b9b963432bdd816e6be02f963.gz"
+    },
+    {
+      "id": "ev-67fb5c5fa871b0978034",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; resultatregnskapResultat.finansresultat.nettoFinans=-2097.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-6bf5ae56ffde1030df7b",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; resultatregnskapResultat.driftsresultat.driftsresultat=3501.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-6c50255be59c0982b6a3",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; egenkapitalGjeld.gjeldOversikt.sumGjeld=1478342.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-714f53800729b0360d07",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; resultatregnskapResultat.driftsresultat.driftsresultat=4860.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-7463a9f2e9821d1fe5cc",
+      "source_url": "https://musikkinnlandet.no/kontakt/",
+      "final_url": "https://musikkinnlandet.no/kontakt/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:20Z",
+      "content_sha256": "a5d4922f0d3c936b87a61182decd54733094cc7b9b963432bdd816e6be02f963",
+      "claim_span": "Even Aleksander Hagen named on company website",
+      "http_status": 200,
+      "extractor": "site_role_mention_v1",
+      "snapshot": "snapshots/a5/a5d4922f0d3c936b87a61182decd54733094cc7b9b963432bdd816e6be02f963.gz"
+    },
+    {
+      "id": "ev-7692a715efa23bf6d519",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/aarsregnskap/kopi/926790137/aar",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/aarsregnskap/kopi/926790137/aar",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:59Z",
+      "content_sha256": "3224f0706bd3ffc731997668057588188a2f2ceb01a45d0d434e8929f7100c8e",
+      "claim_span": "years=2025,2024,2023,2022,2021",
+      "http_status": 200,
+      "extractor": "brreg_account_copy_years_v1",
+      "snapshot": "snapshots/32/3224f0706bd3ffc731997668057588188a2f2ceb01a45d0d434e8929f7100c8e.gz"
+    },
+    {
+      "id": "ev-7f3bf2d8b26f231bc61e",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; resultatregnskapResultat.finansresultat.nettoFinans=-4860.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-7fdec3da7e34b0ff0d9e",
+      "source_url": "https://musikkinnlandet.no/",
+      "final_url": "https://musikkinnlandet.no/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "03d06a60177ad248805dbbc6cf6c15b3c76d69ff301a846e0740b3df04d3e71e",
+      "claim_span": "link to https://instagram.com/musikkinnlandet",
+      "http_status": 200,
+      "extractor": "site_social_links_v2",
+      "snapshot": "snapshots/03/03d06a60177ad248805dbbc6cf6c15b3c76d69ff301a846e0740b3df04d3e71e.gz"
+    },
+    {
+      "id": "ev-804c9a70459951a8b67a",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; resultatregnskapResultat.finansresultat.nettoFinans=-3501.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-80b160f041d2ac83ae39",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/926790137/roller",
+      "final_url": "https://data.brreg.no/enhetsregisteret/api/enheter/926790137/roller",
+      "source_class": "official_registry",
+      "retrieved_at": "2026-10-07T17:50:07Z",
+      "content_sha256": "872659c7e6d689d2b50d22b92fd0cfbcbd910ed2849800b52ed8a864966a9b8b",
+      "claim_span": "rollegrupper",
+      "http_status": 200,
+      "extractor": "brreg_roles_v1",
+      "snapshot": "snapshots/87/872659c7e6d689d2b50d22b92fd0cfbcbd910ed2849800b52ed8a864966a9b8b.gz"
+    },
+    {
+      "id": "ev-860317aff3ed306efd55",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; resultatregnskapResultat.driftsresultat.driftsinntekter.sumDriftsinntekter=14152343.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-890648e9dcc2a2fc02f2",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; eiendeler.sumEiendeler=8598845.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-8a56ddf92c5f2b058d65",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=926790137&size=200",
+      "final_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=926790137&size=200",
+      "source_class": "official_registry",
+      "retrieved_at": "2026-10-07T17:50:12Z",
+      "content_sha256": "b4897f71b07727a0946903158cba54b52ecb6ab53950909c4a4451a292a0fb86",
+      "claim_span": "overordnetEnhet=926790137",
+      "http_status": 200,
+      "extractor": "brreg_subunits_v1",
+      "snapshot": "snapshots/b4/b4897f71b07727a0946903158cba54b52ecb6ab53950909c4a4451a292a0fb86.gz"
+    },
+    {
+      "id": "ev-8b7862aee958cdbbc6d1",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; egenkapitalGjeld.egenkapital.sumEgenkapital=1000000.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-8f018615e438051cdfd0",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; resultatregnskapResultat.driftsresultat.driftskostnad.sumDriftskostnad=14150246.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-96a9b52b0544649d0af5",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-995210754e8f557221b2",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; resultatregnskapResultat.driftsresultat.driftsresultat=2097.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-99f6cdf4754783de3189",
+      "source_url": "https://musikkinnlandet.no/",
+      "final_url": "https://musikkinnlandet.no/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "03d06a60177ad248805dbbc6cf6c15b3c76d69ff301a846e0740b3df04d3e71e",
+      "claim_span": "link to https://linkedin.com/company/musikk-i-innlandet",
+      "http_status": 200,
+      "extractor": "site_social_links_v2",
+      "snapshot": "snapshots/03/03d06a60177ad248805dbbc6cf6c15b3c76d69ff301a846e0740b3df04d3e71e.gz"
+    },
+    {
+      "id": "ev-9b285d5f55330f44284e",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/926790137",
+      "final_url": "https://data.brreg.no/enhetsregisteret/api/enheter/926790137",
+      "source_class": "official_registry",
+      "retrieved_at": "2026-10-07T17:50:03Z",
+      "content_sha256": "0c151327ff98baa03600df7543f04ff9f1837e4cd03c3fe21b44154b867230cd",
+      "claim_span": "organisasjonsnummer=926790137",
+      "http_status": 200,
+      "extractor": "brreg_entity_v1",
+      "snapshot": "snapshots/0c/0c151327ff98baa03600df7543f04ff9f1837e4cd03c3fe21b44154b867230cd.gz"
+    },
+    {
+      "id": "ev-9d6396ff27b65a4bcf7b",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; eiendeler.sumBankinnskuddOgKontanter=1988223.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-a4f511cbb6219c1a0ed3",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; resultatregnskapResultat.driftsresultat.driftsinntekter.sumDriftsinntekter=17978756.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-a6c2152c67b6ca04ad8b",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; resultatregnskapResultat.driftsresultat.driftsinntekter.sumDriftsinntekter=17368185.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-aa855c2d952633e1cfba",
+      "source_url": "https://musikkinnlandet.no/feed/",
+      "final_url": "https://musikkinnlandet.no/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:20Z",
+      "content_sha256": "c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa",
+      "claim_span": "2026-06-11 Kronikk: Forsvarets gløymde frontlinje",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/c7/c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa.gz"
+    },
+    {
+      "id": "ev-ad25c043d218e72c916b",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; resultatregnskapResultat.driftsresultat.driftskostnad.loennskostnad=4505035.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-b64996a04d338449faf0",
+      "source_url": "https://musikkinnlandet.no/",
+      "final_url": "https://musikkinnlandet.no/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "03d06a60177ad248805dbbc6cf6c15b3c76d69ff301a846e0740b3df04d3e71e",
+      "claim_span": "akt Musikk i Innlandet Besøksadresse: Storgata 9, 2815 Gjøvik Org.nr: 926 790 137 Postadresse: Musikk i Innlandet AS, Kauffeldts plass 1, 2815 Gjøvik K",
+      "http_status": 200,
+      "extractor": "site_identity_gate_v2",
+      "snapshot": "snapshots/03/03d06a60177ad248805dbbc6cf6c15b3c76d69ff301a846e0740b3df04d3e71e.gz"
+    },
+    {
+      "id": "ev-c2ba8ec88a0122b974ba",
+      "source_url": "https://musikkinnlandet.no/kontakt/",
+      "final_url": "https://musikkinnlandet.no/kontakt/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:20Z",
+      "content_sha256": "a5d4922f0d3c936b87a61182decd54733094cc7b9b963432bdd816e6be02f963",
+      "claim_span": "Randi Eek Thorsen named on company website",
+      "http_status": 200,
+      "extractor": "site_role_mention_v1",
+      "snapshot": "snapshots/a5/a5d4922f0d3c936b87a61182decd54733094cc7b9b963432bdd816e6be02f963.gz"
+    },
+    {
+      "id": "ev-c9c2129573e801e3b3cc",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; resultatregnskapResultat.aarsresultat=0.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-d9b5e6501c60ab061a80",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; resultatregnskapResultat.driftsresultat.driftskostnad.loennskostnad=5400843.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-db469e364404afb9e272",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; egenkapitalGjeld.egenkapital.sumEgenkapital=1000000.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-e4f9cf8d570ff2d8a7c5",
+      "source_url": "https://musikkinnlandet.no/feed/",
+      "final_url": "https://musikkinnlandet.no/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:20Z",
+      "content_sha256": "c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa",
+      "claim_span": "2026-09-02 Grenseløst kulturnettverk",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/c7/c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa.gz"
+    },
+    {
+      "id": "ev-eb5e2b79fd9a4d2cb72e",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; resultatregnskapResultat.ordinaertResultatFoerSkattekostnad=0.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-ecb1abfe9cb2b6f33e95",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; resultatregnskapResultat.driftsresultat.driftskostnad.loennskostnad=6222402.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-efc4cffa2f0ebb55fcff",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; resultatregnskapResultat.aarsresultat=0.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-f2fbcafb3ad30b6ef8d3",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; eiendeler.sumEiendeler=15862475.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-f4284e6cc8c3c7b8c448",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; resultatregnskapResultat.aarsresultat=0.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-f47f066ef46a1bd14082",
+      "source_url": "https://musikkinnlandet.no/nytt/grenselost-kulturnettverk/",
+      "final_url": "https://musikkinnlandet.no/nytt/grenselost-kulturnettverk/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:20Z",
+      "content_sha256": "40465a9ab859761f484c60ce2242defe032df8cee90fdb232598d26787511ab7",
+      "claim_span": "2026-09-02 Grenseløst kulturnettverk",
+      "http_status": 200,
+      "extractor": "site_news_jsonld_v1",
+      "snapshot": "snapshots/40/40465a9ab859761f484c60ce2242defe032df8cee90fdb232598d26787511ab7.gz"
+    },
+    {
+      "id": "ev-f92fc9134d81f7a241a6",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/926790137",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T17:50:19Z",
+      "content_sha256": "4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; eiendeler.sumBankinnskuddOgKontanter=8161768.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/47/4761ce1e53247794d37bcd25f70759e46417740ed805c65eb799a3d605166767.gz"
+    },
+    {
+      "id": "ev-f9a0f6e14e7dde8304c0",
+      "source_url": "https://musikkinnlandet.no/feed/",
+      "final_url": "https://musikkinnlandet.no/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:20Z",
+      "content_sha256": "c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa",
+      "claim_span": "2025-12-20 Ny åremålsperiode for Solbjørg Tveiten som kunstnerisk leder",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/c7/c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa.gz"
+    },
+    {
+      "id": "ev-fa68fa23339bc2b72e28",
+      "source_url": "https://musikkinnlandet.no/feed/",
+      "final_url": "https://musikkinnlandet.no/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T17:50:20Z",
+      "content_sha256": "c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa",
+      "claim_span": "2026-09-07 Kronikk: Forsvarets gløymde frontlinje",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/c7/c739292cfd69346b31011b49631ca6c738c89aa11ffce7ffeea2715adf6fe6aa.gz"
+    }
+  ],
+  "changes": [],
+  "errors": [],
+  "operations": {
+    "requests": 10,
+    "runtime_ms": 19359,
+    "third_party_cost_usd": 0.0,
+    "bytes": 407152
+  }
+}

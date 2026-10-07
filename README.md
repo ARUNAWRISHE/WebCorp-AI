@@ -32,7 +32,7 @@ input. It finishes inside the time budget: `--time-budget` or `SIGNALPOST_TIME_B
 `max(900, 2 × companies)` seconds. Companies not reached in time get `failed` states, never missing rows.
 
 Useful options: `--previous <envelopes.jsonl>` · `--no-previous` · `--workers 48` · `--state-dir state` ·
-`--llm auto|off` · `--no-nav` · `--no-wikidata` · `--no-history` · `--registry <frozen snapshot>` (fallback identity).
+`--llm off|auto` · `--no-nav` · `--no-wikidata` · `--no-history` · `--registry <frozen snapshot>` (fallback identity).
 
 ## How it works
 
@@ -59,13 +59,15 @@ input org numbers ──► placeholder envelopes written
 | Item | Details |
 |---|---|
 | APIs | Brønnøysund Enhetsregisteret + Regnskapsregisteret (NLOD 2.0), NAV Arbeidsplassen public feed (NAV API terms), Wikidata API (CC0). All free, no keys |
-| Models | None required. Optional local summariser via Ollama `qwen2.5:7b` (Apache-2.0), used only when installed and only for validated rewording of cited facts |
+| Models | **None.** The summary is a deterministic template in which every sentence cites claim ids. An optional local Ollama overview (`--llm auto`, `qwen2.5:7b`, Apache-2.0, GPU) exists but is off by default: in our audit it mistranslated Norwegian activity text, see [docs/EVAL.md](docs/EVAL.md) |
 | Code dependencies | beautifulsoup4, lxml, extruct, trafilatura, tldextract, pydantic, pypdf (pinned in `uv.lock`) |
 | Third-party cost | **USD 0 per official run** |
 
 ## Smoke test
 
-See [`reports/smoke-100/`](reports/smoke-100/) for the 100-company run report and summary.
+[`reports/smoke-100/`](reports/smoke-100/SUMMARY.md): 100/100 envelopes, schema-valid, 205 s, USD 0. All 5,157
+available claims are evidence-backed. An unchanged re-run detects 0 changes. A 1,000-company scale run is in
+[`reports/scale-1000/`](reports/scale-1000/run-report.json): all checks passed in 713 s.
 
 ## Tests
 
