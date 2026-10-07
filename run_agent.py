@@ -43,8 +43,8 @@ def main() -> int:
                         help="Wall-clock budget in seconds (default: max(900, 2 × companies))")
     parser.add_argument("--workers", type=int, default=int(os.environ.get("SIGNALPOST_WORKERS", "48")))
     parser.add_argument("--registry", default=os.environ.get("SIGNALPOST_REGISTRY_SNAPSHOT"), help="Optional frozen registry snapshot (fallback identity)")
-    parser.add_argument("--llm", choices=("auto", "off"), default=os.environ.get("SIGNALPOST_LLM", "auto"),
-                        help="auto: use a local Ollama model for validated summaries when available; off: template only")
+    parser.add_argument("--llm", choices=("auto", "off"), default=os.environ.get("SIGNALPOST_LLM", "off"),
+                        help="off (default): cited deterministic summary; auto: add an experimental local-LLM (Ollama, GPU) plain-English overview when available")
     parser.add_argument("--llm-model", default=os.environ.get("SIGNALPOST_LLM_MODEL", "qwen2.5:7b"))
     parser.add_argument("--nav-days", type=int, default=90)
     parser.add_argument("--no-nav", action="store_true", help="Disable the NAV job-feed connector")

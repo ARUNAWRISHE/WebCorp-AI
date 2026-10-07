@@ -11,6 +11,8 @@ import re
 import urllib.request
 from typing import Any
 
+from .nace import division_label
+
 OLLAMA_URL = "http://127.0.0.1:11434"
 
 
@@ -93,7 +95,9 @@ def template_summary(envelope: dict[str, Any]) -> dict[str, Any]:
         what = []
         cited = []
         if industry:
-            what.append(f"its main registered industry is {str(industry['value'].get('description')).lower()} (NACE {industry['value'].get('code')})")
+            division = division_label(industry["value"].get("code"))
+            english = f"; division: {division}" if division else ""
+            what.append(f"its main registered industry is {str(industry['value'].get('description')).lower()} (NACE {industry['value'].get('code')}{english})")
             cited.append(industry)
         if purpose:
             what.append(f"its registered activity reads: \"{purpose['value'][:220]}\"")
@@ -211,49 +215,41 @@ def _claim_text(claim: dict[str, Any]) -> str:
     return json.dumps(claim.get("value"), ensure_ascii=False) + " " + str(claim.get("key")) + " " + json.dumps(claim.get("reporting_period") or {})
 
 
-def llm_summary(envelope: dict[str, Any], template: dict[str, Any], *, model: str, timeout: float = 60.0) -> dict[str, Any] | None:
-    cited_ids = {cid for sentence in template["sentences"] for cid in sentence["claim_ids"]}
-    claims = {item["id"]: item for item in envelope["claims"] if item["id"] in cited_ids}
-    if not claims:
+def llm_overview(envelope: dict[str, Any], template: dict[str, Any], *, model: str, timeout: float = 45.0) -> dict[str, Any] | None:
+    """One or two plain-English sentences on what the company does, paraphrasing cited registry/website text.
+
+    The deterministic template remains the factual summary; the overview is prepended only when it passes
+    validation: it must cite provided claim ids, stay short, and contain no number absent from its sources.
+    """
+    sources = [claim for claim in envelope["claims"] if claim["availability"] == "available" and claim["field"] in
+               {"business_purpose", "industry", "website_description", "public_brand_name"}][:6]
+    name = next((claim["value"] for claim in envelope["claims"] if claim["field"] == "legal_name" and claim["key"] == "current"), None)
+    if not sources or not name:
         return None
-    facts = [{"id": cid, "field": item["field"], "value": item["value"], "period": item.get("reporting_period")} for cid, item in claims.items()]
+    facts = [{"id": claim["id"], "field": claim["field"], "text": claim["value"] if isinstance(claim["value"], str) else claim["value"]} for claim in sources]
     prompt = (
-        "You write a short, neutral English company profile for a business analyst.\n"
-        "Use ONLY the facts below. Do not add any fact, number, name, date or opinion that is not in them.\n"
-        "Write 3-6 sentences. Every sentence must cite the ids of the facts it uses.\n"
-        "Amounts are NOK; you may round to millions with one decimal.\n"
-        'Return JSON: {"sentences": [{"text": "...", "claim_ids": ["cl-..."]}]}\n\n'
-        f"FACTS:\n{json.dumps(facts, ensure_ascii=False)[:9000]}"
+        f"Company: {name}\n"
+        "Using ONLY the texts below (some are Norwegian), write one or two short English sentences that explain what this company does.\n"
+        "Do not add facts, numbers, places, customers, sizes or opinions that are not in the texts. Do not use marketing language.\n"
+        'Return JSON: {"overview": "...", "claim_ids": ["cl-..."]} citing the ids you used.\n\n'
+        f"TEXTS:\n{json.dumps(facts, ensure_ascii=False)[:4000]}"
     )
-    body = json.dumps({"model": model, "prompt": prompt, "stream": False, "format": "json", "options": {"temperature": 0, "seed": 7, "num_predict": 500}}).encode()
+    body = json.dumps({"model": model, "prompt": prompt, "stream": False, "format": "json", "keep_alive": "30m",
+                       "options": {"temperature": 0, "seed": 7, "num_predict": 160}}).encode()
     try:
         request = urllib.request.Request(OLLAMA_URL + "/api/generate", data=body, headers={"Content-Type": "application/json"})
         with urllib.request.urlopen(request, timeout=timeout) as response:
             output = json.loads(json.loads(response.read())["response"])
     except Exception:
         return None
-    accepted = []
-    for sentence in output.get("sentences") or []:
-        text = str(sentence.get("text") or "").strip()
-        ids = [cid for cid in sentence.get("claim_ids") or [] if cid in claims]
-        if not text or not ids:
-            continue
-        source_text = " ".join(_claim_text(claims[cid]) for cid in ids)
-        source_numbers = _numbers(source_text)
-        allowed = set(source_numbers)
-        for number in source_numbers:  # allow millions/billions rounding of cited amounts
-            try:
-                value = abs(float(number))
-                allowed.add(f"{value / 1_000_000:.1f}")
-                allowed.add(f"{value / 1_000_000_000:.1f}")
-                allowed.add(f"{value / 1_000:.0f}")
-            except ValueError:
-                continue
-        stated = {item.lstrip("-") for item in _numbers(text)}
-        if any(item not in {a.lstrip("-") for a in allowed} for item in stated):
-            continue
-        accepted.append({"text": text, "claim_ids": ids})
-    if len(accepted) < 2:
+    text = " ".join(str(output.get("overview") or "").split())
+    by_id = {claim["id"]: claim for claim in sources}
+    ids = [cid for cid in output.get("claim_ids") or [] if cid in by_id] or [claim["id"] for claim in sources if claim["field"] == "business_purpose"]
+    if not text or not ids or len(text) > 420 or len(text) < 25:
         return None
-    return {**template, "method": f"local_llm_validated:{model}", "sentences": accepted, "text": " ".join(item["text"] for item in accepted),
-            "template_text": template["text"]}
+    allowed = _numbers(" ".join(_claim_text(by_id[cid]) for cid in ids))
+    if any(number not in allowed for number in _numbers(text)):
+        return None
+    overview = {"text": text, "claim_ids": ids, "method": f"local_llm_paraphrase:{model}", "note": "Machine paraphrase of the cited registry/website text."}
+    return {**template, "method": f"{template['method']}+llm_overview:{model}", "overview": overview,
+            "sentences": [{"text": text, "claim_ids": ids, "generated": True}] + template["sentences"], "text": text + " " + template["text"]}

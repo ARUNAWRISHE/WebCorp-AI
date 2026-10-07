@@ -24,7 +24,7 @@ from .operations import latency_summary, peak_rss_bytes
 from .profile import FIELD_SECTIONS, OPTIONAL_FIELDS, Profile
 from .site_extract import extract_site
 from .store import SnapshotStore, read_jsonl, write_jsonl_atomic
-from .synthesis import llm_summary, ollama_available, template_summary
+from .synthesis import llm_overview, ollama_available, template_summary
 from .webdiscovery import resolve_website
 from .wikidata import WikidataLookup
 
@@ -44,7 +44,7 @@ class RunConfig:
     time_budget: float | None = None
     workers: int = 48
     registry_path: str | None = None
-    llm: str = "auto"
+    llm: str = "off"
     llm_model: str = "qwen2.5:7b"
     nav_days: int = 90
     use_nav: bool = True
@@ -398,12 +398,12 @@ def run(config: RunConfig) -> dict[str, Any]:
             nonlocal llm_used
             if time.monotonic() > deadline - 10 or not envelope["summary"].get("sentences"):
                 return
-            result = llm_summary(envelope, envelope["summary"], model=config.llm_model, timeout=min(60.0, max(5.0, deadline - 10 - time.monotonic())))
+            result = llm_overview(envelope, envelope["summary"], model=config.llm_model, timeout=min(45.0, max(5.0, deadline - 10 - time.monotonic())))
             if result:
                 envelope["summary"] = result
                 llm_used += 1
 
-        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:  # one GPU: serial requests are fastest
             futures = [pool.submit(enrich, envelope) for envelope in envelopes if envelope["run"]["terminal_status"] == "completed"]
             concurrent.futures.wait(futures, timeout=max(1.0, deadline - 5 - time.monotonic()))
 

@@ -6,6 +6,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+from .nace import division_label
+
 FIELD_LABELS = {
     "legal_name": "Legal name", "legal_form": "Legal form / capital", "registry_status": "Registry status", "business_address": "Address",
     "industry": "Industry (NACE)", "business_purpose": "Registered activity", "founded_date": "Founded", "registered_employees": "Registered employees",
@@ -48,7 +50,8 @@ def _value_text(claim: dict[str, Any]) -> tuple[str, str]:
         if field == "business_address":
             return f"{label} ({claim['key']})", value.get("formatted") or ""
         if field == "industry":
-            return label, f"{value.get('code')} {value.get('description') or ''}"
+            division = division_label(value.get("code"))
+            return label, f"{value.get('code')} {value.get('description') or ''}" + (f" · {division}" if division else "")
         if field == "registry_status":
             return label, value.get("status") or ""
         if field == "registered_workplace":

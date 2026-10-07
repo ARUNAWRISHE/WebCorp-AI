@@ -408,42 +408,66 @@ def collect_accounts(profile: Profile) -> None:
 
 # ---- filing years (rate-limited lane) -----------------------------------------------------------
 class FilingYearsLane:
-    """Single background lane for the copy-year endpoint (about 30 requests/minute)."""
+    """Background lane for the copy-year endpoint (about 30 request starts per minute).
 
-    def __init__(self, deadline: float | None):
+    The endpoint is slow (several seconds per response), so a few workers share one start schedule:
+    request starts are spaced at least 2.05 s apart and a 429 pauses every worker.
+    """
+
+    def __init__(self, deadline: float | None, workers: int = 4, spacing: float = 2.05):
         self.deadline = deadline
+        self.workers = workers
+        self.spacing = spacing
         self.results: dict[str, tuple[Response | None, Any]] = {}
         self.queue: list[str] = []
         self.lock = threading.Lock()
+        self.next_start = 0.0
         self.meter = Meter()
         self.done = threading.Event()
         self.stop_flag = threading.Event()
-        self.thread = threading.Thread(target=self._run, daemon=True, name="filing-years-lane")
+        self.threads: list[threading.Thread] = []
 
     def start(self, organisations: list[str]) -> None:
-        self.queue = list(organisations)
-        self.thread.start()
+        self.queue = list(reversed(organisations))
+        self.threads = [threading.Thread(target=self._run, daemon=True, name=f"filing-years-{index}") for index in range(self.workers)]
+        for thread in self.threads:
+            thread.start()
+
+    def _reserve(self) -> bool:
+        while True:
+            if self.stop_flag.is_set() or (self.deadline and time.monotonic() > self.deadline - 30):
+                return False
+            with self.lock:
+                now = time.monotonic()
+                if now >= self.next_start:
+                    self.next_start = now + self.spacing
+                    return True
+                wait = self.next_start - now
+            time.sleep(min(wait, 1.0))
 
     def _run(self) -> None:
-        interval = 2.05
-        try:
-            for org in self.queue:
-                if self.stop_flag.is_set() or (self.deadline and time.monotonic() > self.deadline - 30):
+        while True:
+            with self.lock:
+                if not self.queue:
                     break
-                started = time.monotonic()
-                try:
-                    response = get(ACCOUNT_YEARS.format(org=org), meter=self.meter, accept="application/json", timeout=20, attempts=2, deadline=self.deadline)
-                    body = _json(response) if response.ok else None
-                except Exception:
-                    response, body = None, None
+                org = self.queue.pop()
+            if not self._reserve():
                 with self.lock:
-                    self.results[org] = (response, body)
-                remaining = response.headers.get("x-rate-limit-remaining") if response is not None else None
-                pause = interval if remaining in (None, "", "0", "1") else max(0.2, interval - 1.5)
-                elapsed = time.monotonic() - started
-                if elapsed < pause:
-                    time.sleep(pause - elapsed)
-        finally:
+                    self.queue.append(org)
+                break
+            try:
+                response = get(ACCOUNT_YEARS.format(org=org), meter=self.meter, accept="application/json", timeout=30, attempts=1, deadline=self.deadline)
+                body = _json(response) if response.ok else None
+            except Exception:
+                response, body = None, None
+            if response is not None and response.status == 429:
+                with self.lock:
+                    self.next_start = time.monotonic() + 30
+                    self.queue.append(org)
+                continue
+            with self.lock:
+                self.results[org] = (response, body)
+        if all(not thread.is_alive() or thread is threading.current_thread() for thread in self.threads):
             self.done.set()
 
     def apply(self, profile: Profile) -> None:
