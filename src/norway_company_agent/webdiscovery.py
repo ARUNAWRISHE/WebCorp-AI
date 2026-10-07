@@ -41,32 +41,29 @@ def _resolves(host: str, timeout: float = 4.0) -> bool:
 
 
 def guessed_domains(name: str, historic: list[str] | None = None) -> list[str]:
-    hosts: list[str] = []
-    raw_names = [name] + list(historic or [])[:1]
-    for raw in raw_names:
-        folded_variants = {
-            " ".join(_tokens(raw)),
-            " ".join(_tokens(str(raw).replace("ø", "oe").replace("Ø", "OE").replace("å", "aa").replace("Å", "AA"))),
-        }
-        for folded in folded_variants:
-            tokens = [token for token in folded.split() if re.fullmatch(r"[a-z0-9]+", token)]
-            if not tokens:
+    """Deterministic, prioritised .no/.com guesses from the legal name (ø→o first, then ø→oe)."""
+    primary: list[str] = []
+    secondary: list[str] = []
+    raw = str(name or "")
+    spellings = [" ".join(_tokens(raw))]
+    alternative = " ".join(_tokens(raw.replace("ø", "oe").replace("Ø", "OE").replace("å", "aa").replace("Å", "AA")))
+    if alternative not in spellings:
+        spellings.append(alternative)
+    for folded in spellings:
+        tokens = [token for token in folded.split() if re.fullmatch(r"[a-z0-9]+", token)]
+        distinctive = [token for token in tokens if token not in GENERIC_NAME_WORDS]
+        if not tokens or not distinctive or (len(distinctive) == 1 and len(distinctive[0]) < 4):
+            continue
+        bases = [tokens[:3]] + ([distinctive[:3]] if distinctive != tokens else [])
+        for base in bases:
+            joined = "".join(base)
+            if not 4 <= len(joined) <= 40:
                 continue
-            distinctive = [token for token in tokens if token not in GENERIC_NAME_WORDS]
-            if not distinctive or (len(distinctive) == 1 and len(distinctive[0]) < 4):
-                continue
-            base_sets = [tokens[:3]]
-            if distinctive != tokens:
-                base_sets.append(distinctive[:3])
-            for base in base_sets:
-                joined = "".join(base)
-                if len(joined) < 4 or len(joined) > 40:
-                    continue
-                hosts.append(f"{joined}.no")
-                if len(base) > 1:
-                    hosts.append(f"{'-'.join(base)}.no")
-                hosts.append(f"{joined}.com")
-    return list(dict.fromkeys(hosts))[:8]
+            primary.append(f"{joined}.no")
+            if len(base) > 1:
+                primary.append(f"{'-'.join(base)}.no")
+            secondary.append(f"{joined}.com")
+    return list(dict.fromkeys(primary + secondary))[:8]
 
 
 def candidate_ladder(profile: Profile, wikidata: dict[str, Any] | None) -> list[dict[str, Any]]:
