@@ -77,6 +77,21 @@ def _text_date(text: str | None) -> str | None:
     return None
 
 
+SPAM_MARKERS = ("casino", "kasino", "kasyno", "gra w ", "slots ", "slot machine", "poker", "betting", "bonus bez", "viagra", "cialis", "porn", "escort",
+                "payday", "loan approval", "crypto casino", "onlyfans", "spilleautomat", "free spins", "jackpot")
+DEFAULT_POSTS = {"hello world!", "hello world", "hei verden!", "hei verden", "sample page", "eksempelside"}
+
+
+def _junk_title(title: str) -> bool:
+    """Archive dates used as titles, CMS default posts and injected spam (compromised WordPress sites)."""
+    folded = title.casefold().strip()
+    if folded in DEFAULT_POSTS or any(marker in folded for marker in SPAM_MARKERS):
+        return True
+    if len(folded) <= 30 and _text_date(folded):
+        return True
+    return sum(ch.isalpha() for ch in folded) < 6
+
+
 def _page_evidence(profile: Profile, page: Page, extractor: str, span: str | None) -> str:
     return profile.evidence_from_response(page.response, "company_owned", extractor, span=span)
 
@@ -241,6 +256,8 @@ def _extract_news(profile: Profile, capture: SiteCapture) -> None:
             return
         head = re.split(r"\s[|\-–]\s", title.casefold())[0].strip()
         if head in GENERIC_TITLES or title.casefold() == (page.title or "").casefold() and page.kind != "news":
+            return
+        if _junk_title(title):
             return
         url_key = (url or "").split("#")[0].split("?")[0].rstrip("/").casefold()
         key = url_key if url and url_key != page.final_url.split("?")[0].rstrip("/").casefold() else url_key + "#" + title.casefold()

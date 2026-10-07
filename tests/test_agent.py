@@ -377,3 +377,11 @@ def test_language_root_is_still_a_site_root():
     capture = _capture("Nobly AS · org.nr 916 617 445", title="Nobly", host="nobly.dk")
     capture.pages[0].final_url = "https://www.nobly.dk/no"
     assert assess(capture, facts, "916617445", "email_domain")["status"] == "exact"
+
+
+def test_junk_news_titles_are_dropped():
+    from norway_company_agent.site_extract import _junk_title
+    assert _junk_title("5. oktober 2018")
+    assert _junk_title("Hello world!")
+    assert _junk_title("Gra W Kości Zasady Punktacja Kasyno")
+    assert not _junk_title("Ny kollega i Opsahl Gruppen: Møt Elise")
