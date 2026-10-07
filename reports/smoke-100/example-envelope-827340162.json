@@ -1,0 +1,2933 @@
+{
+  "organisation_number": "827340162",
+  "run": {
+    "run_id": "smoke-100-v5",
+    "started_at": "2026-10-07T21:47:04Z",
+    "completed_at": "2026-10-07T21:50:30Z",
+    "terminal_status": "completed",
+    "agent_version": "signalpost-agent/1.0",
+    "previous_run_id": "smoke-100-v4"
+  },
+  "company": {
+    "name": "NOVOOI AS",
+    "legal_form": "AS",
+    "legal_form_description": "Aksjeselskap",
+    "municipality": "OSLO",
+    "registry_page": "https://virksomhet.brreg.no/nb/oppslag/enheter/827340162",
+    "website": "https://novooi.com/"
+  },
+  "sections": {
+    "legal_identity": {
+      "title": "Legal identity and public brand",
+      "availability": "available",
+      "available_claims": 8,
+      "fields": {
+        "business_address": "available",
+        "business_purpose": "available",
+        "founded_date": "available",
+        "industry": "available",
+        "legal_form": "available",
+        "legal_name": "available",
+        "registered_employees": "not_available",
+        "registry_status": "available"
+      }
+    },
+    "financials": {
+      "title": "Latest annual accounts and available history",
+      "availability": "available",
+      "available_claims": 37,
+      "fields": {
+        "annual_account_filing": "available",
+        "annual_account_metric": "available",
+        "filed_account_years": "available"
+      }
+    },
+    "leadership": {
+      "title": "Leadership",
+      "availability": "available",
+      "available_claims": 7,
+      "fields": {
+        "role": "available"
+      }
+    },
+    "workplaces": {
+      "title": "Registered workplaces and locations",
+      "availability": "available",
+      "available_claims": 1,
+      "fields": {
+        "registered_workplace": "available"
+      }
+    },
+    "web_presence": {
+      "title": "Verified official website and company-owned profiles",
+      "availability": "available",
+      "available_claims": 6,
+      "fields": {
+        "official_website": "available",
+        "social_profile": "available",
+        "website_description": "available"
+      }
+    },
+    "hiring": {
+      "title": "Hiring",
+      "availability": "not_available",
+      "available_claims": 0,
+      "fields": {
+        "job_posting": "not_available"
+      }
+    },
+    "activity": {
+      "title": "Dated public activity",
+      "availability": "available",
+      "available_claims": 26,
+      "fields": {
+        "news_item": "available",
+        "registry_event": "available"
+      }
+    },
+    "assessments": {
+      "title": "Official inspections, approvals and ratings",
+      "availability": "not_applicable",
+      "available_claims": 0,
+      "fields": {
+        "food_safety_inspection": "not_applicable",
+        "public_approval": "not_applicable"
+      }
+    }
+  },
+  "summary": {
+    "method": "deterministic_template_v1+llm:qwen3:8b",
+    "sentences": [
+      {
+        "text": "The company sells goods and services within design and craftsmanship - and other activities that naturally fall under this - as well as participation in other companies, investments and related business.",
+        "claim_ids": [
+          "cl-b2569d1cada9087bfc0f"
+        ],
+        "generated": true
+      },
+      {
+        "text": "NOVOOI AS is a private limited company (AS), registered in Oslo, founded 2021-05-09.",
+        "claim_ids": [
+          "cl-7e9e91fd346a75d798f5",
+          "cl-10f6f4c4ce4e35aec34c",
+          "cl-32ebe4e4f0832ff1084c",
+          "cl-91f183ce3f36eb2ac0b1"
+        ]
+      },
+      {
+        "text": "According to Enhetsregisteret, its main registered industry is industri-, produkt- og motedesignvirksomhet (NACE 74.110; division: Other professional, scientific and technical activities); its registered activity reads: \"Selge varer og tjenester innen design og håndverk - og annet som naturlig sammenfaller med dette - samt deltakelse i andre selskaper, investeringer og nærliggende virksomhet.\".",
+        "claim_ids": [
+          "cl-76844f869b1232584173",
+          "cl-b2569d1cada9087bfc0f"
+        ]
+      },
+      {
+        "text": "Its verified official website is https://novooi.com/.",
+        "claim_ids": [
+          "cl-471f5f85651cbdaa34fc"
+        ]
+      },
+      {
+        "text": "The website describes the business as: \"Curated Norwegian interior design shop and agency, for professionals and conscious consumers. Showroom in Oslo. Global shipping.\" (company-reported).",
+        "claim_ids": [
+          "cl-92428e60c33ae45345c6"
+        ]
+      },
+      {
+        "text": "In its latest normalised company accounts (period ending 2025-12-31) it reported revenue NOK 541 thousand, operating result -NOK 2.2 million, annual result -NOK 2.2 million, equity NOK 508 thousand.",
+        "claim_ids": [
+          "cl-2f8b046980b00d7b34fb",
+          "cl-104cbbada7706755f020",
+          "cl-80374721962612c04e3e",
+          "cl-afb98ac63cd19b4eed78"
+        ]
+      },
+      {
+        "text": "Revenue was up 192% from NOK 185 thousand in the period ending 2024-12-31.",
+        "claim_ids": [
+          "cl-2f8b046980b00d7b34fb",
+          "cl-b43f8d2f02a42f3ae187"
+        ]
+      },
+      {
+        "text": "Registered leadership: Daglig leder: Lillian Ayla B Ersoy; Styrets leder: Peter Torgeir Nylund.",
+        "claim_ids": [
+          "cl-97c332f83eb496e49abe",
+          "cl-d491cbcf162b121d9d35"
+        ]
+      },
+      {
+        "text": "It has 1 registered workplace(s) in Oslo.",
+        "claim_ids": [
+          "cl-7d5a332ddce71ea5dfe3"
+        ]
+      },
+      {
+        "text": "Most recent dated company news: \"Design Dialogues Afterwork\" (2026-10-07).",
+        "claim_ids": [
+          "cl-c380859c9abed531d52b"
+        ]
+      },
+      {
+        "text": "Company-linked profiles: facebook, instagram, linkedin.",
+        "claim_ids": [
+          "cl-707d0b6dd4678c8ab2b0",
+          "cl-c50ed39c9d4fc70929e3",
+          "cl-12e022e65b33feac38ab",
+          "cl-1a5737d106541302b49e"
+        ]
+      }
+    ],
+    "text": "The company sells goods and services within design and craftsmanship - and other activities that naturally fall under this - as well as participation in other companies, investments and related business. NOVOOI AS is a private limited company (AS), registered in Oslo, founded 2021-05-09. According to Enhetsregisteret, its main registered industry is industri-, produkt- og motedesignvirksomhet (NACE 74.110; division: Other professional, scientific and technical activities); its registered activity reads: \"Selge varer og tjenester innen design og håndverk - og annet som naturlig sammenfaller med dette - samt deltakelse i andre selskaper, investeringer og nærliggende virksomhet.\". Its verified official website is https://novooi.com/. The website describes the business as: \"Curated Norwegian interior design shop and agency, for professionals and conscious consumers. Showroom in Oslo. Global shipping.\" (company-reported). In its latest normalised company accounts (period ending 2025-12-31) it reported revenue NOK 541 thousand, operating result -NOK 2.2 million, annual result -NOK 2.2 million, equity NOK 508 thousand. Revenue was up 192% from NOK 185 thousand in the period ending 2024-12-31. Registered leadership: Daglig leder: Lillian Ayla B Ersoy; Styrets leder: Peter Torgeir Nylund. It has 1 registered workplace(s) in Oslo. Most recent dated company news: \"Design Dialogues Afterwork\" (2026-10-07). Company-linked profiles: facebook, instagram, linkedin.",
+    "changes_text": "No material changes were detected since the previous run.",
+    "changes": [],
+    "unknowns": [
+      "a registered employee count (not available)",
+      "active job postings (not available)"
+    ],
+    "unknowns_text": "Not found or not confirmed: a registered employee count (not available); active job postings (not available).",
+    "synthesis": {
+      "what_it_does": {
+        "text": "The company sells goods and services within design and craftsmanship - and other activities that naturally fall under this - as well as participation in other companies, investments and related business.",
+        "claim_ids": [
+          "cl-b2569d1cada9087bfc0f"
+        ],
+        "quotes": [
+          "Selge varer og tjenester innen design og håndverk - og annet som naturlig sammenfaller med dette - samt deltakelse i andre selskaper, investeringer og nærliggende virksomhet."
+        ],
+        "method": "local_llm:qwen3:8b"
+      },
+      "what_changed": {
+        "text": "No material changes were detected since the previous run.",
+        "method": "deterministic"
+      },
+      "unknowns": {
+        "text": "Not found or not confirmed: a registered employee count (not available); active job postings (not available).",
+        "method": "deterministic"
+      }
+    }
+  },
+  "claims": [
+    {
+      "id": "cl-32ebe4e4f0832ff1084c",
+      "field": "business_address",
+      "section": "legal_identity",
+      "key": "business",
+      "value": {
+        "street": "St. Halvards gate 33",
+        "postal_code": "0192",
+        "city": "OSLO",
+        "municipality": "OSLO",
+        "municipality_number": "0301",
+        "country": "Norge",
+        "formatted": "St. Halvards gate 33, 0192 OSLO"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-0593fe3b0d343ef1471b"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-b2569d1cada9087bfc0f",
+      "field": "business_purpose",
+      "section": "legal_identity",
+      "key": "registered",
+      "value": "Selge varer og tjenester innen design og håndverk - og annet som naturlig sammenfaller med dette - samt deltakelse i andre selskaper, investeringer og nærliggende virksomhet.",
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-0593fe3b0d343ef1471b"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-91f183ce3f36eb2ac0b1",
+      "field": "founded_date",
+      "section": "legal_identity",
+      "key": "founded",
+      "value": "2021-05-09",
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-0593fe3b0d343ef1471b"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": null,
+      "registration_date": "2021-06-26",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-76844f869b1232584173",
+      "field": "industry",
+      "section": "legal_identity",
+      "key": "nace1",
+      "value": {
+        "code": "74.110",
+        "description": "Industri-, produkt- og motedesignvirksomhet",
+        "rank": 1
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-0593fe3b0d343ef1471b"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-10f6f4c4ce4e35aec34c",
+      "field": "legal_form",
+      "section": "legal_identity",
+      "key": "current",
+      "value": {
+        "code": "AS",
+        "description": "Aksjeselskap"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-0593fe3b0d343ef1471b"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-6445e15f09730eccd918",
+      "field": "legal_form",
+      "section": "legal_identity",
+      "key": "share_capital",
+      "value": {
+        "amount": 38364.0,
+        "currency": "NOK",
+        "type": "Aksjekapital",
+        "shares": 38364
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-0593fe3b0d343ef1471b"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-07-06",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-7e9e91fd346a75d798f5",
+      "field": "legal_name",
+      "section": "legal_identity",
+      "key": "current",
+      "value": "NOVOOI AS",
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-0593fe3b0d343ef1471b"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-2a6f0ddbac649340dd8e",
+      "field": "registered_employees",
+      "section": "legal_identity",
+      "key": "*",
+      "value": null,
+      "availability": "not_available",
+      "confidence": null,
+      "evidence_ids": [
+        "ev-0593fe3b0d343ef1471b"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": "No registered employee count (the registry reports none or zero is not registered)."
+    },
+    {
+      "id": "cl-752e4fca87138a160ba2",
+      "field": "registry_status",
+      "section": "legal_identity",
+      "key": "current",
+      "value": {
+        "status": "active",
+        "bankrupt": false,
+        "under_liquidation": false,
+        "forced_dissolution": false,
+        "registered_in_business_register": true,
+        "vat_registered": true
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-0593fe3b0d343ef1471b"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-2217c9310ebce5ea811e",
+      "field": "annual_account_filing",
+      "section": "financials",
+      "key": "company:2023-12-31",
+      "value": {
+        "year": "2023",
+        "scope": "company",
+        "currency": "NOK",
+        "small_company_rules": true,
+        "audit_opted_out": true,
+        "unaudited": false,
+        "liquidation_accounts": false,
+        "journal_number": "2024436797"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-321f4d534baa491c9863"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-d9ca6bddb2b531ba442a",
+      "field": "annual_account_filing",
+      "section": "financials",
+      "key": "company:2024-12-31",
+      "value": {
+        "year": "2024",
+        "scope": "company",
+        "currency": "NOK",
+        "small_company_rules": true,
+        "audit_opted_out": true,
+        "unaudited": false,
+        "liquidation_accounts": false,
+        "journal_number": "2025597756"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-c8c5e02874dc782486d0"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-e6af71184a924ba03a57",
+      "field": "annual_account_filing",
+      "section": "financials",
+      "key": "company:2025-12-31",
+      "value": {
+        "year": "2025",
+        "scope": "company",
+        "currency": "NOK",
+        "small_company_rules": true,
+        "audit_opted_out": true,
+        "unaudited": false,
+        "liquidation_accounts": false,
+        "journal_number": "2026695467"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-b622f94cece27f9d874b"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-7d946e17c75bf5306743",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:annual_result",
+      "value": -89510.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-76cd3fccae4b5aae9b9a"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "annual_result",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-94dce4a57f6db15ae8be",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:cash_and_bank",
+      "value": 61764.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-3590e46b5b28dd72d205"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "cash_and_bank",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-f04a6baa972de2e71468",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:equity",
+      "value": -144928.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-c0246c9635a700d9761d"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "equity",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-349fe33ce4a5709f18d1",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:net_financial_items",
+      "value": -608.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-cbcfd20eb55326e52a78"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "net_financial_items",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-0b3a96a68674b3eb669f",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:operating_expenses",
+      "value": 298159.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-89fc3d3725fae198e2f1"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "operating_expenses",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-80290a54edeb07966cff",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:operating_result",
+      "value": -88902.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-3ddf7931b4811b8ad2aa"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "operating_result",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-a42d813c3bb5e9f30f5c",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:payroll_expenses",
+      "value": 30745.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-550a8ff38c17405f821c"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "payroll_expenses",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-1d125dcf5bb249c39082",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:profit_before_tax",
+      "value": -89510.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-6c2346f90558a7ef0c8a"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "profit_before_tax",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-8ce0333ebcb5fe9dc60d",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:revenue",
+      "value": 209257.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-356d368ac93147fe654e"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "revenue",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-91c7207c0c5670ea2923",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:total_assets",
+      "value": 76796.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-2e6d9eb3e4c7c03e5521"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "total_assets",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-abaacb5ae9850930b8c0",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2023-12-31:total_debt",
+      "value": 221724.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-e41824cfeaa80f384db1"
+      ],
+      "reporting_period": {
+        "from": "2023-01-01",
+        "to": "2023-12-31"
+      },
+      "effective_at": "2023-12-31",
+      "note": null,
+      "metric": "total_debt",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-cad0b278f0173f0ece56",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:annual_result",
+      "value": -567977.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-a7225f43dc88acabb690"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "annual_result",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-45b8de63369f4de99ad9",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:cash_and_bank",
+      "value": 839869.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-fb3aca67d4f073b95002"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "cash_and_bank",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-6e5823945f2ee3beb572",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:equity",
+      "value": 584491.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-4d397942185bcc71dc29"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "equity",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-ed8b6b8234048e82d2ed",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:net_financial_items",
+      "value": 266.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-01def57e4559bf9d8ff1"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "net_financial_items",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-1cc4c2b8128c6cca3034",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:operating_expenses",
+      "value": 753678.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-cb082a67bc1dbbebb8c9"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "operating_expenses",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-2e1b4e938268f7b4dd77",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:operating_result",
+      "value": -568243.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-4ce515d03947290cc80a"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "operating_result",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-5cd5e74157c3bc9ddc1e",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:payroll_expenses",
+      "value": 1311.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-3abd70083563cad4e5bd"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "payroll_expenses",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-036f52f0e076c94b39dc",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:profit_before_tax",
+      "value": -567977.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-9f3aa9e38b596dc3426f"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "profit_before_tax",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-b43f8d2f02a42f3ae187",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:revenue",
+      "value": 185435.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-f7cc480313d4179b8df1"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "revenue",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-bea8069b61dc2c6b25f2",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:total_assets",
+      "value": 865816.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-8c700fec101cfbbfa954"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "total_assets",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-e2d48b60e2f5275d0cb4",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2024-12-31:total_debt",
+      "value": 281325.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-953fd525c208c875d1ba"
+      ],
+      "reporting_period": {
+        "from": "2024-01-01",
+        "to": "2024-12-31"
+      },
+      "effective_at": "2024-12-31",
+      "note": null,
+      "metric": "total_debt",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-80374721962612c04e3e",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:annual_result",
+      "value": -2197579.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-40878871ec909abeb59f"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "annual_result",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-bbeaf962e38675e99cab",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:cash_and_bank",
+      "value": 948038.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-bd7462d954dbd5275b67"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "cash_and_bank",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-afb98ac63cd19b4eed78",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:equity",
+      "value": 507911.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-40dc7b24f4eb01155f88"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "equity",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-4fcdf5089892238fbac1",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:net_financial_items",
+      "value": -2552.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-5c0426ccecb016943438"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "net_financial_items",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-7927129db2c392c27b70",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:operating_expenses",
+      "value": 2735718.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-5d08b7eacf8c608363e0"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "operating_expenses",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-104cbbada7706755f020",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:operating_result",
+      "value": -2195027.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-4e6524ca8626f987dd3f"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "operating_result",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-37c14d2dc14c8cfe93d7",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:payroll_expenses",
+      "value": 1331811.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-f0784866bc2fac9849e9"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "payroll_expenses",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-fc4e27624117d4a0394e",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:profit_before_tax",
+      "value": -2197579.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-696e85d74dc1f833e3df"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "profit_before_tax",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-2f8b046980b00d7b34fb",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:revenue",
+      "value": 540691.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-1d90f27a19f7318474a3"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "revenue",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-ebb9e797d5685bdf526a",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:total_assets",
+      "value": 2163446.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-99cf5afca360fe1f802a"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "total_assets",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-92fa99b2d283a9012109",
+      "field": "annual_account_metric",
+      "section": "financials",
+      "key": "company:2025-12-31:total_debt",
+      "value": 1655535.0,
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-85f096b78ce289b6bb59"
+      ],
+      "reporting_period": {
+        "from": "2025-01-01",
+        "to": "2025-12-31"
+      },
+      "effective_at": "2025-12-31",
+      "note": null,
+      "metric": "total_debt",
+      "scope": "company",
+      "unit": "NOK",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-f10ac6a7c16dcabcce8f",
+      "field": "filed_account_years",
+      "section": "financials",
+      "key": "copies",
+      "value": {
+        "years": [
+          "2025",
+          "2024",
+          "2023",
+          "2022",
+          "2021"
+        ],
+        "latest": "2025",
+        "earliest": "2021",
+        "copies": [
+          {
+            "year": "2025",
+            "url": "https://data.brreg.no/regnskapsregisteret/regnskap/aarsregnskap/kopi/827340162/2025"
+          },
+          {
+            "year": "2024",
+            "url": "https://data.brreg.no/regnskapsregisteret/regnskap/aarsregnskap/kopi/827340162/2024"
+          },
+          {
+            "year": "2023",
+            "url": "https://data.brreg.no/regnskapsregisteret/regnskap/aarsregnskap/kopi/827340162/2023"
+          },
+          {
+            "year": "2022",
+            "url": "https://data.brreg.no/regnskapsregisteret/regnskap/aarsregnskap/kopi/827340162/2022"
+          },
+          {
+            "year": "2021",
+            "url": "https://data.brreg.no/regnskapsregisteret/regnskap/aarsregnskap/kopi/827340162/2021"
+          }
+        ]
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-20cdcbd3a6a5bc5a4b40"
+      ],
+      "reporting_period": null,
+      "effective_at": "2025",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-97c332f83eb496e49abe",
+      "field": "role",
+      "section": "leadership",
+      "key": "DAGL:Lillian Ayla B Ersoy",
+      "value": {
+        "role": "Daglig leder",
+        "role_code": "DAGL",
+        "group": "Daglig leder",
+        "name": "Lillian Ayla B Ersoy",
+        "holder_type": "person"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-c4cfc7d9a15cdee46e33"
+      ],
+      "reporting_period": null,
+      "effective_at": "2021-06-26",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-d491cbcf162b121d9d35",
+      "field": "role",
+      "section": "leadership",
+      "key": "LEDE:Peter Torgeir Nylund",
+      "value": {
+        "role": "Styrets leder",
+        "role_code": "LEDE",
+        "group": "Styre",
+        "name": "Peter Torgeir Nylund",
+        "holder_type": "person"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-c4cfc7d9a15cdee46e33"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-07-06",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-93023c7763db4e96c83d",
+      "field": "role",
+      "section": "leadership",
+      "key": "MEDL:Helene Andersen",
+      "value": {
+        "role": "Styremedlem",
+        "role_code": "MEDL",
+        "group": "Styre",
+        "name": "Helene Andersen",
+        "holder_type": "person"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-13ce3b6479fc07e458ab",
+        "ev-c4cfc7d9a15cdee46e33"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-07-06",
+      "note": null,
+      "corroborated_on_website": true,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-0d5fdfdede06fac3932e",
+      "field": "role",
+      "section": "leadership",
+      "key": "MEDL:Lena Axelsson",
+      "value": {
+        "role": "Styremedlem",
+        "role_code": "MEDL",
+        "group": "Styre",
+        "name": "Lena Axelsson",
+        "holder_type": "person"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-c4cfc7d9a15cdee46e33"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-07-06",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-dd1f8bb2bab1477f0413",
+      "field": "role",
+      "section": "leadership",
+      "key": "MEDL:Lillian Ayla B Ersoy",
+      "value": {
+        "role": "Styremedlem",
+        "role_code": "MEDL",
+        "group": "Styre",
+        "name": "Lillian Ayla B Ersoy",
+        "holder_type": "person"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-c4cfc7d9a15cdee46e33"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-07-06",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-3c2c8b40e5ae0e89dc2a",
+      "field": "role",
+      "section": "leadership",
+      "key": "MEDL:Nils-Fredrik Winther-Kaland",
+      "value": {
+        "role": "Styremedlem",
+        "role_code": "MEDL",
+        "group": "Styre",
+        "name": "Nils-Fredrik Winther-Kaland",
+        "holder_type": "person"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-c4cfc7d9a15cdee46e33"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-07-06",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-eccfdad4ccfb611be1bd",
+      "field": "role",
+      "section": "leadership",
+      "key": "REGN:ATELLA REGNSKAP AS",
+      "value": {
+        "role": "Regnskapsfører",
+        "role_code": "REGN",
+        "group": "Regnskapsfører",
+        "name": "ATELLA REGNSKAP AS",
+        "holder_type": "organisation",
+        "organisation_number": "921228546"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-c4cfc7d9a15cdee46e33"
+      ],
+      "reporting_period": null,
+      "effective_at": "2025-01-14",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-7d5a332ddce71ea5dfe3",
+      "field": "registered_workplace",
+      "section": "workplaces",
+      "key": "927554208",
+      "value": {
+        "name": "NOVOOI AS",
+        "organisation_number": "927554208",
+        "address": {
+          "street": "St. Halvards gate 33",
+          "postal_code": "0192",
+          "city": "OSLO",
+          "municipality": "OSLO",
+          "municipality_number": "0301",
+          "country": "Norge",
+          "formatted": "St. Halvards gate 33, 0192 OSLO"
+        },
+        "industry": {
+          "code": "74.110",
+          "description": "Industri-, produkt- og motedesignvirksomhet"
+        },
+        "registered_employees": null,
+        "established": "2021-05-09",
+        "website": null
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-8f4524b60933091b3d9d"
+      ],
+      "reporting_period": null,
+      "effective_at": "2021-05-09",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-471f5f85651cbdaa34fc",
+      "field": "official_website",
+      "section": "web_presence",
+      "key": "primary",
+      "value": "https://novooi.com/",
+      "availability": "available",
+      "confidence": 1.0,
+      "evidence_ids": [
+        "ev-3e0ea00aff57dc72b203"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": null,
+      "discovery_source": "guessed_domain",
+      "identity_method": "verify_v2",
+      "identity_reasons": [
+        "exact organisation number appears on the site",
+        "full legal name appears in homepage identity fields",
+        "registered street address appears on site",
+        "registered role holder appears on site (MEDL)"
+      ],
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-707d0b6dd4678c8ab2b0",
+      "field": "social_profile",
+      "section": "web_presence",
+      "key": "facebook:https://facebook.com/novooi.official",
+      "value": {
+        "platform": "facebook",
+        "url": "https://facebook.com/novooi.official"
+      },
+      "availability": "available",
+      "confidence": 0.9,
+      "evidence_ids": [
+        "ev-3e0ea00aff57dc72b203",
+        "ev-858b896a35aea17bbb78"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": "Profile linked from the verified company website; handle matches the company name or domain.",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-c50ed39c9d4fc70929e3",
+      "field": "social_profile",
+      "section": "web_presence",
+      "key": "instagram:https://instagram.com/novooi.com",
+      "value": {
+        "platform": "instagram",
+        "url": "https://instagram.com/novooi.com"
+      },
+      "availability": "available",
+      "confidence": 0.9,
+      "evidence_ids": [
+        "ev-3e0ea00aff57dc72b203",
+        "ev-4cf18abb35de76d36806"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": "Profile linked from the verified company website; handle matches the company name or domain.",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-12e022e65b33feac38ab",
+      "field": "social_profile",
+      "section": "web_presence",
+      "key": "instagram:https://instagram.com/novooi.no",
+      "value": {
+        "platform": "instagram",
+        "url": "https://instagram.com/novooi.no"
+      },
+      "availability": "available",
+      "confidence": 0.9,
+      "evidence_ids": [
+        "ev-3e0ea00aff57dc72b203",
+        "ev-4c02321734b1b03e9351"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": "Profile linked from the verified company website; handle matches the company name or domain.",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-1a5737d106541302b49e",
+      "field": "social_profile",
+      "section": "web_presence",
+      "key": "linkedin:https://linkedin.com/company/novooi",
+      "value": {
+        "platform": "linkedin",
+        "url": "https://linkedin.com/company/novooi"
+      },
+      "availability": "available",
+      "confidence": 0.9,
+      "evidence_ids": [
+        "ev-3e0ea00aff57dc72b203",
+        "ev-f6d243ad7c0775af6b46"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": "Profile linked from the verified company website; handle matches the company name or domain.",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-92428e60c33ae45345c6",
+      "field": "website_description",
+      "section": "web_presence",
+      "key": "meta",
+      "value": "Curated Norwegian interior design shop and agency, for professionals and conscious consumers. Showroom in Oslo. Global shipping.",
+      "availability": "available",
+      "confidence": 0.9,
+      "evidence_ids": [
+        "ev-3e0ea00aff57dc72b203"
+      ],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": "Company-reported description (not independently verified).",
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-18e18bd456e60e2949b5",
+      "field": "job_posting",
+      "section": "hiring",
+      "key": "*",
+      "value": null,
+      "availability": "not_available",
+      "confidence": null,
+      "evidence_ids": [],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": "No careers page or job postings found on the verified website.; No active NAV Arbeidsplassen ad has this organisation number or a registered subunit as employer (employer known for 9674 of 9674 active ads; name matching used for the rest)."
+    },
+    {
+      "id": "cl-c380859c9abed531d52b",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://novooi.com/design-dialogues-afterwork/#Design Dialogues Afterwork",
+      "value": {
+        "title": "Design Dialogues Afterwork",
+        "date": "2026-10-07",
+        "url": "https://novooi.com/design-dialogues-afterwork/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-163bf807444db6661024"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-10-07",
+      "note": null,
+      "first_seen": "2026-10-07T17:49:40Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-c59dfcb2c18fa4812b07",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://novooi.com/design-dialogues/#Design Dialogues",
+      "value": {
+        "title": "Design Dialogues",
+        "date": "2026-08-13",
+        "url": "https://novooi.com/design-dialogues/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-ffc10871845fab5e1c3d"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-08-13",
+      "note": null,
+      "first_seen": "2026-10-07T17:49:40Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-d9637009483f499b374a",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://novooi.com/editorial-content/#Innhold og grafisk design",
+      "value": {
+        "title": "Innhold og grafisk design",
+        "date": "2026-03-12",
+        "url": "https://novooi.com/editorial-content/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-d841720c0d62d0b9d833"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-03-12",
+      "note": null,
+      "first_seen": "2026-10-07T17:49:40Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-96544f854a94cd019e38",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://novooi.com/hospitality-at-work/#Hospitality at work",
+      "value": {
+        "title": "Hospitality at work",
+        "date": "2026-09-23",
+        "url": "https://novooi.com/hospitality-at-work/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-07d431fcf7d1516c5ef3"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-09-23",
+      "note": null,
+      "first_seen": "2026-10-07T17:49:40Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-c229dc8e88273ade1901",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://novooi.com/interior/#Møblering og innkjøp",
+      "value": {
+        "title": "Møblering og innkjøp",
+        "date": "2026-03-16",
+        "url": "https://novooi.com/interior/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-9635412b9a13631a37ea"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-03-16",
+      "note": null,
+      "first_seen": "2026-10-07T17:49:40Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-4b377c5f22ee8241fda3",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://novooi.com/london/#The Royal Norwegian Embassy in London",
+      "value": {
+        "title": "The Royal Norwegian Embassy in London",
+        "date": "2026-09-07",
+        "url": "https://novooi.com/london/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-fdc0204ae8ae7f82650a"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-09-07",
+      "note": null,
+      "first_seen": "2026-10-07T17:49:40Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-1cb44785e1b22207aa69",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://novooi.com/made-in-norway/#Made in Norway",
+      "value": {
+        "title": "Made in Norway",
+        "date": "2026-05-27",
+        "url": "https://novooi.com/made-in-norway/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-900af43a20adff8b5fe2"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-05-27",
+      "note": null,
+      "first_seen": "2026-10-07T17:49:40Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-ccaf73f83aa1769a65ae",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://novooi.com/process/#Håndverksbiennalen 2026",
+      "value": {
+        "title": "Håndverksbiennalen 2026",
+        "date": "2026-05-06",
+        "url": "https://novooi.com/process/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-33fa301e902ab833430c"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-05-06",
+      "note": null,
+      "first_seen": "2026-10-07T17:49:40Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-312ee287e22ab0706160",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://novooi.com/sale/#Showroom Salg",
+      "value": {
+        "title": "Showroom Salg",
+        "date": "2026-09-28",
+        "url": "https://novooi.com/sale/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-f62cd20b7b99920cde51"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-09-28",
+      "note": null,
+      "first_seen": "2026-10-07T17:49:40Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-c9462307ca01c1268429",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://novooi.com/styling/#Utstillinger og arrangement",
+      "value": {
+        "title": "Utstillinger og arrangement",
+        "date": "2026-03-15",
+        "url": "https://novooi.com/styling/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-82604788109acbaab54e"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-03-15",
+      "note": null,
+      "first_seen": "2026-10-07T17:49:40Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-885438bbce2c45b38bc3",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://novooi.com/utleie/#Showroom utleie",
+      "value": {
+        "title": "Showroom utleie",
+        "date": "2026-03-05",
+        "url": "https://novooi.com/utleie/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-3e57f08eeb9f3470b7bb"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-03-05",
+      "note": null,
+      "first_seen": "2026-10-07T17:49:40Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-d20565f89a73666e55d9",
+      "field": "news_item",
+      "section": "activity",
+      "key": "https://novooi.com/why-norwegian-design/#Hvorfor norsk design?",
+      "value": {
+        "title": "Hvorfor norsk design?",
+        "date": "2026-05-16",
+        "url": "https://novooi.com/why-norwegian-design/",
+        "source": "verified company website"
+      },
+      "availability": "available",
+      "confidence": 0.85,
+      "evidence_ids": [
+        "ev-122341b1603ab41bd45c"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-05-16",
+      "note": null,
+      "first_seen": "2026-10-07T17:49:40Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-0961e6bf8ec78efc0e44",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "articles:2026-03-25",
+      "value": {
+        "event": "Articles of association dated",
+        "date": "2026-03-25"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-0593fe3b0d343ef1471b"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-03-25",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-f6d0d03dda870308d095",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "capital:2026-07-06",
+      "value": {
+        "event": "Share capital registered",
+        "date": "2026-07-06",
+        "amount": 38364.0,
+        "currency": "NOK"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-0593fe3b0d343ef1471b"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-07-06",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-b8ce11fc5e2fad214c98",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "registered:2021-06-26",
+      "value": {
+        "event": "Registered in Enhetsregisteret",
+        "date": "2021-06-26"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-0593fe3b0d343ef1471b"
+      ],
+      "reporting_period": null,
+      "effective_at": "2021-06-26",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-39976fd7479a0254403f",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "role_update:2022-03-15",
+      "value": {
+        "event": "Roles changed in Enhetsregisteret",
+        "date": "2022-03-15"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-4825f98a0c0c680168eb"
+      ],
+      "reporting_period": null,
+      "effective_at": "2022-03-15",
+      "note": null,
+      "first_seen": "2026-10-07T20:30:09Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-8c40e190d0b88d9c16b8",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "role_update:2024-04-30",
+      "value": {
+        "event": "Roles changed in Enhetsregisteret",
+        "date": "2024-04-30"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-4825f98a0c0c680168eb"
+      ],
+      "reporting_period": null,
+      "effective_at": "2024-04-30",
+      "note": null,
+      "first_seen": "2026-10-07T20:30:09Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-977914d1740af5be16cb",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "role_update:2024-07-09",
+      "value": {
+        "event": "Roles changed in Enhetsregisteret",
+        "date": "2024-07-09"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-4825f98a0c0c680168eb"
+      ],
+      "reporting_period": null,
+      "effective_at": "2024-07-09",
+      "note": null,
+      "first_seen": "2026-10-07T20:30:09Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-2a7fdf1dfcf225bf5288",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "role_update:2024-07-25",
+      "value": {
+        "event": "Roles changed in Enhetsregisteret",
+        "date": "2024-07-25"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-4825f98a0c0c680168eb"
+      ],
+      "reporting_period": null,
+      "effective_at": "2024-07-25",
+      "note": null,
+      "first_seen": "2026-10-07T20:30:09Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-f3c637b7c8730ea704f6",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "role_update:2025-01-14",
+      "value": {
+        "event": "Roles changed in Enhetsregisteret",
+        "date": "2025-01-14"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-4825f98a0c0c680168eb"
+      ],
+      "reporting_period": null,
+      "effective_at": "2025-01-14",
+      "note": null,
+      "first_seen": "2026-10-07T20:30:09Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-911ff2f22757d4630d81",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "role_update:2025-08-27",
+      "value": {
+        "event": "Roles changed in Enhetsregisteret",
+        "date": "2025-08-27"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-4825f98a0c0c680168eb"
+      ],
+      "reporting_period": null,
+      "effective_at": "2025-08-27",
+      "note": null,
+      "first_seen": "2026-10-07T20:30:09Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-3e23c9eb8f4505929558",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "role_update:2026-02-03",
+      "value": {
+        "event": "Roles changed in Enhetsregisteret",
+        "date": "2026-02-03"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-4825f98a0c0c680168eb"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-02-03",
+      "note": null,
+      "first_seen": "2026-10-07T20:30:09Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-82b32b08d547a1684898",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "role_update:2026-07-06",
+      "value": {
+        "event": "Roles changed in Enhetsregisteret",
+        "date": "2026-07-06"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-4825f98a0c0c680168eb"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-07-06",
+      "note": null,
+      "first_seen": "2026-10-07T20:30:09Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-9ef3db0864b0cc66ed1f",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "roles:DAGL:2021-06-26",
+      "value": {
+        "event": "Role group updated: Daglig leder",
+        "date": "2021-06-26"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-c4cfc7d9a15cdee46e33"
+      ],
+      "reporting_period": null,
+      "effective_at": "2021-06-26",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-357ab28bc5ad5f3bccba",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "roles:REGN:2025-01-14",
+      "value": {
+        "event": "Role group updated: Regnskapsfører",
+        "date": "2025-01-14"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-c4cfc7d9a15cdee46e33"
+      ],
+      "reporting_period": null,
+      "effective_at": "2025-01-14",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-a0c05b7eadc1d4484b1b",
+      "field": "registry_event",
+      "section": "activity",
+      "key": "roles:STYR:2026-07-06",
+      "value": {
+        "event": "Role group updated: Styre",
+        "date": "2026-07-06"
+      },
+      "availability": "available",
+      "confidence": 0.99,
+      "evidence_ids": [
+        "ev-c4cfc7d9a15cdee46e33"
+      ],
+      "reporting_period": null,
+      "effective_at": "2026-07-06",
+      "note": null,
+      "first_seen": "2026-10-07T17:26:12Z",
+      "last_verified_at": "2026-10-07T21:50:30Z"
+    },
+    {
+      "id": "cl-11a2547567dad357c294",
+      "field": "food_safety_inspection",
+      "section": "assessments",
+      "key": "*",
+      "value": null,
+      "availability": "not_applicable",
+      "confidence": null,
+      "evidence_ids": [],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": "Not a food-service business; Mattilsynet smilefjes inspections do not apply."
+    },
+    {
+      "id": "cl-43a04b04d06313d5feef",
+      "field": "public_approval",
+      "section": "assessments",
+      "key": "*",
+      "value": null,
+      "availability": "not_applicable",
+      "confidence": null,
+      "evidence_ids": [],
+      "reporting_period": null,
+      "effective_at": null,
+      "note": "Not a construction or engineering business; central approval does not apply."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ev-01def57e4559bf9d8ff1",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; resultatregnskapResultat.finansresultat.nettoFinans=266.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-0593fe3b0d343ef1471b",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/827340162",
+      "final_url": "https://data.brreg.no/enhetsregisteret/api/enheter/827340162",
+      "source_class": "official_registry",
+      "retrieved_at": "2026-10-07T21:47:31Z",
+      "content_sha256": "41bdea661e7cf8c8adec62cc20382f24ec35059c1c848e4b6e242dd827b5c259",
+      "claim_span": "organisasjonsnummer=827340162",
+      "http_status": 200,
+      "extractor": "brreg_entity_v1",
+      "snapshot": "snapshots/41/41bdea661e7cf8c8adec62cc20382f24ec35059c1c848e4b6e242dd827b5c259.gz"
+    },
+    {
+      "id": "ev-07d431fcf7d1516c5ef3",
+      "source_url": "https://novooi.com/feed/",
+      "final_url": "https://novooi.com/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T21:48:04Z",
+      "content_sha256": "b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893",
+      "claim_span": "2026-09-23 Hospitality at work",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/b0/b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893.gz"
+    },
+    {
+      "id": "ev-122341b1603ab41bd45c",
+      "source_url": "https://novooi.com/feed/",
+      "final_url": "https://novooi.com/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T21:48:04Z",
+      "content_sha256": "b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893",
+      "claim_span": "2026-05-16 Hvorfor norsk design?",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/b0/b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893.gz"
+    },
+    {
+      "id": "ev-13ce3b6479fc07e458ab",
+      "source_url": "https://novooi.com/about-novooi/",
+      "final_url": "https://novooi.com/about/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T21:47:56Z",
+      "content_sha256": "809f9f4c700df0090d675dd911a1ea75573c8874cefc2673b3a3f4027dd15889",
+      "claim_span": "Helene Andersen named on company website",
+      "http_status": 200,
+      "extractor": "site_role_mention_v1",
+      "snapshot": "snapshots/80/809f9f4c700df0090d675dd911a1ea75573c8874cefc2673b3a3f4027dd15889.gz",
+      "redirect_chain": [
+        "https://novooi.com/about/"
+      ]
+    },
+    {
+      "id": "ev-163bf807444db6661024",
+      "source_url": "https://novooi.com/feed/",
+      "final_url": "https://novooi.com/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T21:48:04Z",
+      "content_sha256": "b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893",
+      "claim_span": "2026-10-07 Design Dialogues Afterwork",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/b0/b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893.gz"
+    },
+    {
+      "id": "ev-1d90f27a19f7318474a3",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; resultatregnskapResultat.driftsresultat.driftsinntekter.sumDriftsinntekter=540691.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-20cdcbd3a6a5bc5a4b40",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/aarsregnskap/kopi/827340162/aar",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/aarsregnskap/kopi/827340162/aar",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:49:15Z",
+      "content_sha256": "3224f0706bd3ffc731997668057588188a2f2ceb01a45d0d434e8929f7100c8e",
+      "claim_span": "years=2025,2024,2023,2022,2021",
+      "http_status": 200,
+      "extractor": "brreg_account_copy_years_v1",
+      "snapshot": "snapshots/32/3224f0706bd3ffc731997668057588188a2f2ceb01a45d0d434e8929f7100c8e.gz"
+    },
+    {
+      "id": "ev-2e6d9eb3e4c7c03e5521",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; eiendeler.sumEiendeler=76796.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-321f4d534baa491c9863",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-33fa301e902ab833430c",
+      "source_url": "https://novooi.com/feed/",
+      "final_url": "https://novooi.com/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T21:48:04Z",
+      "content_sha256": "b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893",
+      "claim_span": "2026-05-06 Håndverksbiennalen 2026",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/b0/b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893.gz"
+    },
+    {
+      "id": "ev-356d368ac93147fe654e",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; resultatregnskapResultat.driftsresultat.driftsinntekter.sumDriftsinntekter=209257.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-3590e46b5b28dd72d205",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; eiendeler.sumBankinnskuddOgKontanter=61764.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-3abd70083563cad4e5bd",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; resultatregnskapResultat.driftsresultat.driftskostnad.loennskostnad=1311.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-3ddf7931b4811b8ad2aa",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; resultatregnskapResultat.driftsresultat.driftsresultat=-88902.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-3e0ea00aff57dc72b203",
+      "source_url": "https://novooi.no/",
+      "final_url": "https://novooi.com/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T21:47:51Z",
+      "content_sha256": "f13d477de59541f6020267e30aeb2188e5af083e88f5adfbb2985f886420b1ae",
+      "claim_span": "irsdag-Lørdag kl. 12-16 eller ved avtale. EST. 2021 OSLO © NOVOOI MVA 827 340 162 Informasjon Profesjonelle Bli leverandør Om oss Bærekraft Veiledning",
+      "http_status": 200,
+      "extractor": "site_identity_gate_v2",
+      "snapshot": "snapshots/f1/f13d477de59541f6020267e30aeb2188e5af083e88f5adfbb2985f886420b1ae.gz",
+      "redirect_chain": [
+        "https://novooi.com/"
+      ]
+    },
+    {
+      "id": "ev-3e57f08eeb9f3470b7bb",
+      "source_url": "https://novooi.com/feed/",
+      "final_url": "https://novooi.com/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T21:48:04Z",
+      "content_sha256": "b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893",
+      "claim_span": "2026-03-05 Showroom utleie",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/b0/b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893.gz"
+    },
+    {
+      "id": "ev-40878871ec909abeb59f",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; resultatregnskapResultat.aarsresultat=-2197579.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-40dc7b24f4eb01155f88",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; egenkapitalGjeld.egenkapital.sumEgenkapital=507911.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-4825f98a0c0c680168eb",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/oppdateringer/roller?organisasjonsnummer=827340162&afterTime=2015-01-01T00:00:00.000Z&size=100",
+      "final_url": "https://data.brreg.no/enhetsregisteret/api/oppdateringer/roller?organisasjonsnummer=827340162&afterTime=2015-01-01T00:00:00.000Z&size=100",
+      "source_class": "official_registry",
+      "retrieved_at": "2026-10-07T21:47:38Z",
+      "content_sha256": "1bb58c967bc14ec7b6e1209ad854cf14c4c38d916a7b4221eee30d4ef31bbd07",
+      "claim_span": "10 role update events",
+      "http_status": 200,
+      "extractor": "brreg_role_updates_v1",
+      "snapshot": "snapshots/1b/1bb58c967bc14ec7b6e1209ad854cf14c4c38d916a7b4221eee30d4ef31bbd07.gz"
+    },
+    {
+      "id": "ev-4c02321734b1b03e9351",
+      "source_url": "https://novooi.no/",
+      "final_url": "https://novooi.com/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T21:47:51Z",
+      "content_sha256": "f13d477de59541f6020267e30aeb2188e5af083e88f5adfbb2985f886420b1ae",
+      "claim_span": "link to https://instagram.com/novooi.no",
+      "http_status": 200,
+      "extractor": "site_social_links_v2",
+      "snapshot": "snapshots/f1/f13d477de59541f6020267e30aeb2188e5af083e88f5adfbb2985f886420b1ae.gz",
+      "redirect_chain": [
+        "https://novooi.com/"
+      ]
+    },
+    {
+      "id": "ev-4ce515d03947290cc80a",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; resultatregnskapResultat.driftsresultat.driftsresultat=-568243.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-4cf18abb35de76d36806",
+      "source_url": "https://novooi.no/",
+      "final_url": "https://novooi.com/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T21:47:51Z",
+      "content_sha256": "f13d477de59541f6020267e30aeb2188e5af083e88f5adfbb2985f886420b1ae",
+      "claim_span": "link to https://instagram.com/novooi.com",
+      "http_status": 200,
+      "extractor": "site_social_links_v2",
+      "snapshot": "snapshots/f1/f13d477de59541f6020267e30aeb2188e5af083e88f5adfbb2985f886420b1ae.gz",
+      "redirect_chain": [
+        "https://novooi.com/"
+      ]
+    },
+    {
+      "id": "ev-4d397942185bcc71dc29",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; egenkapitalGjeld.egenkapital.sumEgenkapital=584491.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-4e6524ca8626f987dd3f",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; resultatregnskapResultat.driftsresultat.driftsresultat=-2195027.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-550a8ff38c17405f821c",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; resultatregnskapResultat.driftsresultat.driftskostnad.loennskostnad=30745.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-5c0426ccecb016943438",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; resultatregnskapResultat.finansresultat.nettoFinans=-2552.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-5d08b7eacf8c608363e0",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; resultatregnskapResultat.driftsresultat.driftskostnad.sumDriftskostnad=2735718.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-696e85d74dc1f833e3df",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; resultatregnskapResultat.ordinaertResultatFoerSkattekostnad=-2197579.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-6c2346f90558a7ef0c8a",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; resultatregnskapResultat.ordinaertResultatFoerSkattekostnad=-89510.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-76cd3fccae4b5aae9b9a",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; resultatregnskapResultat.aarsresultat=-89510.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-82604788109acbaab54e",
+      "source_url": "https://novooi.com/feed/",
+      "final_url": "https://novooi.com/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T21:48:04Z",
+      "content_sha256": "b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893",
+      "claim_span": "2026-03-15 Utstillinger og arrangement",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/b0/b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893.gz"
+    },
+    {
+      "id": "ev-858b896a35aea17bbb78",
+      "source_url": "https://novooi.no/",
+      "final_url": "https://novooi.com/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T21:47:51Z",
+      "content_sha256": "f13d477de59541f6020267e30aeb2188e5af083e88f5adfbb2985f886420b1ae",
+      "claim_span": "link to https://facebook.com/novooi.official",
+      "http_status": 200,
+      "extractor": "site_social_links_v2",
+      "snapshot": "snapshots/f1/f13d477de59541f6020267e30aeb2188e5af083e88f5adfbb2985f886420b1ae.gz",
+      "redirect_chain": [
+        "https://novooi.com/"
+      ]
+    },
+    {
+      "id": "ev-85f096b78ce289b6bb59",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; egenkapitalGjeld.gjeldOversikt.sumGjeld=1655535.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-89fc3d3725fae198e2f1",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; resultatregnskapResultat.driftsresultat.driftskostnad.sumDriftskostnad=298159.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-8c700fec101cfbbfa954",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; eiendeler.sumEiendeler=865816.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-8f4524b60933091b3d9d",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=827340162&size=200",
+      "final_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=827340162&size=200",
+      "source_class": "official_registry",
+      "retrieved_at": "2026-10-07T21:47:41Z",
+      "content_sha256": "7826ef4a6dd75d033d111efe3442d87c031c32750f8c9afec2cc348b4196fcb0",
+      "claim_span": "overordnetEnhet=827340162",
+      "http_status": 200,
+      "extractor": "brreg_subunits_v1",
+      "snapshot": "snapshots/78/7826ef4a6dd75d033d111efe3442d87c031c32750f8c9afec2cc348b4196fcb0.gz"
+    },
+    {
+      "id": "ev-900af43a20adff8b5fe2",
+      "source_url": "https://novooi.com/feed/",
+      "final_url": "https://novooi.com/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T21:48:04Z",
+      "content_sha256": "b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893",
+      "claim_span": "2026-05-27 Made in Norway",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/b0/b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893.gz"
+    },
+    {
+      "id": "ev-953fd525c208c875d1ba",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; egenkapitalGjeld.gjeldOversikt.sumGjeld=281325.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-9635412b9a13631a37ea",
+      "source_url": "https://novooi.com/feed/",
+      "final_url": "https://novooi.com/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T21:48:04Z",
+      "content_sha256": "b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893",
+      "claim_span": "2026-03-16 Møblering og innkjøp",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/b0/b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893.gz"
+    },
+    {
+      "id": "ev-99cf5afca360fe1f802a",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; eiendeler.sumEiendeler=2163446.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-9f3aa9e38b596dc3426f",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; resultatregnskapResultat.ordinaertResultatFoerSkattekostnad=-567977.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-a7225f43dc88acabb690",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; resultatregnskapResultat.aarsresultat=-567977.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-b622f94cece27f9d874b",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-bd7462d954dbd5275b67",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; eiendeler.sumBankinnskuddOgKontanter=948038.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-c0246c9635a700d9761d",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; egenkapitalGjeld.egenkapital.sumEgenkapital=-144928.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-c4cfc7d9a15cdee46e33",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/827340162/roller",
+      "final_url": "https://data.brreg.no/enhetsregisteret/api/enheter/827340162/roller",
+      "source_class": "official_registry",
+      "retrieved_at": "2026-10-07T21:47:34Z",
+      "content_sha256": "282769d0de9fa66421b9906ada9653aab177903786df62942e360ce7c821c710",
+      "claim_span": "rollegrupper",
+      "http_status": 200,
+      "extractor": "brreg_roles_v1",
+      "snapshot": "snapshots/28/282769d0de9fa66421b9906ada9653aab177903786df62942e360ce7c821c710.gz"
+    },
+    {
+      "id": "ev-c8c5e02874dc782486d0",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-cb082a67bc1dbbebb8c9",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; resultatregnskapResultat.driftsresultat.driftskostnad.sumDriftskostnad=753678.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-cbcfd20eb55326e52a78",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; resultatregnskapResultat.finansresultat.nettoFinans=-608.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-d841720c0d62d0b9d833",
+      "source_url": "https://novooi.com/feed/",
+      "final_url": "https://novooi.com/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T21:48:04Z",
+      "content_sha256": "b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893",
+      "claim_span": "2026-03-12 Innhold og grafisk design",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/b0/b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893.gz"
+    },
+    {
+      "id": "ev-e41824cfeaa80f384db1",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2023-01-01..2023-12-31; egenkapitalGjeld.gjeldOversikt.sumGjeld=221724.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-f0784866bc2fac9849e9",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2025-01-01..2025-12-31; resultatregnskapResultat.driftsresultat.driftskostnad.loennskostnad=1331811.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-f62cd20b7b99920cde51",
+      "source_url": "https://novooi.com/feed/",
+      "final_url": "https://novooi.com/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T21:48:04Z",
+      "content_sha256": "b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893",
+      "claim_span": "2026-09-28 Showroom Salg",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/b0/b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893.gz"
+    },
+    {
+      "id": "ev-f6d243ad7c0775af6b46",
+      "source_url": "https://novooi.no/",
+      "final_url": "https://novooi.com/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T21:47:51Z",
+      "content_sha256": "f13d477de59541f6020267e30aeb2188e5af083e88f5adfbb2985f886420b1ae",
+      "claim_span": "link to https://linkedin.com/company/novooi",
+      "http_status": 200,
+      "extractor": "site_social_links_v2",
+      "snapshot": "snapshots/f1/f13d477de59541f6020267e30aeb2188e5af083e88f5adfbb2985f886420b1ae.gz",
+      "redirect_chain": [
+        "https://novooi.com/"
+      ]
+    },
+    {
+      "id": "ev-f7cc480313d4179b8df1",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; resultatregnskapResultat.driftsresultat.driftsinntekter.sumDriftsinntekter=185435.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-fb3aca67d4f073b95002",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "final_url": "https://data.brreg.no/regnskapsregisteret/regnskap/827340162",
+      "source_class": "official_accounts",
+      "retrieved_at": "2026-10-07T21:47:47Z",
+      "content_sha256": "db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad",
+      "claim_span": "regnskapstype=SELSKAP; periode=2024-01-01..2024-12-31; eiendeler.sumBankinnskuddOgKontanter=839869.0",
+      "http_status": 200,
+      "extractor": "brreg_accounts_v2",
+      "snapshot": "snapshots/db/db79f90cbdbab6f6ab42e518cf3d2e9acffe1a61962cfef66c330c806f51efad.gz"
+    },
+    {
+      "id": "ev-fdc0204ae8ae7f82650a",
+      "source_url": "https://novooi.com/feed/",
+      "final_url": "https://novooi.com/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T21:48:04Z",
+      "content_sha256": "b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893",
+      "claim_span": "2026-09-07 The Royal Norwegian Embassy in London",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/b0/b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893.gz"
+    },
+    {
+      "id": "ev-ffc10871845fab5e1c3d",
+      "source_url": "https://novooi.com/feed/",
+      "final_url": "https://novooi.com/feed/",
+      "source_class": "company_owned",
+      "retrieved_at": "2026-10-07T21:48:04Z",
+      "content_sha256": "b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893",
+      "claim_span": "2026-08-13 Design Dialogues",
+      "http_status": 200,
+      "extractor": "site_news_feed_v1",
+      "snapshot": "snapshots/b0/b03d8e5a195b376339b1efad06759d641e021fbcfcde2973d37292adeffe4893.gz"
+    }
+  ],
+  "changes": [],
+  "errors": [],
+  "operations": {
+    "requests": 18,
+    "runtime_ms": 45905,
+    "third_party_cost_usd": 0.0,
+    "bytes": 4019799
+  }
+}

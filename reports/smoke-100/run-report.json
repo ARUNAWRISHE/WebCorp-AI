@@ -1,9 +1,9 @@
 {
-  "run_id": "smoke-100-v3",
+  "run_id": "smoke-100-v5",
   "agent_version": "signalpost-agent/1.0",
-  "started_at": "2026-10-07T17:50:00Z",
-  "completed_at": "2026-10-07T17:53:26Z",
-  "input": "smoke-companies.jsonl",
+  "started_at": "2026-10-07T21:47:04Z",
+  "completed_at": "2026-10-07T21:59:58Z",
+  "input": "companies.jsonl",
   "input_count": 100,
   "emitted_envelopes": 100,
   "checks": {
@@ -19,56 +19,68 @@
   },
   "validation_failures": [],
   "time_budget_seconds": 900.0,
-  "elapsed_seconds": 205.5,
-  "phase_a_seconds": 51.3,
+  "elapsed_seconds": 774.2,
+  "phase_a_seconds": 86.0,
   "per_company_runtime": {
     "n": 100,
-    "p50_ms": 17812.0,
-    "p95_ms": 27110.0,
-    "max_ms": 49218.0
+    "p50_ms": 22328.0,
+    "p95_ms": 46156.0,
+    "max_ms": 64891.0
   },
   "module_runtime": {
+    "filing_years": {
+      "n": 100,
+      "p50_ms": 0.0,
+      "p95_ms": 0.0,
+      "max_ms": 0
+    },
     "financials": {
       "n": 100,
-      "p50_ms": 3547.0,
-      "p95_ms": 4250.0,
-      "max_ms": 7000
+      "p50_ms": 3500.0,
+      "p95_ms": 5765.0,
+      "max_ms": 13640
     },
     "group": {
       "n": 100,
       "p50_ms": 0.0,
-      "p95_ms": 2672.0,
-      "max_ms": 16342
+      "p95_ms": 2921.0,
+      "max_ms": 6500
     },
     "jobs": {
       "n": 100,
+      "p50_ms": 1218.0,
+      "p95_ms": 1282.0,
+      "max_ms": 1327
+    },
+    "registers": {
+      "n": 100,
       "p50_ms": 0.0,
-      "p95_ms": 0.0,
-      "max_ms": 6000
+      "p95_ms": 797.0,
+      "max_ms": 2015
     },
     "registry": {
       "n": 100,
-      "p50_ms": 3219.0,
-      "p95_ms": 6547.0,
-      "max_ms": 13515
+      "p50_ms": 2828.0,
+      "p95_ms": 5750.0,
+      "max_ms": 10516
     },
     "roles": {
       "n": 100,
-      "p50_ms": 4217.0,
-      "p95_ms": 4936.0,
-      "max_ms": 7733
+      "p50_ms": 6827.0,
+      "p95_ms": 11625.0,
+      "max_ms": 26375
     },
     "website": {
       "n": 100,
-      "p50_ms": 2592.0,
-      "p95_ms": 13077.0,
-      "max_ms": 20952
+      "p50_ms": 3967.0,
+      "p95_ms": 23515.0,
+      "max_ms": 43344
     },
     "website_extract": {
-      "n": 11,
-      "p50_ms": 16.0,
-      "p95_ms": 343.0,
-      "max_ms": 343
+      "n": 9,
+      "p50_ms": 3952.0,
+      "p95_ms": 23969.0,
+      "max_ms": 23969
     },
     "wikidata": {
       "n": 100,
@@ -78,19 +90,19 @@
     },
     "workplaces": {
       "n": 100,
-      "p50_ms": 4141.0,
-      "p95_ms": 4875.0,
-      "max_ms": 7780
+      "p50_ms": 3437.0,
+      "p95_ms": 5108.0,
+      "max_ms": 8297
     }
   },
   "requests": {
-    "total": 803,
-    "per_company_mean": 7.0,
+    "total": 1158,
+    "per_company_mean": 10.5,
     "background_lanes": 108
   },
-  "bytes": 31336714,
+  "bytes": 49041308,
   "third_party_cost_usd": 0.0,
-  "peak_rss_bytes": 543703040,
+  "peak_rss_bytes": 718454784,
   "coverage": {
     "legal_name": {
       "companies_available": 100,
@@ -215,12 +227,10 @@
       }
     },
     "website_address": {
-      "companies_available": 1,
-      "company_coverage": 0.01,
-      "available_claims": 1,
-      "states": {
-        "available": 1
-      }
+      "companies_available": 0,
+      "company_coverage": 0.0,
+      "available_claims": 0,
+      "states": {}
     },
     "registry_website": {
       "companies_available": 7,
@@ -231,22 +241,22 @@
       }
     },
     "official_website": {
-      "companies_available": 8,
-      "company_coverage": 0.08,
-      "available_claims": 8,
-      "states": {
-        "available": 8,
-        "not_available": 70,
-        "failed": 4,
-        "ambiguous": 18
-      }
-    },
-    "website_description": {
       "companies_available": 7,
       "company_coverage": 0.07,
       "available_claims": 7,
       "states": {
-        "available": 7
+        "available": 7,
+        "not_available": 72,
+        "failed": 4,
+        "ambiguous": 17
+      }
+    },
+    "website_description": {
+      "companies_available": 6,
+      "company_coverage": 0.06,
+      "available_claims": 6,
+      "states": {
+        "available": 6
       }
     },
     "social_profile": {
@@ -254,9 +264,10 @@
       "company_coverage": 0.03,
       "available_claims": 8,
       "states": {
-        "not_available": 93,
+        "not_available": 92,
         "failed": 4,
-        "available": 3
+        "available": 3,
+        "blocked": 1
       }
     },
     "knowledge_base_entry": {
@@ -286,22 +297,43 @@
       "company_coverage": 0.04,
       "available_claims": 32,
       "states": {
-        "not_available": 92,
+        "not_available": 91,
         "failed": 4,
-        "available": 4
+        "available": 4,
+        "blocked": 1
+      }
+    },
+    "food_safety_inspection": {
+      "companies_available": 1,
+      "company_coverage": 0.01,
+      "available_claims": 1,
+      "states": {
+        "not_applicable": 98,
+        "available": 1,
+        "not_available": 1
+      }
+    },
+    "public_approval": {
+      "companies_available": 2,
+      "company_coverage": 0.02,
+      "available_claims": 2,
+      "states": {
+        "available": 2,
+        "not_applicable": 91,
+        "not_available": 7
       }
     },
     "registry_event": {
       "companies_available": 100,
       "company_coverage": 1.0,
-      "available_claims": 562,
+      "available_claims": 899,
       "states": {
         "available": 100
       }
     }
   },
   "website_discovery_sources": {
-    "email_domain": 2,
+    "email_domain": 1,
     "guessed_domain": 5,
     "registry": 1
   },
@@ -310,7 +342,12 @@
   "connectors": {
     "nav_job_feed": {
       "status": "available",
-      "note": "9652 active ads indexed from 209 feed pages (206 cached) covering 90 days"
+      "note": "9674 active ads indexed from 209 feed pages (206 cached) covering 90 days",
+      "employer_known_for_active_ads": [
+        9674,
+        9674
+      ],
+      "ad_details_fetched_this_run": 3
     },
     "wikidata": {
       "status": "available",
@@ -319,13 +356,18 @@
     "filing_years_lane": {
       "checked": 100
     },
+    "sector_registers": {
+      "smilefjes": "available (48571 inspections)",
+      "renhold": "available (7925 companies)"
+    },
     "local_llm": {
-      "enabled": false,
-      "model": null,
-      "summaries": 0
+      "enabled": true,
+      "model": "qwen3:8b",
+      "summaries": 96
     }
   },
   "summary_methods": {
-    "deterministic_template_v1": 100
+    "deterministic_template_v1+llm:qwen3:8b": 96,
+    "deterministic_template_v1": 4
   }
 }
