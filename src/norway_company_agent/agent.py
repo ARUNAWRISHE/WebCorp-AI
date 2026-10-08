@@ -515,7 +515,7 @@ def build_report(config: RunConfig, envelopes: list[dict[str, Any]], inputs: lis
         "agent_version": AGENT_VERSION,
         "started_at": started_at,
         "completed_at": completed_at,
-        "input": config.input_path,
+        "input": Path(config.input_path).name,  # file name only; no local paths in published reports
         "input_count": len(inputs),
         "emitted_envelopes": len(envelopes),
         "checks": {
