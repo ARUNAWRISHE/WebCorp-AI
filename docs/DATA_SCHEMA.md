@@ -55,7 +55,7 @@ state and a note explaining what was checked. Missing values are never zero.
 ## Viewer (`out/viewer.html`)
 
 Generated from the envelopes by `src/norway_company_agent/viewer.py` and `viewer_template.html`. It shows:
-- **Evidence coverage** (global and per company): available claims that carry at least one evidence record, for example `5,494 / 5,494 claims evidenced — 100%`. Computed from the envelopes, so a missing evidence record lowers the figure.
+- **Evidence coverage** (global and per company): available claims that carry at least one evidence record, for example `5,497 / 5,497 claims evidenced — 100%`. Computed from the envelopes, so a missing evidence record lowers the figure.
 - **Data freshness**: last verified date (global, per company and per section), the oldest evidence date and the number of stale (carried-forward) claims.
 - **State badges** with text, glyph and border style, never colour alone: `✓ AVAILABLE`, `∅ NOT AVAILABLE`, `– NOT APPLICABLE`, `? AMBIGUOUS`, `⊘ BLOCKED`, `✕ FAILED`.
 - Per-section cards with the key facts, expandable to every fact with its source, date, hash and quoted evidence span; a cited summary, what changed, what is unknown, and a browsable list of evidence records.

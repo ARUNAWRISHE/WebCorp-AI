@@ -92,8 +92,6 @@ envelopes, viewer and refresh demonstrations.
 uv run --with pytest pytest -q
 ```
 
-The starter-kit tests, plus agent regression tests: six-state mapping, one envelope per input under crashes,
+Agent regression tests: six-state mapping, one envelope per input under crashes,
 timeouts and invalid input, wrong-company traps (successor, franchise, foreign namesake, parked domain),
 accounts ordering, refresh idempotency and carry-forward, readable changes, and summary citations.
-
-The original starter-kit README is kept at [`docs/starter-kit-README.md`](docs/starter-kit-README.md).

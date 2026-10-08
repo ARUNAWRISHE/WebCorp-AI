@@ -8,9 +8,9 @@ LLM), residential broadband. All runs use the single evaluator command with defa
 | [**Evaluator-equivalent**](evaluator-1000/run-report.json) (cold state, no LLM, final code) | 1,000 | 2,000 s | **710 s** | 577 s | 11,045 | 10.5 | — | 22.0 s / 54.0 s | 805 MB | **USD 0** |
 | [Production](production-1000/run-report.json) (default command, local LLM on) | 1,000 | 2,000 s | 1,957 s¹ | 506 s | 11,290 | 11.3 | 366 MB | 18.3 s / 48.3 s | 666 MB | **USD 0** |
 | [Stress](stress-1100/run-report.json) (`--llm off`, tight budget) | 1,100 | 1,200 s | 737 s | 611 s | 12,072 | 11.0 | 421 MB | 21.2 s / 52.5 s | 793 MB | **USD 0** |
-| [Smoke](smoke-100/run-report.json) | 100 | 900 s | see report¹ | — | about 1,100 | about 11 | — | — | about 500 MB | **USD 0** |
+| [Smoke](smoke-100/run-report.json) (cold state, final code) | 100 | 900 s | 381.5 s | 86 s | 1,380 | 10.6 | — | 23.6 s / 46.4 s | 651 MB | **USD 0** |
 
-¹ Production and smoke runs used an earlier revision that waited for the filing-years lane, plus local-LLM synthesis
+¹ The production run used an earlier revision that waited for the filing-years lane, plus local-LLM synthesis
 in the remaining budget. The final code does not hold the batch for background lanes: a cold 1,000-company run
 without an LLM (as on Builderr's evaluator) finishes in 710 s.
 

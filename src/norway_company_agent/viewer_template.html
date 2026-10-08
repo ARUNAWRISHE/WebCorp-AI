@@ -276,10 +276,10 @@ function selCount(){return Object.keys(S.sel).length}
 function renderStrip(){
   var s=STATS,p=pct(s.evidenced,s.available),w=s.available?Math.floor(s.evidenced/s.available*1000)/10:0,low=s.evidenced<s.available;
   var gap=s.available-s.evidenced;
-  var h='<div class="sg"><span class="lab">Coverage</span><span class="coverage-value"><strong>'+num(s.evidenced)+' / '+num(s.available)+'</strong> evidenced · <strong>'+p+'</strong></span>'+
+  var h='<div class="sg"><span class="lab">Evidence coverage</span><span class="coverage-value"><strong>'+num(s.evidenced)+' / '+num(s.available)+'</strong> evidenced · <strong>'+p+'</strong></span>'+
     '<span class="meter'+(low?" low":"")+'" role="img" aria-label="'+p+' of available claims have evidence"><b style="width:'+w+'%"></b></span>'+
     (low?'<span class="st st-failed sm"><i>✕</i>'+num(gap)+' missing</span>':'<span class="st st-available sm"><i>✓</i>Complete</span>')+'</div>';
-  h+='<div class="sg"><span class="lab">Freshness</span><span class="coverage-value">Verified <strong>'+esc(s.newest||"n/a")+'</strong> · '+num(s.stale)+' stale</span></div>';
+  h+='<div class="sg"><span class="lab">Data freshness</span><span class="coverage-value">Verified <strong>'+esc(s.newest||"n/a")+'</strong> · '+num(s.stale)+' stale</span></div>';
   h+='<div class="sg" aria-label="Claims by state">'+STATE_ORDER.map(function(k){return'<span class="sc sc-'+k+'">'+badge(k,true)+'<b>'+num((s.states||{})[k]||0)+'</b></span>'}).join("")+'</div>';
   $("strip").innerHTML=h}
 
