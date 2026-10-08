@@ -14,8 +14,12 @@ span (text excerpt, JSON path or CSV row key). Raw response bytes are stored con
   User-Agent and modest concurrency. Several of these hosts publish a generic `robots.txt` that disallows
   their API or data paths for *web crawlers* (Wikidata `/w/`, DiBK `/api/`, Mattilsynet `/`), while their API
   or data documentation invites programmatic use. We follow the documented terms for these endpoints and
-  list them below. **This is a policy choice to confirm before submission.** Each connector can be turned
-  off: `--no-wikidata`, `--no-registers`.
+  list them below. **Decision (2026-10-08): these documented APIs and open-data files are used**, because each
+  publisher explicitly offers them for programmatic use: Wikimedia's API etiquette for bots, DiBK's API documentation
+  ("free for all systems, no registration"), and Mattilsynet's CC BY 4.0 distribution in the national data catalogue.
+  Their robots rules target web crawlers indexing pages. We respect each publisher's terms: a descriptive User-Agent,
+  low concurrency, CC BY attribution for Mattilsynet, and no permanent storage of DiBK responses. Each connector
+  can be turned off with `--no-wikidata` or `--no-registers`.
 
 ## Matrix
 
@@ -43,8 +47,8 @@ span (text excerpt, JSON path or CSV row key). Raw response bytes are stored con
   official approvals (DiBK, Arbeidstilsynet).
 - Brreg announcements (`w2.brreg.no/kunngjoring/`) are disallowed by robots.txt and are not used. Dated registry
   changes come from the official update API instead.
-- The starter kit's experimental scripts (`run_linkedin_guest_*`, `run_google_news_rss_connector.py`,
-  `run_fagfolkguiden_reviews_connector.py`, `run_youtube_search_connector.py`) are **not** called by the agent.
+- The starter kit's experimental platform scripts (LinkedIn guest pages, Google News RSS, Fagfolkguiden, YouTube
+  search, Google Maps normalisation) have been **removed** from this repository.
 
 ## Secrets
 

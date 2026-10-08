@@ -34,27 +34,12 @@ from bs4 import BeautifulSoup  # noqa: E402
 from scripts.build_prototype import compact as compact_prototype, qualification_copy  # noqa: E402
 from scripts.run_brave_discovery import brave_search  # noqa: E402
 from scripts.run_annual_report_workforce_connector import extract_candidate, needs_ocr  # noqa: E402
-from scripts.normalize_google_maps_results import candidate_score  # noqa: E402
 from scripts.run_scrapy_websites import terminal_events_for_run  # noqa: E402
 from scripts.run_sentiment_model import MODEL_REVISION, normalize_generated_label  # noqa: E402
 from scripts.score_company_completeness import score_rows, summarize  # noqa: E402
 from scripts.extract_company_site_activity import observation as site_activity_observation  # noqa: E402
 from scripts.extract_company_site_news import observation as site_news_observation  # noqa: E402
 from scripts.build_verified_observations import build as build_verified_observations  # noqa: E402
-from scripts.run_google_news_rss_connector import exact_title_match  # noqa: E402
-from scripts.run_linkedin_guest_jobs_connector import canonical_company_url, parse_detail_company_urls, parse_job_cards, parse_typeahead  # noqa: E402
-from scripts.run_linkedin_guest_experiment import (  # noqa: E402
-    assess_profile_identity as assess_linkedin_profile_identity,
-    extract_profile as extract_linkedin_profile,
-    legal_name_profile_url,
-)
-from scripts.run_fagfolkguiden_reviews_connector import extract_aggregate_rating, slug  # noqa: E402
-from scripts.discover_linkedin_company_profiles import (  # noqa: E402
-    discovery_identity as linkedin_discovery_identity,
-    normalized_full_name as linkedin_normalized_full_name,
-    official_site_aliases as linkedin_official_site_aliases,
-    parse_exact_typeahead as parse_linkedin_exact_typeahead,
-)
 
 
 class EvidenceTests(unittest.TestCase):
@@ -114,142 +99,6 @@ class ExternalFootprintTests(unittest.TestCase):
         item = self.observation(platform="linkedin", signal_type="job_posting", acquisition_mode="jobspy_experiment")
         self.assertFalse(publishable_observation(item))
 
-    def test_linkedin_guest_jobs_require_exact_verified_company_url(self):
-        raw = b'''<div class="base-search-card" data-entity-urn="urn:li:jobPosting:4456746433">
-          <a class="base-card__full-link" href="https://no.linkedin.com/jobs/view/example-4456746433?x=1"></a>
-          <span class="sr-only">Project manager</span>
-          <h4 class="base-search-card__subtitle"><a href="https://no.linkedin.com/company/af-gruppen?trk=x">AF Gruppen</a></h4>
-          <span class="job-search-card__location">Oslo</span><time datetime="2026-08-23"></time>
-        </div>
-        <div class="base-search-card" data-entity-urn="urn:li:jobPosting:4456746434">
-          <a class="base-card__full-link" href="https://linkedin.com/jobs/view/other-4456746434"></a>
-          <span class="sr-only">Wrong parent job</span>
-          <h4 class="base-search-card__subtitle"><a href="https://linkedin.com/company/af-gruppen-sverige">AF Gruppen Sverige</a></h4>
-        </div>'''
-        jobs, candidates = parse_job_cards(raw, "https://linkedin.com/company/af-gruppen")
-        self.assertEqual(candidates, 2)
-        self.assertEqual([item["job_id"] for item in jobs], ["4456746433"])
-        self.assertEqual(jobs[0]["company_url"], "https://linkedin.com/company/af-gruppen")
-
-    def test_linkedin_company_urls_and_typeahead_are_normalized_without_claiming_ambiguous_ids(self):
-        self.assertEqual(
-            canonical_company_url("https://no.linkedin.com/company/Norsk-Fiskeeksport/about?trk=x"),
-            "https://linkedin.com/company/norsk-fiskeeksport",
-        )
-        candidates = parse_typeahead(
-            json.dumps([
-                {"id": "34440", "type": "COMPANY", "displayName": "AF Gruppen"},
-                {"id": "1188022", "type": "COMPANY", "displayName": "AF Gruppen Sverige"},
-            ]).encode(),
-            "AF GRUPPEN ASA",
-        )
-        self.assertTrue(candidates[0]["exact_legal_name_core"])
-        self.assertFalse(candidates[1]["exact_legal_name_core"])
-        self.assertEqual(
-            parse_detail_company_urls(
-                b'<a href="https://no.linkedin.com/company/af-gruppen?trk=job">AF Gruppen</a>'
-                b'<a href="https://example.test/company/wrong">Wrong</a>'
-            ),
-            {"https://linkedin.com/company/af-gruppen"},
-        )
-
-    def test_linkedin_guest_profile_uses_structured_company_data_and_ignores_dormant_challenge_code(self):
-        graph = {
-            "@graph": [
-                {
-                    "@type": "DiscussionForumPosting",
-                    "author": {"url": "https://no.linkedin.com/company/af-gruppen"},
-                    "datePublished": "2026-08-21T06:15:05Z",
-                    "text": "Exact company update",
-                    "url": "https://no.linkedin.com/posts/example-activity-7496449781678927873-x",
-                },
-                {
-                    "@type": "Organization",
-                    "name": "AF Gruppen",
-                    "url": "https://no.linkedin.com/company/af-gruppen",
-                    "description": "Construction group",
-                    "numberOfEmployees": {"value": 1303},
-                },
-            ]
-        }
-        raw = (
-            '<meta name="description" content="AF Gruppen | 56 726 followers on LinkedIn">'
-            f'<script type="application/ld+json">{json.dumps(graph)}</script>'
-            '<script>const dormant="recaptcha/challengepage";</script>'
-            '<div data-test-id="about-us__size"><dd>5,001-10,000 employees</dd></div>'
-            '<article class="main-feed-activity-card" data-activity-urn="urn:li:activity:7496449781678927873">'
-            '<a data-test-id="social-actions__reactions" data-num-reactions="29"></a>'
-            '<a data-test-id="social-actions__comments" data-num-comments="4"></a></article>'
-        ).encode()
-        profile = extract_linkedin_profile(raw, "https://linkedin.com/company/af-gruppen")
-        self.assertEqual(profile["followers"], 56726)
-        self.assertEqual(profile["visible_employees"], 1303)
-        self.assertEqual(profile["employee_size_label"], "5,001-10,000 employees")
-        self.assertEqual(profile["posts"][0]["likes"], 29)
-        self.assertEqual(profile["posts"][0]["comments"], 4)
-
-    def test_linkedin_guest_profile_rejects_authwall_without_organization_data(self):
-        with self.assertRaisesRegex(RuntimeError, "no structured organization"):
-            extract_linkedin_profile(b'<script>recaptcha/challengepage</script>', "https://linkedin.com/company/example")
-
-    def test_linkedin_stale_handle_fallback_is_bounded_to_registry_legal_name(self):
-        self.assertEqual(legal_name_profile_url("DIPS AS"), "https://www.linkedin.com/company/dips-as")
-        self.assertEqual(legal_name_profile_url("RØD & BLÅ AS"), "https://www.linkedin.com/company/rod-bla-as")
-
-    def test_linkedin_discovery_requires_exact_typeahead_name_and_corroboration(self):
-        raw = json.dumps([
-            {"id": "1", "type": "COMPANY", "displayName": "DIPS AS"},
-            {"id": "2", "type": "COMPANY", "displayName": "DIPS ASA"},
-        ]).encode()
-        self.assertEqual([item["linkedin_company_id"] for item in parse_linkedin_exact_typeahead(raw, "DIPS AS")], ["1"])
-        self.assertEqual(linkedin_normalized_full_name("RØD & BLÅ AS"), "rød blå as")
-        company = {
-            "name": "DIPS AS",
-            "municipality": "BODØ",
-            "website": "https://dips.com",
-            "evidence": {"website": {"status": "available", "value": {"final_url": "https://dips.com"}}},
-        }
-        exact = linkedin_discovery_identity(company, {"name": "DIPS AS", "website": "https://www.dips.com", "headquarters": "Bodø"}, {"legal_name_slug"})
-        self.assertTrue(exact["exact_entity"])
-        weak = linkedin_discovery_identity(company, {"name": "DIPS AS", "website": "https://unrelated.test", "headquarters": "Oslo"}, {"legal_name_slug"})
-        self.assertFalse(weak["exact_entity"])
-
-    def test_linkedin_fuzzy_discovery_uses_verified_site_alias_and_reverse_domain(self):
-        company = {
-            "name": "JARRE AS",
-            "municipality": "INDRE ØSTFOLD",
-            "website": "https://jarre.co",
-            "evidence": {
-                "website": {"status": "available", "value": {"final_url": "https://jarre.co", "title": "Jarre&Co"}},
-                "roles": {"value": {"roles": [{"name": "Christian Jarre", "role_code": "DAGL"}]}},
-            },
-        }
-        self.assertEqual(linkedin_official_site_aliases(company), ["Jarre&Co"])
-        exact = linkedin_discovery_identity(
-            company,
-            {"name": "Jarre & Co", "website": "https://www.jarre.co", "headquarters": "Askim", "description": ""},
-            {"official_site_alias:Jarre&Co"},
-        )
-        self.assertTrue(exact["exact_entity"])
-
-    def test_linkedin_profile_identity_accepts_redirect_alias_only_with_name_or_reverse_domain_proof(self):
-        profile = {
-            "name": "ZAPTEC ASA",
-            "website": "https://zaptec.com",
-            "evidence": {"website": {"source_url": "https://www.zaptec.com/", "value": {"final_url": "https://www.zaptec.com/"}}},
-        }
-        accepted = assess_linkedin_profile_identity(
-            profile,
-            "https://linkedin.com/company/gozaptec",
-            {"name": "Zaptec", "page_url": "https://linkedin.com/company/zaptec", "website": "https://www.zaptec.com"},
-        )
-        self.assertTrue(accepted["publishable_candidate"])
-        rejected = assess_linkedin_profile_identity(
-            profile,
-            "https://linkedin.com/company/gozaptec",
-            {"name": "Unrelated Parent", "page_url": "https://linkedin.com/company/unrelated", "website": "https://parent.test"},
-        )
-        self.assertFalse(rejected["publishable_candidate"])
 
     def test_google_play_observation_is_supported_but_unofficial_output_stays_experimental(self):
         item = self.observation(
@@ -314,68 +163,6 @@ class ExternalFootprintTests(unittest.TestCase):
         self.assertEqual(result["sentiment"]["status"], "available")
         self.assertEqual(result["sentiment"]["independent_reviewers"], 10)
 
-    def test_google_maps_identity_gate_rejects_neighbor_and_accepts_exact_address(self):
-        profile = {
-            "organisation_number": "938702675",
-            "name": "AF GRUPPEN ASA",
-            "evidence": {
-                "registry": {"value": {
-                    "forretningsadresse.adresse": "Standardveien 1",
-                    "forretningsadresse.postnummer": "0581",
-                    "telefon": "22 89 11 00",
-                }},
-                "website": {"value": {
-                    "final_url": "https://afgruppen.no/",
-                    "identity_assessment": {"publishable": True},
-                }},
-            },
-        }
-        exact = candidate_score(profile, {
-            "title": "AF Gruppen", "address": "Standardveien 1, 0581 Oslo, Norge",
-            "phone": "+47 22 89 11 00", "web_site": "https://afgruppen.no/", "review_count": 21,
-        })
-        neighbor = candidate_score(profile, {
-            "title": "AF Eiendom", "address": "Standardveien 1, 0581 Oslo, Norge",
-            "phone": "+47 22 89 11 00", "web_site": "https://afgruppen.no/eiendom/", "review_count": 0,
-        })
-        self.assertTrue(exact["accepted"])
-        self.assertFalse(neighbor["accepted"])
-
-    def test_google_maps_exact_name_and_postcode_city_can_resolve_operating_address(self):
-        profile = {
-            "organisation_number": "999999999",
-            "name": "EXAMPLE INDUSTRI AS",
-            "evidence": {"registry": {"value": {
-                "forretningsadresse.adresse": "c/o Accountant Other Street 1",
-                "forretningsadresse.postnummer": "4021",
-                "forretningsadresse.poststed": "STAVANGER",
-            }}},
-        }
-        result = candidate_score(profile, {
-            "title": "Example Industri AS", "address": "Factory Road 7, 4021 Stavanger, Norway",
-            "phone": "", "web_site": "", "review_count": 4,
-        })
-        self.assertTrue(result["accepted"])
-        self.assertTrue(result["postcode_city_match"])
-
-    def test_google_maps_trade_name_requires_exact_address_phone_and_no_partial_name_collision(self):
-        profile = {
-            "name": "OSLOFJORDEN EIENDOMSMEGLING AS",
-            "evidence": {"registry": {"value": {
-                "forretningsadresse.adresse": "Stranden 81", "forretningsadresse.postnummer": "0250",
-                "forretningsadresse.poststed": "Oslo", "telefon": "22620000",
-            }}},
-        }
-        candidate = {"title": "PrivatMegleren Premium", "address": "Stranden 81, 0250 Oslo", "phone": "+47 22 62 00 00"}
-        result = candidate_score(profile, candidate)
-        self.assertFalse(result["trade_name_match"])
-        self.assertFalse(result["accepted"])
-        profile["organisation_number"] = "932083108"
-        result = candidate_score(profile, candidate)
-        self.assertTrue(result["trade_name_match"])
-        self.assertTrue(result["accepted"])
-        candidate["phone"] = "+47 99 99 99 99"
-        self.assertFalse(candidate_score(profile, candidate)["accepted"])
 
     def test_experimental_maps_signals_raise_only_experimental_places_score(self):
         profile = {
@@ -563,12 +350,6 @@ class CompletenessScoreTests(unittest.TestCase):
         profile["evidence"]["website"]["value"]["identity_assessment"]["publishable"] = False
         self.assertIsNone(site_activity_observation(profile))
 
-    def test_news_title_gate_requires_the_full_legal_name_core(self):
-        self.assertTrue(exact_title_match("NORDIC DOOR AS", "Nordic Door AS åpner ny fabrikk - Lokalavisa"))
-        self.assertFalse(exact_title_match("NORDIC DOOR AS", "Nordic investors prefer another door - Example"))
-        self.assertTrue(exact_title_match("SOLVANG ASA", "Sterkt årsresultat fra Solvang ASA i 2024 - Skipsrevyen"))
-        self.assertFalse(exact_title_match("VIND HOLDING AS", "Inntektene til Aneo Roan Vind Holding AS stupte - mn24.no"))
-        self.assertFalse(exact_title_match("CONSTO AS", "Drastisk fall hos Consto Bergen AS - BT"))
 
     def test_site_news_requires_exact_identity_and_a_captured_news_path(self):
         profile = {
@@ -609,11 +390,6 @@ class CompletenessScoreTests(unittest.TestCase):
         self.assertEqual(score["components"]["exact_external_identity"], 0.0)
         self.assertEqual(score["experimental_components"]["exact_external_identity"], 20.0)
         self.assertFalse(publishable_observation(item))
-
-    def test_fagfolk_rating_parser_uses_jsonld_and_slug_is_stable(self):
-        raw = b'<script type="application/ld+json">{"aggregateRating":{"ratingValue":4.4,"ratingCount":25}}</script>'
-        self.assertEqual(extract_aggregate_rating(raw)[:2], (4.4, 25))
-        self.assertEqual(slug("NORDIC DØR AS"), "nordic-dor-as")
 
 
 class SamplingTests(unittest.TestCase):

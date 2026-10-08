@@ -368,7 +368,7 @@ def run(config: RunConfig) -> dict[str, Any]:
             profiles[org].deadline = deadline - 20
         if ad_lane is not None and nav.status == "available":
             # Give the ad-detail sync a bounded window (cold caches only); a warm cache finishes at once.
-            sync_limit = min(deadline - 90, t0 + 0.55 * budget)
+            sync_limit = min(deadline - 90, time.monotonic() + 60)  # never hold the run for the background sync
             while time.monotonic() < sync_limit and ad_lane.thread.is_alive():
                 time.sleep(1.0)
             ad_lane.stop_flag.set()
@@ -403,8 +403,9 @@ def run(config: RunConfig) -> dict[str, Any]:
                 profiles[org].check(name, "not_applicable", "Sector-register connectors disabled for this run.")
 
     if lane is not None:
-        # Let the rate-limited lane use idle time, but never more than 60% of the budget or past the deadline.
-        lane_limit = min(deadline - 60, t0 + 0.6 * budget)
+        # The rate-limited lane works alongside research; once everything else is done it gets at most a short
+        # grace period, so a large batch is not held back for this one low-priority field.
+        lane_limit = min(deadline - 60, time.monotonic() + 45)
         while time.monotonic() < lane_limit and any(thread.is_alive() for thread in lane.threads) and len(lane.results) < len(valid):
             time.sleep(1.0)
         lane.stop_flag.set()

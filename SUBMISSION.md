@@ -16,6 +16,8 @@ Exact commit hash: the commit tagged submission-v1 (full SHA in this email: <SHA
   (also reports/production-1000, reports/stress-1100 and reports/COST.md)
 One-command run instruction:
   uv sync --frozen && uv run python run_agent.py --input <batch.jsonl> --output out/envelopes.jsonl
+  (pip alternative: python -m venv .venv && .venv/bin/pip install --require-hashes -r requirements.txt
+   && .venv/bin/python run_agent.py --input <batch.jsonl> --output out/envelopes.jsonl)
   (optional: SIGNALPOST_TIME_BUDGET_SECONDS=<seconds> to match the run budget; default max(900, 2 × companies))
 Models / APIs / licences:
   - Brønnøysund Enhetsregisteret + Regnskapsregisteret open APIs (NLOD 2.0), no key
@@ -51,5 +53,5 @@ Contact for results: ARUNAWRISHE <arunawrishe@gmail.com>
 - [x] Claim-level source URL, retrieval time, content hash, span and reporting period
 - [x] Refresh: previous snapshot input, typed changes, earlier evidence preserved, idempotent re-run (tested on live data)
 - [x] Declared sources, rights and secrets: `docs/SOURCES.md`; no secrets required
-- [ ] Robots policy for documented public APIs (Wikidata, DiBK, Mattilsynet) confirmed. If declined, add
-      `--no-wikidata --no-registers` to the run instruction above
+- [x] Robots policy decided: documented public APIs and open data (Wikidata, DiBK, Mattilsynet) are used under their
+      published terms; rationale in `docs/SOURCES.md`

@@ -24,6 +24,13 @@ uv sync --frozen
 uv run python run_agent.py --input companies.jsonl --output out/envelopes.jsonl
 ```
 
+Without uv (pip, Python ≥3.12, hash-pinned):
+
+```bash
+python -m venv .venv && .venv/bin/pip install --require-hashes -r requirements.txt
+.venv/bin/python run_agent.py --input companies.jsonl --output out/envelopes.jsonl
+```
+
 `--input` accepts JSONL (`{"organisation_number": "..."}` or plain strings), JSON, CSV or TXT, optionally gzipped.
 
 | Output | Content |
