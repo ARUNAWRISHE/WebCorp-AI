@@ -17,3 +17,4 @@ brreg-enheter.csv*
 
 # published smoke-test artifacts
 !reports/**/*.jsonl.gz
+!data/nav-ad-cache.jsonl.gz
