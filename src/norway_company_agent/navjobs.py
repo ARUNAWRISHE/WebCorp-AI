@@ -375,9 +375,9 @@ def collect_jobs(profile: Profile, index: NavJobIndex, lane: AdSyncLane | None =
     candidates = list(dict.fromkeys(by_org + name_candidates(profile, index)))[: max(max_details, len(by_org))]
     if not candidates:
         known, total = lane.coverage() if lane else (0, len(index.entries))
+        partial = f" The employer could be read for {known:,} of {total:,} active ads in this run." if known < total else ""
         profile.check("job_posting", "not_available",
-                      f"No active NAV Arbeidsplassen ad has this organisation number or a registered subunit as employer "
-                      f"(employer known for {known} of {total} active ads; name matching used for the rest).")
+                      "No active NAV Arbeidsplassen job ad lists this company, or one of its registered workplaces, as the employer." + partial)
         return
     today = datetime.now(timezone.utc).date().isoformat()
     published = 0
