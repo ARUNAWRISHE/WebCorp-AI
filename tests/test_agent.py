@@ -385,3 +385,25 @@ def test_junk_news_titles_are_dropped():
     assert _junk_title("Hello world!")
     assert _junk_title("Gra W Kości Zasady Punktacja Kasyno")
     assert not _junk_title("Ny kollega i Opsahl Gruppen: Møt Elise")
+
+
+def test_viewer_shows_evidence_coverage_freshness_and_text_state_badges(tmp_path):
+    from norway_company_agent.viewer import batch_stats, build_viewer
+    good = _profile_envelope(["Kari Nordmann"])
+    refresh(None, good, detected_at="2026-10-01T00:00:00Z", failed_fields=set())
+    good["sections"] = compute_sections(good)
+    good["summary"] = template_summary(good)
+    stats = batch_stats([good])
+    assert stats["available"] == stats["evidenced"] > 0
+    assert stats["newest"] == stats["oldest"] == "2026-10-01"
+    assert set(stats["states"]) >= {"available", "ambiguous", "blocked", "failed", "not_available", "not_applicable"}
+    # An available claim whose evidence is missing must lower the coverage figure, never hide it.
+    broken = json.loads(json.dumps(good))
+    next(claim for claim in broken["claims"] if claim["availability"] == "available")["evidence_ids"] = ["ev-missing"]
+    assert batch_stats([broken])["evidenced"] == stats["evidenced"] - 1
+    target = tmp_path / "viewer.html"
+    build_viewer([good], {"run_id": "r", "emitted_envelopes": 1, "completed_at": "t", "elapsed_seconds": 1, "requests": {"total": 1}, "third_party_cost_usd": 0}, str(target))
+    page = target.read_text(encoding="utf-8")
+    for text in ("Evidence coverage", "Data freshness", "NOT AVAILABLE", "NOT APPLICABLE", "AMBIGUOUS", "BLOCKED", "FAILED", "AVAILABLE"):
+        assert text in page
+    assert "__DATA__" not in page and "__REPORT__" not in page

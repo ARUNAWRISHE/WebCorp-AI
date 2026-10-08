@@ -37,7 +37,7 @@ python -m venv .venv && .venv/bin/pip install --require-hashes -r requirements.t
 |---|---|
 | `out/envelopes.jsonl` | Exactly one terminal envelope per input, in input order ([schema](docs/DATA_SCHEMA.md)) |
 | `out/run-report.json` | Contract checks, runtime, p50/p95, requests, third-party cost, per-field coverage and states, connector status |
-| `out/viewer.html` | Self-contained viewer: search, filter, compare and verify every fact on desktop or mobile |
+| `out/viewer.html` | Self-contained viewer (open in any browser, no server): global evidence-coverage and data-freshness indicators, text state badges, per-section facts with sources, compare, light/dark, mobile. Rebuild from existing envelopes with `uv run python scripts/build_viewer.py --envelopes out/envelopes.jsonl --report out/run-report.json` |
 | `state/` | Raw snapshots (content-addressed), run history and caches. The next run diffs against `state/latest` |
 
 The agent writes a valid placeholder file at start-up, so an interrupted run still has one envelope per input.
