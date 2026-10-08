@@ -7,6 +7,7 @@ import gzip
 import hashlib
 import json
 import queue
+import re
 import threading
 import time
 import traceback
@@ -153,6 +154,37 @@ def _guard(profile: Profile, module: str, fields: list[str], fn, *args, **kwargs
     return None
 
 
+SOURCE_WORDS = {
+    "guessed_domain": "a web address guessed from the company name",
+    "email_domain": "the domain of the company's registered email address",
+    "registry": "the website listed in the registry",
+    "wikidata": "the website listed on Wikidata",
+    "subunit_registry": "the website listed for one of its registered workplaces",
+}
+OUTCOME_WORDS = {
+    "not_available": "no website there",
+    "rejected": "does not belong to this company",
+    "ambiguous": "could not be tied to this company",
+    "blocked": "refused automated access",
+    "failed": "could not be fetched",
+}
+
+
+def _ambiguous_site_note(candidate: dict[str, Any], assessment: dict[str, Any]) -> str:
+    """Plain-language reason a candidate website was withheld."""
+    host = re.sub(r"^https?://(www\.)?", "", str(candidate.get("url") or "")).rstrip("/")
+    joined = " ".join(assessment.get("reasons", []))
+    if "lacks independent contact corroboration" in joined or "matches the name but" in joined:
+        reason = "It matches the company name, but nothing on it shows this organisation number, phone number, email address or street address from the registry."
+    elif "several other organisation numbers" in joined:
+        reason = "The page lists several other organisations, like a directory or group site."
+    elif "inside another site" in joined:
+        reason = "It is a page inside another organisation's website, not a site of its own."
+    else:
+        reason = "Nothing on it proves that it belongs to this company."
+    return f"A possible website, {host} ({SOURCE_WORDS.get(candidate.get('source'), 'a candidate address')}), was found. {reason} It is not shown as the company's website."
+
+
 def research_company(profile: Profile, *, bulk_row: dict[str, Any] | None, wikidata: WikidataLookup | None, max_crawls: int) -> None:
     identity_fields = ["legal_name", "legal_form", "registry_status", "business_address", "industry", "business_purpose", "founded_date", "registered_employees"]
     entity = _guard(profile, "registry", identity_fields, brreg.collect_entity, profile, bulk_row)
@@ -195,18 +227,18 @@ def research_company(profile: Profile, *, bulk_row: dict[str, Any] | None, wikid
     if assessment is not None and assessment.get("status") == "ambiguous":
         candidate = assessment["candidate"]
         state = "ambiguous"
-        note = f"Candidate {candidate['url']} (from {candidate['source']}) could not be tied to this organisation number: {'; '.join(assessment.get('reasons', [])[:2])}."
+        note = _ambiguous_site_note(candidate, assessment)
     elif not attempts:
-        state, note = "not_available", "No website is registered and no candidate domain could be derived from official data."
+        state, note = "not_available", "No website is registered, and none could be found from official data such as the registered email address."
     elif any(item == "blocked" for item in states) and not any(item in {"rejected", "ambiguous"} for item in states):
-        state, note = "blocked", "Candidate website refused automated access (robots.txt or access control)."
+        state, note = "blocked", "The website refused automated access (robots.txt or access control), so it was not read."
     elif states and all(item == "failed" for item in states):
-        state, note = "failed", "Candidate website could not be fetched in this run."
+        state, note = "failed", "The website could not be fetched in this run."
     else:
         state = "not_available"
-        note = "No verified official website: " + "; ".join(f"{item['domain']} ({item['source']}): {item.get('outcome')}" for item in attempts[:5])
+        note = "No official website could be verified. Checked: " + ", ".join(f"{item['domain']} ({OUTCOME_WORDS.get(item.get('outcome'), 'not usable')})" for item in attempts[:5]) + "."
     if facts_registry := profile.facts.get("registry_website"):
-        note += f" Registry-declared website: {facts_registry}."
+        note += f" The registry lists {facts_registry} as the company's website."
     profile.check("official_website", state, note[:500], [item["evidence_id"] for item in attempts if item.get("evidence_id")])
     dependent = "not_available" if state in {"not_available", "ambiguous"} else state
     profile.check("social_profile", dependent, "No verified company website to read profile links from.")

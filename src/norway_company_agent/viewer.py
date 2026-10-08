@@ -257,7 +257,7 @@ def _previews(envelope: dict[str, Any], by: dict[str, list[dict[str, Any]]]) -> 
         state = (envelope.get("sections") or {}).get(section, {}).get("availability")
         notes = [c.get("note") for c in envelope.get("claims", []) if c["section"] == section and c["key"] == "*" and c.get("note") and c["availability"] == state]
         notes = notes or [c.get("note") for c in envelope.get("claims", []) if c["section"] == section and c["key"] == "*" and c.get("note")]
-        preview["note"] = (notes[0] if notes else "")[:260]
+        preview["note"] = (notes[0] if notes else "")[:420]
     return previews
 
 

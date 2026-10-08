@@ -310,13 +310,14 @@ function factsTable(c,s){
   return'<table class="facts"><caption class="sr">All facts for '+esc(SEC[s][0])+'</caption><thead class="sr"><tr><th scope="col">Fact</th><th scope="col">Value and sources</th><th scope="col">State</th></tr></thead><tbody>'+h+'</tbody></table>'}
 function kvHtml(rows){return'<div class="kv">'+rows.map(function(r){var u=safe(r[2]);
   return'<div class="k">'+esc(r[0])+'</div><div class="v">'+(u?'<a href="'+esc(u)+'" target="_blank" rel="noopener noreferrer">'+esc(r[1])+'</a>':esc(r[1]))+'</div>'}).join("")+'</div>'}
+function cell(v){return v==="—"?'<span title="Not reported in the filing" aria-label="Not reported in the filing">—</span>':esc(v)}
 function secCard(c,s,i){
   var st=c.s[s]||"not_applicable",pv=(c.sp||{})[s]||{rows:[],note:""},facts=c.cl.filter(function(x){return x[0]===s&&x[4]==="available"}).length,open=!!S.open[s];
   if(s==="assessments"&&st==="not_applicable"&&!open)return"";
   var body="";
   if(s==="financials"&&c.ac&&c.ac.rows.length){
     body='<table class="mini"><thead><tr><th scope="col">Year</th><th scope="col">Period</th><th scope="col">Revenue</th><th scope="col">Result</th><th scope="col">Equity</th></tr></thead><tbody>'+
-      c.ac.rows.map(function(r){return'<tr><th scope="row" style="text-align:left;font-weight:700">'+esc(r[0])+'</th><td>'+esc(r[1])+'</td><td>'+esc(r[2])+'</td><td>'+esc(r[3])+'</td><td>'+esc(r[4])+'</td></tr>'}).join("")+'</tbody></table>'+
+      c.ac.rows.map(function(r){return'<tr><th scope="row" style="text-align:left;font-weight:700">'+esc(r[0])+'</th><td>'+esc(r[1])+'</td><td>'+cell(r[2])+'</td><td>'+cell(r[3])+'</td><td>'+cell(r[4])+'</td></tr>'}).join("")+'</tbody></table>'+
       '<p class="note">NOK, '+(c.ac.scope==="group"?"consolidated group accounts":"company accounts")+'.</p>'}
   else if(pv.rows.length)body=kvHtml(pv.rows);
   else body='<p class="note">'+esc(pv.note||"Nothing was found for this section.")+'</p>';

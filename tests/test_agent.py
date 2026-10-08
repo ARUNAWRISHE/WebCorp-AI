@@ -407,3 +407,12 @@ def test_viewer_shows_evidence_coverage_freshness_and_text_state_badges(tmp_path
     for text in ("Evidence coverage", "Data freshness", "NOT AVAILABLE", "NOT APPLICABLE", "AMBIGUOUS", "BLOCKED", "FAILED", "AVAILABLE"):
         assert text in page
     assert "__DATA__" not in page and "__REPORT__" not in page
+
+
+def test_withheld_website_note_is_plain_language():
+    from norway_company_agent.agent import _ambiguous_site_note
+    note = _ambiguous_site_note({"url": "https://www.seafood.no/", "source": "guessed_domain"},
+                                {"reasons": ["guessed_domain candidate matches the name but lacks independent contact corroboration"]})
+    assert note.startswith("A possible website, seafood.no")
+    assert "guessed_domain" not in note and "corroboration" not in note
+    assert note.endswith("It is not shown as the company's website.")
