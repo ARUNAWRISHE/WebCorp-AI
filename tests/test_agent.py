@@ -407,6 +407,10 @@ def test_viewer_shows_evidence_coverage_freshness_and_text_state_badges(tmp_path
     for text in ("Evidence coverage", "Data freshness", "NOT AVAILABLE", "NOT APPLICABLE", "AMBIGUOUS", "BLOCKED", "FAILED", "AVAILABLE"):
         assert text in page
     assert "__DATA__" not in page and "__REPORT__" not in page
+    # Accessibility: skip link, real buttons for list rows, inline (not alert()) feedback, 44 px targets.
+    assert "Skip to company profile" in page and 'class="open"' in page
+    assert "alert(" not in page and "aria-live" not in page
+    assert "min-height:44px" in page
 
 
 def test_withheld_website_note_is_plain_language():
